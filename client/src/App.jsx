@@ -4,7 +4,7 @@ import PdfPage from './PdfPage'; // Путь укажи в зависимост�
 function App() {
     return (
         <div className="App">
-            <h1>PDF Превью и Скачивание</h1>
+            <h1>PDF Preview and Download</h1>
             <PdfPage />
         </div>
     );
