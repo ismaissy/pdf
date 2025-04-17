@@ -1,0 +1,31 @@
+.doc-temp {
+    display: none;
+}
+
+@media print {
+    @page {
+        size: A4; 
+        margin: 20mm; /* Adjust margins as needed */
+        padding: 5mm; 
+    }
+
+    .doc-temp {
+        width: 100%; /* A4 width */
+        padding: 10mm; /* Add some padding */
+        margin: 0 auto; /* Center the content */
+    }
+
+    /* Hide unnecessary elements */
+    .hide-on-print {
+        display: none;
+    }
+
+    .visible-on-print {
+        display: block;
+    }
+
+    /* Adjust font size for better readability */
+    body {
+        /* font-size: 12pt; */
+    }
+}

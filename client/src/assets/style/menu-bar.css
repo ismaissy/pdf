@@ -1,0 +1,31 @@
+.menu-bar {
+    display: flex;
+    padding: 0px;
+    margin: 0;
+    left: 0;
+    right: 0;
+    list-style: none;
+    z-index: 900;
+  }
+  
+  .menu-bar .menu-item {
+    margin: 0px 2px;
+    text-decoration: none;
+  }
+  .menu-bar .menu-link {
+    font-size: 13px;
+    font-weight: 700;
+    padding: 0px 4px;
+    color: #041927;
+    border-radius: 4px;
+    transition: all 0.3s;
+  }
+  
+  .menu-bar .menu-link.collapsed {
+    color: #4d6c84;
+    background: none;
+  }
+  
+  .menu-bar .menu-link:hover {
+    color: #041927;
+  }

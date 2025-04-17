@@ -1,0 +1,17 @@
+.app .menu {
+    background-color: white !important;
+}
+
+.app .menu .option {
+    padding: 1px 8px !important;
+    font-weight: 500 !important;
+    font-size: 11px !important;
+}
+
+.app .menu .option:hover {
+    background-color: rgb(241, 245, 247) !important;
+}
+
+.app .menu .divider {
+    margin: 0 !important;
+}

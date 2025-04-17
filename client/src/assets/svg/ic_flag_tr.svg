@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="800px" height="800px" fill="none" viewBox="0 -4 28 28" xmlns="http://www.w3.org/2000/svg">
+<g clip-path="url(#b)">
+<rect width="28" height="20" rx="2" fill="#fff"/>
+<mask id="a" x="0" y="0" width="28" height="20" style="mask-type:alpha" maskUnits="userSpaceOnUse">
+<rect width="28" height="20" rx="2" fill="#fff"/>
+</mask>
+<g mask="url(#a)">
+<rect width="28" height="20" fill="#E92434"/>
+<path d="m19.021 10.768-1.2248 1.4849 0.0835-1.9231-1.7908-0.70597 1.8547-0.51493 0.1181-1.9213 1.0629 1.6049 1.8637-0.48145-1.1979 1.5068 1.0339 1.6238-1.8033-0.6736z" clip-rule="evenodd" fill="#fff" fill-rule="evenodd"/>
+<path d="m17.403 13.684c-1.0979 1.4096-2.8112 2.3162-4.7363 2.3162-3.3137 0-6-2.6863-6-6 0-3.3137 2.6863-6 6-6 1.9251 0 3.6384 0.90659 4.7363 2.3161-0.8473-0.61592-1.9126-0.9828-3.0698-0.9828-2.7614 0-5 2.0893-5 4.6667 0 2.5773 2.2386 4.6666 5 4.6666 1.1572 0 2.2226-0.3669 3.0698-0.9828z" clip-rule="evenodd" fill="#fff" fill-rule="evenodd"/>
+</g>
+</g>
+<defs>
+<clipPath id="b">
+<rect width="28" height="20" rx="2" fill="#fff"/>
+</clipPath>
+</defs>
+</svg>
