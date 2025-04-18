@@ -630,14 +630,19 @@ const PdfPage = () => {
                   margin: [0, 20, 0, 20],
                   text: 'Daşary ýurt raýatyna işewürlik (BS1, BS2), maýa goýum (IN), işçi (WP), maşgala (FM), Sport (SP1, SP2), ynsanperwerlik (HM), hususy (PR1, PR2), talyp (ST), syýahatçylyk (TU), üstaşyt (TR!, TR2) Saglygy bejeriş (HL), sürüjilik (DR)wazasyny resmileşdirmek üçin',
                   fontSize: 11 
-                
                 },
-                // {
-                //     width: 150,
-                //     alignment: 'center', // можно left / right / center
-                //     margin: [0, 20, 0, 20],// отступы[left, top, right, bottom]
-                //     image: base64Image,
-                // },
+                { 
+                    alignment: 'center',
+                    margin: [0, 20, 0, 20],
+                    text: 'Daşary ýurt raýatyna işewürlik (BS1, BS2), maýa goýum (IN), işçi (WP), maşgala (FM), Sport (SP1, SP2), ynsanperwerlik (HM), hususy (PR1, PR2), talyp (ST), syýahatçylyk (TU), üstaşyt (TR!, TR2) Saglygy bejeriş (HL), sürüjilik (DR)wazasyny resmileşdirmek üçin',
+                    fontSize: 11 
+                },
+                {
+                    width: 150,
+                    alignment: 'center', // можно left / right / center
+                    margin: [0, 20, 0, 20],// отступы[left, top, right, bottom]
+                    image: base64Image,
+                },
             ]
         },
     ]
@@ -679,10 +684,13 @@ const PdfPage = () => {
             content: [
                 {
                     qr: qrText,
-                    foreground: '#00008B',
-                    background: '#F5F5F5',
-                    fit: 150,
-                    eccLevel: 'H'
+                    // foreground: '#00008B',
+                    // background: '#F5F5F5',
+                    fit: 330,
+                    version: 5,             // Версия QR-кода (от 1 до 40)
+                    // mode: 'octet',          // Способ кодирования
+                    // mask: 2      
+                    eccLevel: 'L'
                 },
                 // {
                 //     qr: qrText,
@@ -691,7 +699,7 @@ const PdfPage = () => {
                 //     foreground: 'red',
                 //     background: 'yellow'
                 //   },
-                { text: 'Alem Tilsimat',color: 'blue', link: 'https://alemtilsimat.com/'},
+                // { text: 'Alem Tilsimat',color: 'blue', link: 'https://alemtilsimat.com/'},
                 {
                     columns: [
                         {
