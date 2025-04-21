@@ -13,22 +13,9 @@ pdfMake.fonts = {
   },
 };
 
-const Profile = () => {
+const Profile = ({ ...props }) => {
   const [pdfUrl, setPdfUrl] = useState(null);
   const [base64Image, setBase64Image] = useState(null);
-  const [profile, setProfile] = useState({
-    firstName: "Hokuto",
-    lastName: "HANDA",
-    middleName: "",
-    birthDay: "16.05.1967",
-    bornCountry: "JPN, Tokyo/Ýaponiýa",
-    citizenship: "JPN",
-    passport: "TZ1132601, 20.50.2016 ý, 20.05.2026 ý.",
-    studyOfCountry: "Ýokary, JPN, Keio Uniwersiteti",
-    major: "Himiýa Inzenerligi",
-    position: "Infrastruktura taslamalary müdirliginiň baş menejerniň orunbasary"
-  });
-
 
   useEffect(() => {
     const toBase64 = async () => {
@@ -85,7 +72,7 @@ const Profile = () => {
                 {
                   stack: [
                     {
-                      text: `${profile?.firstName || ''} ${profile?.lastName || ''} ${profile?.middleName || ''}`,
+                      text: `${props.profile?.firstName || ''} ${props.profile?.lastName || ''} ${props.profile?.middleName || ''}`,
                       alignment: "center", margin: [0, 5, 0, 2],
                     },
                     { canvas: [{ type: 'line', x1: 35, y1: 0, x2: 370, y2: 0, lineWidth: 0.5, }] },
@@ -97,7 +84,7 @@ const Profile = () => {
                 {
                   stack: [
                     {
-                      text: `${profile.birthDay} ${profile.bornCountry}`, alignment: "center", margin: [0, 0, 0, 2]
+                      text: `${props.profile.birthDay} ${props.profile.bornCountry}`, alignment: "center", margin: [0, 0, 0, 2]
                     },
                     {
                       canvas: [{ type: 'line', x1: -7, y1: 0, x2: 370, y2: 0, lineWidth: 0.5, }],
@@ -109,7 +96,7 @@ const Profile = () => {
                 { text: "Raýatlygy", alignment: "left", noWrap: true },
                 {
                   stack: [
-                    { text: `${profile.citizenship}`, alignment: "center", margin: [0, 0, 0, 2] },
+                    { text: `${props.profile.citizenship}`, alignment: "center", margin: [0, 0, 0, 2] },
                     {
                       canvas: [{ type: 'line', x1: -70, y1: 0, x2: 370, y2: 0, lineWidth: 0.5 }],
                     },
@@ -121,7 +108,7 @@ const Profile = () => {
                 {
                   stack: [
                     {
-                      text: `${profile.passport}`,
+                      text: `${props.profile.passport}`,
                       alignment: "center",
                       margin: [0, 10, 0, 2],
                     },
@@ -165,7 +152,7 @@ const Profile = () => {
                 {
                   stack: [
                     {
-                      text: `${profile.studyOfCountry}`,
+                      text: `${props.profile.studyOfCountry}`,
                       alignment: "center",
                       margin: [0, 0, 0, 2],
                     },
@@ -187,7 +174,7 @@ const Profile = () => {
                 {
                   stack: [
                     {
-                      text: `${profile.major}`,
+                      text: `${props.profile.major}`,
                       alignment: "center",
                       margin: [0, 0, 0, 2],
                     },
@@ -209,7 +196,7 @@ const Profile = () => {
                 {
                   stack: [
                     {
-                      text: `${profile.position}`,
+                      text: `${props.profile.position}`,
                       alignment: "center",
                       margin: [0, 0, 0, 2],
                     },
@@ -330,7 +317,7 @@ const Profile = () => {
 
   return (
     <div>
-      <button onClick={generatePdf} disabled={!base64Image}>Profile PDF</button>
+      <button onClick={generatePdf} disabled={!base64Image}>Profile</button>
 
       {pdfUrl && (
         <div style={{ height: "100vh", marginTop: "20px" }}>

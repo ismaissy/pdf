@@ -10,7 +10,7 @@ pdfMake.fonts = {
   },
 };
 
-const Konselari = ({ ...props }) => {
+const HasapdanChykarmak = ({ ...props }) => {
   const [pdfUrl, setPdfUrl] = useState(null);
   const [base64Image, setBase64Image] = useState(null);
 
@@ -32,7 +32,7 @@ const Konselari = ({ ...props }) => {
     const documentDefinition = {
       pageSize: "A4",
       pageOrientation: "portrait",
-      pageMargins: [40, 40, 40, 40], // отступы[left, top, right, bottom]
+      pageMargins: [60, 50, 50, 40], // отступы[left, top, right, bottom]
       // BELLIK // alignment: "left", можно left / right / center shulor yaly ulonyp bolya TEXT-da
       defaultStyle: { font: "TimesNewRoman" },
       // footer: (currentPage) => ({ text: currentPage.toString(), alignment: "center", margin: [0, 10, 0, 0], fontSize: 10, }),
@@ -40,55 +40,40 @@ const Konselari = ({ ...props }) => {
       content: [
         {
           columns: [
-            { image: base64Image, width: 150, height: 40, alignment: "left", margin: [0, -10, 0, 0], },
+            { image: base64Image, width: 150, height: 40, alignment: "left", margin: [0, 0, 0, 0], },
             { text: "gapinsaat.com", link: 'https://gapinsaat.com/tr/index.html', alignment: "right", color: 'blue', fontSize: 10, bold: true, }
           ],
         },
-        { text: `\n\n\nBelgi:   ${props.data?.asNo || ''}`, fontSize: 16, italics: true, bold: true },
+        { text: '\n\n\n\n\n' },
+        { text: `Belgi:   ${props.data?.asNo || ''}`, fontSize: 16, italics: true, bold: true },
         { text: `Sene:   ${props.data?.date || ''}`, fontSize: 16, italics: true, bold: true },
         { text: '\n\n' },
         {
           columns: [
-            { text: props.data.severity ? `Gyssagly tertipde!` : ' ', alignment: "left", fontSize: 10, italics: true },
-            { text: "Türkmenhimiýa Döwlet\nKonserniniň başlygy\nD.I. Sapbaýew", margin: [100, 0, 0, 0], alignment: "center", fontSize: 15, bold: true, },
+            { text: ' ', alignment: "left", fontSize: 10 },
+            {
+              text: "Türkmenhimiýa Döwlet Migrasiýa\nGullugynyň Ahal welaýaty boýunça müdirligine.",
+              alignment: "right",
+              fontSize: 15,
+              bold: true,
+            },
           ],
         },
-        { columns: [{ text: `\nHormatly ${props.data.firstName} ${props.data?.middleName || ''}!`, alignment: "center", fontSize: 15, bold: true, }] },
-        { text: '\n' },
+        { text: '\n\n' },
         {
-          leadingIndent: 20,
-          fontSize: 14,
-          alignment: 'justify',
+          leadingIndent: 20, fontSize: 14, alignment: 'justify',
           text: [
-            { text: 'Türkmenistanyň Prezidentiniň 2014-nji ýylyň  16-nji awgustynda, ' },
-            { text: `"${props.data.border} ${props.data.organization} gurmak hakynda" ` },
-            { text: 'kabul eden 13811 belgili kararyna laýyklykda, "Türkmenhimiýa" döwlet konsernine ' },
-            { text: 'Ýaponiýanyň "Mitsubushi Çorporation" we Türkiýäniň "GAP Inşaat Ýatyrym we Dyş Tijaret A. Ş" ' },
-            { text: 'kompaniýalar konsorsiumy bilen Balkan welaýatynyň Garabogaz ' },
-            { text: 'şäherinde ýyllyk kuwwaty 1155 müň tonna karbanid öndürýän zawody gurmak ' },
-            { text: 'barada şertnama baglanyşmaga ygtyýar berildi.' },
+            { text: 'Hatymyzyň goşundysynda görkezilen sanawdaky ' },
+            { text: `${3} (${'üç'}) sany `, bold: true },
+            { text: `daşary ýurt raýatlarynyň ` },
+            { text: `Türkmenistandan gidendigi sebäpli `, bold: true },
+            { text: 'hasapdan doly çykarmagyňyzy Sizden haýyş edýäris.' },
           ]
         },
         {
-          leadingIndent: 20,
-          fontSize: 14,
-          alignment: 'justify',
+          leadingIndent: 20, fontSize: 14, alignment: 'justify',
           text: [
-            { text: 'Gurluşygyň bellenilen möhletde tamamlanmagy üçin hatymyza goşundyda görkezlen sanawdaky ' },
-            { text: `1 (bir) sany daşary ýurt raýatyna 1 (bir) aý `, bold: true },
-            { text: 'möhlet bilen ' },
-            { text: `iki gezeklik çakylyk we iş rugsotnamasynyň resmileşdirilmegine `, bold: true },
-            { text: `Aşgabat şäheri we Balkan welaýatynyň Türkmenbaşy etrabynyň Gyýanly obasynda hereket eder ýaly`, bold: true },
-            { text: `ýardam etmegiňizi Sizden haýyş edýäris.` },
-          ]
-        },
-
-        {
-          leadingIndent: 20,
-          fontSize: 14,
-          alignment: 'justify',
-          text: [
-            { text: 'Daşary ýurt raýatynyň Türkmenistana gelmeginiň, onda bolmagynyň we ondan ' },
+            { text: 'Daşary ýurt raýatynyň Türkmenistana gelmeginiň onda bolmagynyň we ondan ' },
             { text: 'gitmeginiň düzgünlerini berjaý etmegine jogapkärçiligi kompaniýamyz öz üstüne alýar.' },
           ]
         },
@@ -99,7 +84,6 @@ const Konselari = ({ ...props }) => {
             { text: `Recep AKÇI`, alignment: "right", fontSize: 15, bold: true, },
           ],
         },
-
       ],
     };
 
@@ -108,7 +92,7 @@ const Konselari = ({ ...props }) => {
 
   return (
     <div>
-      <button onClick={generatePdf} disabled={!base64Image}>Konselari</button>
+      <button onClick={generatePdf} disabled={!base64Image}>Hasapdan Chykarmak</button>
 
       {pdfUrl && (
         <div style={{ height: "100vh", marginTop: "20px" }}>
@@ -120,4 +104,4 @@ const Konselari = ({ ...props }) => {
 };
 
 
-export default Konselari;
+export default HasapdanChykarmak;
