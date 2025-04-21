@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import pdfMake from "pdfmake/build/pdfmake";
 import { vfs as customVfs } from "../vfs_fonts";
 import jpgImage from "../4.png";
+import Utils from "../utils";
 
 pdfMake.vfs = customVfs;
 pdfMake.fonts = {
@@ -25,7 +26,6 @@ const Profile = ({ ...props }) => {
       reader.onloadend = () => setBase64Image(reader.result);
       reader.readAsDataURL(blob);
     };
-
     toBase64();
   }, []);
 
@@ -40,18 +40,10 @@ const Profile = ({ ...props }) => {
       pageMargins: [40, 40, 40, 40],
       defaultStyle: { font: "TimesNewRoman" },
       footer: (currentPage) => ({ text: String(currentPage), alignment: "center", margin: [0, 10, 0, 0], fontSize: 10, }),
-
       background: (currentPage, pageSize) => {
         return {
           canvas: [
-            {
-              type: "rect",
-              x: 15,
-              y: 25,
-              w: pageSize.width - 35,
-              h: pageSize.height - 70,
-              lineWidth: 1,
-            },
+            { type: "rect", x: 15, y: 25, w: pageSize.width - 35, h: pageSize.height - 70, lineWidth: 1, },
           ],
         };
       },
@@ -75,7 +67,7 @@ const Profile = ({ ...props }) => {
                       text: `${props.profile?.firstName || ''} ${props.profile?.lastName || ''} ${props.profile?.middleName || ''}`,
                       alignment: "center", margin: [0, 5, 0, 2],
                     },
-                    { canvas: [{ type: 'line', x1: 35, y1: 0, x2: 370, y2: 0, lineWidth: 0.5, }] },
+                    { canvas: [Utils.canvasDto('line', 35, 0, 370, 0, 0.5)] },
                   ],
                 },
               ],
@@ -83,12 +75,8 @@ const Profile = ({ ...props }) => {
                 { text: "Doglan senesi we ýeri", alignment: "left", noWrap: true },
                 {
                   stack: [
-                    {
-                      text: `${props.profile.birthDay} ${props.profile.bornCountry}`, alignment: "center", margin: [0, 0, 0, 2]
-                    },
-                    {
-                      canvas: [{ type: 'line', x1: -7, y1: 0, x2: 370, y2: 0, lineWidth: 0.5, }],
-                    },
+                    { text: `${props.profile.birthDay} ${props.profile.bornCountry}`, alignment: "center", margin: [0, 0, 0, 2] },
+                    { canvas: [Utils.canvasDto('line', -7, 0, 370, 0, 0.5)] },
                   ],
                 },
               ],
@@ -97,9 +85,7 @@ const Profile = ({ ...props }) => {
                 {
                   stack: [
                     { text: `${props.profile.citizenship}`, alignment: "center", margin: [0, 0, 0, 2] },
-                    {
-                      canvas: [{ type: 'line', x1: -70, y1: 0, x2: 370, y2: 0, lineWidth: 0.5 }],
-                    },
+                    { canvas: [Utils.canvasDto('line', -70, 0, 370, 0, 0.5)] },
                   ],
                 },
               ],
@@ -107,21 +93,8 @@ const Profile = ({ ...props }) => {
                 { text: "Pasportyň belgisi, berlen senesi we möhleti", alignment: "left", },
                 {
                   stack: [
-                    {
-                      text: `${props.profile.passport}`,
-                      alignment: "center",
-                      margin: [0, 10, 0, 2],
-                    },
-                    {
-                      canvas: [
-                        {
-                          type: 'line',
-                          x1: -15, y1: 0,
-                          x2: 370, y2: 0,
-                          lineWidth: 0.5,
-                        },
-                      ],
-                    },
+                    { text: `${props.profile.passport}`, alignment: "center", margin: [0, 10, 0, 2] },
+                    { canvas: [Utils.canvasDto('line', -15, 0, 370, 0, 0.5)] },
                   ],
                 },
               ],
@@ -129,21 +102,8 @@ const Profile = ({ ...props }) => {
                 { text: "Şahsy belgisi", alignment: "left", noWrap: true },
                 {
                   stack: [
-                    {
-                      text: ` `,
-                      alignment: "center",
-                      margin: [0, 0, 0, 2],
-                    },
-                    {
-                      canvas: [
-                        {
-                          type: 'line',
-                          x1: -60, y1: 0,
-                          x2: 370, y2: 0,
-                          lineWidth: 0.5,
-                        },
-                      ],
-                    },
+                    { text: ` `, alignment: "center", margin: [0, 0, 0, 2] },
+                    { canvas: [Utils.canvasDto('line', -60, 0, 370, 0, 0.5)] },
                   ],
                 },
               ],
@@ -151,21 +111,8 @@ const Profile = ({ ...props }) => {
                 { text: "Bilimi, okan ýeri", alignment: "left", noWrap: true },
                 {
                   stack: [
-                    {
-                      text: `${props.profile.studyOfCountry}`,
-                      alignment: "center",
-                      margin: [0, 0, 0, 2],
-                    },
-                    {
-                      canvas: [
-                        {
-                          type: 'line',
-                          x1: -40, y1: 0,
-                          x2: 370, y2: 0,
-                          lineWidth: 0.5,
-                        },
-                      ],
-                    },
+                    { text: `${props.profile.studyOfCountry}`, alignment: "center", margin: [0, 0, 0, 2] },
+                    { canvas: [Utils.canvasDto('line', -40, 0, 370, 0, 0.5)] },
                   ],
                 },
               ],
@@ -173,21 +120,8 @@ const Profile = ({ ...props }) => {
                 { text: "Hünäri", alignment: "left", noWrap: true },
                 {
                   stack: [
-                    {
-                      text: `${props.profile.major}`,
-                      alignment: "center",
-                      margin: [0, 0, 0, 2],
-                    },
-                    {
-                      canvas: [
-                        {
-                          type: 'line',
-                          x1: -100, y1: 0,
-                          x2: 370, y2: 0,
-                          lineWidth: 0.5,
-                        },
-                      ],
-                    },
+                    { text: `${props.profile.major}`, alignment: "center", margin: [0, 0, 0, 2], },
+                    { canvas: [Utils.canvasDto('line', -100, 0, 370, 0, 0.5)] },
                   ],
                 },
               ],
@@ -195,21 +129,8 @@ const Profile = ({ ...props }) => {
                 { text: "Wezipesi", alignment: "left" },
                 {
                   stack: [
-                    {
-                      text: `${props.profile.position}`,
-                      alignment: "center",
-                      margin: [0, 0, 0, 2],
-                    },
-                    {
-                      canvas: [
-                        {
-                          type: 'line',
-                          x1: -90, y1: 0,
-                          x2: 370, y2: 0,
-                          lineWidth: 0.5,
-                        },
-                      ],
-                    },
+                    { text: `${props.profile.position}`, alignment: "center", margin: [0, 0, 0, 2], },
+                    { canvas: [Utils.canvasDto('line', -90, 0, 370, 0, 0.5)] },
                   ],
                 },
               ],
@@ -217,21 +138,8 @@ const Profile = ({ ...props }) => {
                 { text: "Türkmenistanda öňki işlän ýerleri:", alignment: "left" },
                 {
                   stack: [
-                    {
-                      text: `vdfsvdfvs  dfv  sdfjklvvnd fvsdfvjndfsvn dfsajvk qaerw gearui SHdh`,
-                      alignment: "center",
-                      margin: [0, 5, 0, 2],
-                    },
-                    {
-                      canvas: [
-                        {
-                          type: 'line',
-                          x1: -20, y1: 0,
-                          x2: 370, y2: 0,
-                          lineWidth: 0.5,
-                        },
-                      ],
-                    },
+                    { text: `vdfsvdfvs  dfv  sdfjklvvnd fvsdfvjndfsvn dfsajvk qaerw gearui SHdh`, alignment: "center", margin: [0, 5, 0, 2], },
+                    { canvas: [Utils.canvasDto('line', -20, 0, 370, 0, 0.5)] },
                   ],
                 },
               ],
@@ -239,21 +147,8 @@ const Profile = ({ ...props }) => {
                 { text: "Maşgala ýagdaýy", alignment: "left", noWrap: true },
                 {
                   stack: [
-                    {
-                      text: `Aýaly-Takae Handa-30.07.1965 (JPN)`,
-                      alignment: "center",
-                      margin: [0, 0, 0, 2],
-                    },
-                    {
-                      canvas: [
-                        {
-                          type: 'line',
-                          x1: -40, y1: 0,
-                          x2: 370, y2: 0,
-                          lineWidth: 0.5,
-                        },
-                      ],
-                    },
+                    { text: `Aýaly-Takae Handa-30.07.1965 (JPN)`, alignment: "center", margin: [0, 0, 0, 2], },
+                    { canvas: [Utils.canvasDto('line', -40, 0, 370, 0, 0.5)] },
                   ],
                 },
               ],
@@ -262,9 +157,7 @@ const Profile = ({ ...props }) => {
                 {
                   stack: [
                     { text: `JPN, 4-11-1 Kaminoge Setagaya-ku, Tokyo, Japan`, alignment: "center", margin: [0, 5, 0, 2], },
-                    {
-                      canvas: [{ type: 'line', x1: -20, y1: 0, x2: 370, y2: 0, lineWidth: 0.5, }]
-                    },
+                    { canvas: [Utils.canvasDto('line', -20, 0, 370, 0, 0.5)] },
                   ],
                 },
               ],

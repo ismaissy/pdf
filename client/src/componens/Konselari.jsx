@@ -22,7 +22,6 @@ const Konselari = ({ ...props }) => {
       reader.onloadend = () => setBase64Image(reader.result);
       reader.readAsDataURL(blob);
     };
-
     toBase64();
   }, []);
 
@@ -32,11 +31,8 @@ const Konselari = ({ ...props }) => {
     const documentDefinition = {
       pageSize: "A4",
       pageOrientation: "portrait",
-      pageMargins: [40, 40, 40, 40], // отступы[left, top, right, bottom]
-      // BELLIK // alignment: "left", можно left / right / center shulor yaly ulonyp bolya TEXT-da
+      pageMargins: [40, 40, 40, 40],
       defaultStyle: { font: "TimesNewRoman" },
-      // footer: (currentPage) => ({ text: currentPage.toString(), alignment: "center", margin: [0, 10, 0, 0], fontSize: 10, }),
-      // background: (currentPage, pageSize) => ({ canvas: [{ type: "rect", x: 15, y: 25, w: pageSize.width - 35, h: pageSize.height - 70, lineWidth: 1, }] }),
       content: [
         {
           columns: [
@@ -82,7 +78,6 @@ const Konselari = ({ ...props }) => {
             { text: `ýardam etmegiňizi Sizden haýyş edýäris.` },
           ]
         },
-
         {
           leadingIndent: 20,
           fontSize: 14,

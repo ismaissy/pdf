@@ -151,5 +151,4 @@ const YashamalyYeri = ({ ...props }) => {
   );
 };
 
-
 export default YashamalyYeri;

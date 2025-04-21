@@ -10,4 +10,8 @@ export default class Utils {
         return array.map((i) => ({ text: i, alignment, bold }));
     }
 
+    static canvasDto(type, x1, y1, x2, y2, lineWidth) {
+        return { type, x1, y1, x2, y2, lineWidth }
+    }
+
 }

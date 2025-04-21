@@ -27,7 +27,6 @@ const ListForeignCitizens = ({ ...props }) => {
     { lastName: "SMITH", firstName: "Anna", birthDate: "23.03.1985", gender: "Aýal", citizenship: "USA", passport: "XY123789", position: "Maslahatçy", visa: "Wiza №789123", address: "Aşgabat şäheri" },
   ]);
 
-
   const thead = ["№", "Familiýasy", "Ady", "Doglan senesi", "Jynsy", "Raýatlygy", "Pasportynyň belgisi", "Wezipesi", "Wiza maglumatlary", "Türkmenistandaky salgysy"];
 
   const tableBody = [
