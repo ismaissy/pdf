@@ -4,10 +4,11 @@ import Konselari from './componens/Konselari';
 import HasapdanChykarmak from './componens/HasapdanChykarmak';
 import ListForeignCitizens from './componens/ListForeignCitizens';
 import YashamalyYeri from './componens/YashamalyYeri';
+import BelligeAlmak from './componens/BelligeAlmak';
 
 export default function App() {
 
-    const [data, setData] = useState({
+    const data = {
         firstName: "Hokuto",
         lastName: "HANDA",
         middleName: "Amanowic",
@@ -23,7 +24,7 @@ export default function App() {
         severity: true,
         border: 'Balkan welaýatynyň Garabogaz şäherinde',
         organization: 'karbanit öndürýan zawodyny gurmak',
-    });
+    };
 
     return (
         <div className="App">
@@ -33,6 +34,7 @@ export default function App() {
             <HasapdanChykarmak data={data} />
             <ListForeignCitizens data={data} />
             <YashamalyYeri data={data} />
+            <BelligeAlmak profile={data} />
         </div>
     );
 };

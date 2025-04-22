@@ -11,7 +11,7 @@ export default class Utils {
     }
 
     static canvasDto(type, x1, y1, x2, y2, lineWidth) {
-        return { type, x1, y1, x2, y2, lineWidth }
+        return { type, x1, y1, x2: x2, y2, lineWidth }
     }
 
 }

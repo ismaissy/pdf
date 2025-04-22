@@ -29,7 +29,24 @@ const Profile = ({ ...props }) => {
     toBase64();
   }, []);
 
+  const qrData = {
+    "ŞAHSY KAGYZY": "",
+    "Familiýasy, ady, atasynyň ady": `${props.profile?.firstName || ''} ${props.profile?.lastName || ''} ${props.profile?.middleName || ''}`,
+    "Doglan senesi we ýeri": `${props.profile.birthDay} ${props.profile.bornCountry}`,
+    "Raýatlygy": `${props.profile.citizenship}`,
+    "Pasportyň belgisi, berlen senesi we möhleti": `${props.profile.passport}`,
+    "Şahsy belgisi": ``,
+    "Bilimi, okan ýeri": `${props.profile.studyOfCountry}`,
+    "Hünäri": `${props.profile.major}`,
+    "Wezipesi": `${props.profile.position}`,
+    "Türkmenistanda öňki işlän ýerleri": `vdfsvdfvs dfv sdfjklvvnd fvsdfvjndfsvn dfsajvk qaerw gearui SHdh`,
+    "Maşgala ýagdaýy": `Aýaly-Takae Handa-30.07.1965 (JPN)`,
+    "Daşary ýurtdaky ýaşaýan anyk salgysy": `JPN, 4-11-1 Kaminoge Setagaya-ku, Tokyo, Japan`,
+    "Daşary ýurt raýaylary barada galp maglumatlary görkezilýän ýagdaýynda Türkmenistanyň kanunçylygyna laýyklykda doly jogapkärçiligi çekýarin.": "",
+    "Ygtyýarly adam.": ""
+  };
 
+  const qrCodeContent = JSON.stringify(qrData);
 
   const generatePdf = () => {
     if (!base64Image) return;
@@ -201,6 +218,12 @@ const Profile = ({ ...props }) => {
             paddingTop: () => 5,
             paddingBottom: () => 5,
           }
+        },
+        {
+          qr: qrCodeContent,
+          alignment: "center",
+          margin: [0, 30, 0, 0],
+          fit: 300,
         },
       ],
     };
