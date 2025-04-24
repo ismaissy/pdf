@@ -3,6 +3,8 @@ import pdfMake from "pdfmake/build/pdfmake";
 import { vfs as customVfs } from "../vfs_fonts";
 import jpgImage from "../4.png";
 
+import { bold, alignment, italics, fontSize } from '../utils/constants'
+
 pdfMake.vfs = customVfs;
 pdfMake.fonts = {
   TimesNewRoman: {
@@ -28,6 +30,9 @@ const Profile = ({ ...props }) => {
     toBase64();
   }, []);
 
+
+  useEffect(() => generatePdf(), []);
+
   const generatePdf = () => {
     if (!base64Image) return;
 
@@ -37,17 +42,17 @@ const Profile = ({ ...props }) => {
       pageMargins: [20, 40, 20, 40],
       defaultStyle: { font: "TimesNewRoman", },
       content: [
-        { text: "DAŞARY YURT RAÝATLARYNY BELLIGE ALYŞ NAMASY\n", fontSize: 18, bold: true, alignment: "center" },
+        { text: "DAŞARY YURT RAÝATLARYNY BELLIGE ALYŞ NAMASY\n", fontSize: 18, bold, alignment },
         { text: "\n" },
         {
           table: {
             widths: [180, '*', 80],
             body: [
               [
-                { text: '1 Familiýasy, ady, atasynyň ady', fontSize: 14, alignment: 'left' },
+                { text: '1 Familiýasy, ady, atasynyň ady', fontSize, alignment: 'left' },
                 {
                   stack: [
-                    { text: `${'FirstName'}\t${'LastName'}`, italics: true, bold: true, fontSize: 14, alignment: 'center', margin: [0, 0, 0, 2] },
+                    { text: `${'FirstName'}\t${'LastName'}`, italics, bold, fontSize, alignment, margin: [0, 0, 0, 2] },
                     {
                       canvas: [
                         { type: 'line', x1: 0, y1: 0, x2: 262, y2: 0, lineWidth: 0.5, color: '#000000' }
@@ -58,7 +63,7 @@ const Profile = ({ ...props }) => {
                 {
                   width: "auto", width: 90, height: 115, alignment: "right",
                   canvas: [{ type: "rect", x: 0, y: 0, w: 90, h: 115, lineWidth: 1, dash: { length: 4 }, },],
-                  alignment: 'center',
+                  alignment,
                   rowSpan: 8
                 }
               ],
@@ -68,9 +73,9 @@ const Profile = ({ ...props }) => {
                     {
                       text: [
                         { text: `2 Raýatlygy\t\t\t`, },
-                        { text: `${'JPN'}`, italics: true, bold: true }
+                        { text: `${'JPN'}`, italics, bold }
                       ],
-                      fontSize: 14, alignment: 'left', margin: [0, 0, 0, 2]
+                      fontSize, alignment: 'left', margin: [0, 0, 0, 2]
                     },
                     { canvas: [{ type: 'line', x1: 70, y1: 0, x2: 180, y2: 0, lineWidth: 0.5, color: '#000000' }] }
                   ]
@@ -79,65 +84,64 @@ const Profile = ({ ...props }) => {
                   stack: [
                     {
                       text: [
-                        { text: '3 Doglan senesi\t\t\t' },
-                        { text: `${"16.05.1967"}`, italics: true, bold: true }
+                        { text: '3 Doglan senesi\t\t\t' }, { text: `${"16.05.1967"}`, italics, bold }
                       ],
-                      fontSize: 14, alignment: 'left', margin: [0, 0, 0, 2]
+                      fontSize, alignment: 'left', margin: [0, 0, 0, 2]
                     },
                     { canvas: [{ type: 'line', x1: 100, y1: 0, x2: 262, y2: 0, lineWidth: 0.5, color: '#000000' }] }
                   ]
-                }, { text: '', alignment: 'center' }
+                }, { text: '' }
               ],
               [
                 {
                   colSpan: 2,
-                  fontSize: 14,
+                  fontSize,
                   alignment: 'left',
                   stack: [
                     {
-                      fontSize: 14, alignment: 'left',
+                      fontSize, alignment: 'left',
                       text: [
-                        { text: '4 Pasportynyň belgisi\t\t\t' }, { text: `${'TZ1132601'}\t\t\t`, italics: true, bold: true, }, { text: `${'20.05.2026'}`, italics: true, bold: true, }
+                        { text: '4 Pasportynyň belgisi\t\t\t' }, { text: `${'TZ1132601'}\t\t\t`, italics, bold, }, { text: `${'20.05.2026'}`, italics, bold, }
                       ]
                     },
                     { canvas: [{ type: 'line', x1: 120, y1: 0, x2: 450, y2: 0, lineWidth: 0.5, color: '#000000' }] }
                   ]
-                }, {}, { text: '', alignment: 'center' } // Column 3
+                }, {}, { text: '', alignment } // Column 3
               ],
               [
                 {
                   stack: [
-                    { text: `5 Doglan ýeri ýurdy\t`, fontSize: 14, alignment: 'left', margin: [0, 0, 0, 2] },
+                    { text: `5 Doglan ýeri ýurdy\t`, fontSize, alignment: 'left', margin: [0, 0, 0, 2] },
                     { canvas: [{ type: 'line', x1: 115, y1: 0, x2: 450, y2: 0, lineWidth: 0.5, color: '#000000' }] }
                   ]
                 },
-                { text: `${"JPN, Tokyo/Ýaponiýa"}`, italics: true, bold: true, fontSize: 14, margin: [40, 0, 0, 2] },
-                { text: '', alignment: 'center' }
+                { text: `${"JPN, Tokyo/Ýaponiýa"}`, italics, bold, fontSize, margin: [40, 0, 0, 2] },
+                { text: '', alignment }
               ],
               [
                 {
-                  colSpan: 2, fontSize: 14, alignment: 'left',
+                  colSpan: 2, fontSize, alignment: 'left',
                   stack: [
                     {
                       text: [
-                        { text: `6 Jynsy\t\t\t`, }, { text: `${'Erkek'}`, italics: true, bold: true }
+                        { text: `6 Jynsy\t\t\t`, }, { text: `${'Erkek'}`, italics, bold }
                       ],
-                      fontSize: 14, alignment: 'left', margin: [0, 0, 0, 2]
+                      fontSize, alignment: 'left', margin: [0, 0, 0, 2]
                     },
                     { canvas: [{ type: 'line', x1: 45, y1: 0, x2: 450, y2: 0, lineWidth: 0.5, color: '#000000' }] }
                   ]
                 },
-                { text: '', alignment: 'center' }
+                { text: '', alignment }
               ],
 
               [
                 {
-                  colSpan: 2, fontSize: 14, alignment: 'left',
+                  colSpan: 2, fontSize, alignment: 'left',
                   stack: [
                     {
-                      fontSize: 14, alignment: 'left',
+                      fontSize, alignment: 'left',
                       text: [
-                        { text: `7 Öý salgysy\t` }, { text: `${'JPN  4-11-1 Kaminoge Setagaya-ku, Tokyo, Japan'}`, italics: true, bold: true }
+                        { text: `7 Öý salgysy\t` }, { text: `${'JPN  4-11-1 Kaminoge Setagaya-ku, Tokyo, Japan'}`, italics, bold }
                       ]
                     },
                     {
@@ -146,18 +150,18 @@ const Profile = ({ ...props }) => {
                       ],
                     }
                   ]
-                }, {}, { text: '', alignment: 'center' }
+                }, {}, { text: '', alignment }
               ],
-              [{ text: '(ýurt, şäher, köçe, jaý №, öý №)', colSpan: 2, fontSize: 12, alignment: 'center', }, {}, {}],
+              [{ text: '(ýurt, şäher, köçe, jaý №, öý №)', colSpan: 2, fontSize: 12, alignment, }, {}, {}],
               [
                 {
-                  colSpan: 3, fontSize: 14, alignment: 'left',
+                  colSpan: 3, fontSize, alignment: 'left',
                   stack: [
                     {
-                      fontSize: 14, alignment: 'left', margin: [0, 0, 0, 2],
+                      fontSize, alignment: 'left', margin: [0, 0, 0, 2],
                       text: [
                         { text: `8 Gelmeginiň makasady\t` },
-                        { text: `${'Infrastruktura taslamalary müdirliginiň baş menejeriniň orunbasary-TKF'}`, italics: true, alignment: 'center', bold: true }
+                        { text: `${'Infrastruktura taslamalary müdirliginiň baş menejeriniň orunbasary-TKF'}`, italics, alignment, bold }
                       ]
                     },
                     {
@@ -171,13 +175,13 @@ const Profile = ({ ...props }) => {
 
               [
                 {
-                  colSpan: 3, fontSize: 14, alignment: 'left',
+                  colSpan: 3, fontSize, alignment: 'left',
                   stack: [
                     {
-                      fontSize: 14, alignment: 'left', margin: [0, 0, 0, 2],
+                      fontSize, alignment: 'left', margin: [0, 0, 0, 2],
                       text: [
                         { text: `9 Türkmenistanda bolýan ýeri\t` },
-                        { text: `${'ş.Aşgabat "Ýyldyz" myhmanhanasy'}`, alignment: 'center', italics: true, bold: true }
+                        { text: `${'ş.Aşgabat "Ýyldyz" myhmanhanasy'}`, alignment, italics, bold }
                       ]
                     },
                     { canvas: [{ type: 'line', x1: 175, y1: 0, x2: 550, y2: 0, lineWidth: 0.5, color: '#000000' }] }
@@ -185,18 +189,18 @@ const Profile = ({ ...props }) => {
                 }, {}, {}
               ],
 
-              [{}, { text: '(doly salgysy)', colSpan: 2, fontSize: 12, alignment: 'center' }, {}],
+              [{}, { text: '(doly salgysy)', colSpan: 2, fontSize: 12, alignment }, {}],
 
               [
                 {
-                  colSpan: 3, fontSize: 14, alignment: 'left',
+                  colSpan: 3, fontSize, alignment: 'left',
                   stack: [
                     {
-                      fontSize: 14, alignment: 'left',
+                      fontSize, alignment: 'left',
                       margin: [0, 0, 0, 2],
                       text: [
                         { text: `${'10 Wizanyň derejesi, görnüşi we №\t\t'}`, },
-                        { text: `${'BS, iki gezeklik-A1602025'}`, alignment: 'center', bold: true, italics: true, }
+                        { text: `${'BS, iki gezeklik-A1602025'}`, alignment, bold, italics, }
                       ],
                     },
                     { canvas: [{ type: 'line', x1: 205, y1: 0, x2: 550, y2: 0, lineWidth: 0.5, color: '#000000' }] }
@@ -204,18 +208,18 @@ const Profile = ({ ...props }) => {
                 }, {}, {}
               ],
               [
-                { text: `11 Wizanyň berlen ýeri (ýurdy)`, fontSize: 14, alignment: 'left', margin: [0, 0, 0, 2] },
+                { text: `11 Wizanyň berlen ýeri (ýurdy)`, fontSize, alignment: 'left', margin: [0, 0, 0, 2] },
                 {
-                  colSpan: 2, fontSize: 14, alignment: 'left',
+                  colSpan: 2, fontSize, alignment: 'left',
                   stack: [
-                    { text: `${'Aşgabat şäher howa meňzilindäli MGP'}`, fontSize: 14, alignment: 'center', bold: true, italics: true, margin: [0, 0, 0, 2] },
+                    { text: `${'Aşgabat şäher howa meňzilindäli MGP'}`, fontSize, alignment, bold, italics, margin: [0, 0, 0, 2] },
                     { canvas: [{ type: 'line', x1: -5, y1: 0, x2: 362, y2: 0, lineWidth: 0.5, color: '#000000' }] }
                   ]
                 }, {}
               ],
               [
                 {
-                  colSpan: 3, fontSize: 14, alignment: 'left',
+                  colSpan: 3, fontSize, alignment: 'left',
                   stack: [
                     {
                       margin: [0, 0, 0, 2],
@@ -223,7 +227,7 @@ const Profile = ({ ...props }) => {
                         { text: `${'12 Wizanyň berlen senesi we möhleti\t'}`, },
                         {
                           text: `${'03.03.2025'}-de\t${'03.03.2025'}-den\t${'02.04.2025'}-çenli`,
-                          bold: true, italics: true,
+                          bold, italics,
                         }
                       ],
                     },
@@ -233,21 +237,21 @@ const Profile = ({ ...props }) => {
               ],
               [
                 {
-                  fontSize: 14, alignment: 'left',
+                  fontSize, alignment: 'left',
                   margin: [0, 0, 0, 2],
                   text: [
                     { text: `${'13 Giren wagty'}` },
-                    { text: `\t${'03.03.2025'}\t`, decoration: 'underline', bold: true, italics: true }
+                    { text: `\t${'03.03.2025'}\t`, decoration: 'underline', bold, italics }
                   ]
                 },
                 {
-                  colSpan: 2, fontSize: 14, alignment: 'left',
+                  colSpan: 2, fontSize, alignment: 'left',
                   stack: [
                     {
                       margin: [0, 0, 0, 2],
                       text: [
                         { text: `${'14 Giren ýeri'}` },
-                        { text: `\t${'Aşgabat şäher howa meňzilindäli MGP fdvdfs sdfdgfsbsr sfgbdfg dfg '}`, alignment: 'center', bold: true, italics: true }
+                        { text: `\t${'Aşgabat şäher howa meňzilindäli MGP fdvdfs sdfdgfsbsr sfgbdfg dfg '}`, alignment, bold, italics }
                       ]
                     },
                     { canvas: [{ type: 'line', x1: 80, y1: 0, x2: 362, y2: 0, lineWidth: 0.5, color: '#000000' }] }
@@ -257,15 +261,15 @@ const Profile = ({ ...props }) => {
 
               [
                 {
-                  colSpan: 3, fontSize: 14, alignment: 'left',
+                  colSpan: 3, fontSize, alignment: 'left',
                   stack: [
                     {
                       margin: [0, 0, 0, 2],
                       text: [
                         { text: `${'15 Kabul edýän edara ýa-da şahsyýet\t'}`, },
                         {
-                          bold: true, italics: true, alignment: 'right',
-                          text: `${'"Gap Inşaat Ýatyrym we Dyş Tijaret A.Ş"'}`, //Aşgabat ş. B.Türkmenistan şaýoly, jaý-538
+                          bold, italics, alignment: 'right',
+                          text: `${'"Gap Inşaat Ýatyrym we Dyş Tijaret A.Ş"'}`,
                         }
                       ],
                     },
@@ -273,10 +277,10 @@ const Profile = ({ ...props }) => {
                   ]
                 }, {}, {}
               ],
-              [{}, { text: '(familiýasy, ady, doglan ýyly, öý salgysy)', colSpan: 2, fontSize: 12, alignment: 'center', }, {}],
+              [{}, { text: '(familiýasy, ady, doglan ýyly, öý salgysy)', colSpan: 2, fontSize: 12, alignment, }, {}],
               [
                 {
-                  colSpan: 3, fontSize: 14, alignment: 'center', bold: true, italics: true,
+                  colSpan: 3, fontSize, alignment, bold, italics,
                   stack: [
                     { margin: [0, 2, 0, 2], text: `${'Aşgabat ş. B.Türkmenistan şaýoly, jaý-538'}` },
                     { canvas: [{ type: 'line', x1: 0, y1: 0, x2: 550, y2: 0, lineWidth: 0.5, color: '#000000' }] }
@@ -285,14 +289,14 @@ const Profile = ({ ...props }) => {
               ],
               [
                 {
-                  colSpan: 3, fontSize: 14, alignment: 'left',
+                  colSpan: 3, fontSize, alignment: 'left',
                   stack: [
                     {
                       text: [
                         { text: 'Dolduran edara ' },
-                        { text: `${'\t\tTDMG\t\t'}`, bold: true, italics: true, decoration: 'underline' },
+                        { text: `${'\t\tTDMG\t\t'}`, bold, italics, decoration: 'underline' },
                         { text: ' wagty\t' },
-                        { text: `${'03.03.2025'}`, bold: true, italics: true, },
+                        { text: `${'03.03.2025'}`, bold, italics, },
                       ],
                     },
                     { canvas: [{ type: 'line', x1: 230, y1: 0, x2: 550, y2: 0, lineWidth: 5, color: '#000000' }] }
@@ -301,14 +305,14 @@ const Profile = ({ ...props }) => {
               ],
               [
                 {
-                  colSpan: 3, fontSize: 14, alignment: 'left',
+                  colSpan: 3, fontSize, alignment: 'left',
                   stack: [
                     { text: 'Barlan gözegçi' },
                     { canvas: [{ type: 'line', x1: 90, y1: 0, x2: 550, y2: 0, lineWidth: 5, color: '#000000' }] }
                   ]
                 }, {}, {}
               ],
-              [{ text: '(goly, familiýasy, ady)', colSpan: 3, fontSize: 12, alignment: 'center', }, {}, {}],
+              [{ text: '(goly, familiýasy, ady)', colSpan: 3, fontSize: 12, alignment, }, {}, {}],
             ]
           },
           layout: {
@@ -316,49 +320,47 @@ const Profile = ({ ...props }) => {
             vLineWidth: (i, node) => 0
           }
         },
-        { text: '\n\n\n' },
+        { text: '\n' },
         {
           table: {
             widths: ['*', '*', '*', '*', '*', '*'],
             body: [
-              // 🔹 Заголовок
               [
-                { text: 'Hasaba alan, möhletini uzaldan TDMG-nyň edarasy', alignment: 'center', style: 'tableHeader' },
-                { text: 'Hasaba alyş, uzaldyş belgisi', alignment: 'center', style: 'tableHeader' },
-                { text: 'Hasaba alnan,', alignment: 'center', style: 'tableHeader' },
-                { text: 'Möhleti', alignment: 'center', style: 'tableHeader' },
-                { text: 'Esas(belgisi we wagty)', alignment: 'center', style: 'tableHeader' },
-                { text: 'Jogapkär işgäriň familiýasy we goly', alignment: 'center', style: 'tableHeader' },
+                { text: 'Hasaba alan, möhletini uzaldan TDMG-nyň edarasy', alignment },
+                { text: 'Hasaba alyş, uzaldyş belgisi', alignment },
+                { text: 'Hasaba alnan,', alignment },
+                { text: 'Möhleti', alignment },
+                { text: 'Esas(belgisi we wagty)', alignment },
+                { text: 'Jogapkär işgäriň familiýasy we goly', alignment },
               ],
               [
-                { text: 'TDMG', alignment: 'center', bold: true, bold: true },
-                { text: ' ', alignment: 'center', bold: true },
-                { text: '03.03.2025', alignment: 'center', bold: true },
-                { text: '02.04.2025', alignment: 'center', bold: true },
-                { text: '03.03.2025 3/-185', alignment: 'center', bold: true },
-                { text: ' ', alignment: 'center', bold: true }
+                { text: 'TDMG', alignment, bold, bold },
+                { text: ' ', alignment, bold },
+                { text: '03.03.2025', alignment, bold },
+                { text: '02.04.2025', alignment, bold },
+                { text: '03.03.2025 3/-185', alignment, bold },
+                { text: ' ', alignment, bold }
               ],
               [
-                { text: ' ', alignment: 'center' },
-                { text: ' ', alignment: 'center' },
-                { text: ' ', alignment: 'center' },
-                { text: ' ', alignment: 'center' },
-                { text: ' ', alignment: 'center' },
-                { text: ' ', alignment: 'center' }
+                { text: ' ', alignment },
+                { text: ' ', alignment },
+                { text: ' ', alignment },
+                { text: ' ', alignment },
+                { text: ' ', alignment },
+                { text: ' ', alignment }
               ],
             ]
           },
         },
-        { text: '\n' },
         {
+          margin: [0, 5, 0, 5],
           table: {
             widths: ['*', '*', '*'],
             body: [
-              // 🔹 Заголовок
               [
-                { text: 'Türkmenistanyň çäginde bolýan ýeriniň salgysy', alignment: 'center', },
-                { text: 'Gelen, giden ýeri', alignment: 'center', },
-                { text: 'Kabul edýän edara ýa-da şahsyýet', alignment: 'center', },
+                { text: 'Türkmenistanyň çäginde bolýan ýeriniň salgysy', alignment },
+                { text: 'Gelen, giden ýeri', alignment },
+                { text: 'Kabul edýän edara ýa-da şahsyýet', alignment }
               ],
               [{ text: ' ', }, { text: ' ', }, { text: ' ', }],
               [{ text: ' ', }, { text: ' ', }, { text: ' ', }],
@@ -366,34 +368,28 @@ const Profile = ({ ...props }) => {
             ]
           },
         },
-        { text: '\n' },
         {
+          margin: [0, 5, 0, 5],
           table: {
             widths: ['*'],
             body: [[{ text: 'Hasapdan aýyrmak üçin esas' }]]
           }
         },
-        { text: '\n' },
         {
           table: {
             widths: ['*', '*', '*', '*'],
             body: [
-              // 🔹 Заголовок
-              [
-                { text: 'Başga bellikler', },
-                { text: ' ', colSpan: 2 }, {},
-                { text: ' ', },
-              ],
+              [{ text: 'Başga bellikler', }, { text: '', colSpan: 2 }, {}, {}],
               [
                 { text: 'Pasportynyň möhleti', },
-                { text: '20.05.2016', alignment: "center", bold: true },
-                { text: '20.05.2026', alignment: "center", bold: true },
-                { text: ' ' },
+                { text: '20.05.2016', alignment, bold },
+                { text: '20.05.2026', alignment, bold },
+                {},
               ],
               [
                 { text: 'Milleti', },
-                { text: 'JPN', alignment: "center", bold: true, colSpan: 2 }, {},
-                { text: 'Esasy we ýazgyň wagty', alignment: "center" },
+                { text: 'JPN', alignment, bold, colSpan: 2 }, {},
+                { text: 'Esasy we ýazgyň wagty', alignment },
               ],
             ]
           },
@@ -406,13 +402,7 @@ const Profile = ({ ...props }) => {
 
   return (
     <div>
-      <button onClick={generatePdf} disabled={!base64Image}>BelligeAlmak</button>
-
-      {pdfUrl && (
-        <div style={{ height: "100vh", marginTop: "20px" }}>
-          <iframe src={pdfUrl} width="100%" height="100%" title="PDF Viewer" />
-        </div>
-      )}
+      {pdfUrl && (<iframe src={pdfUrl} width="100%" height="100%" title="PDF Viewer" />)}
     </div>
   );
 };

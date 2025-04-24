@@ -31,14 +31,14 @@ const Profile = ({ ...props }) => {
 
   const qrData = {
     "ŞAHSY KAGYZY": "",
-    "Familiýasy, ady, atasynyň ady": `${props.profile?.firstName || ''} ${props.profile?.lastName || ''} ${props.profile?.middleName || ''}`,
-    "Doglan senesi we ýeri": `${props.profile.birthDay} ${props.profile.bornCountry}`,
-    "Raýatlygy": `${props.profile.citizenship}`,
-    "Pasportyň belgisi, berlen senesi we möhleti": `${props.profile.passport}`,
+    "Familiýasy, ady, atasynyň ady": `${props.data?.firstName || ''} ${props.data?.lastName || ''} ${props.data?.middleName || ''}`,
+    "Doglan senesi we ýeri": `${props.data.birthDay} ${props.data.bornCountry}`,
+    "Raýatlygy": `${props.data.citizenship}`,
+    "Pasportyň belgisi, berlen senesi we möhleti": `${props.data.passport}`,
     "Şahsy belgisi": ``,
-    "Bilimi, okan ýeri": `${props.profile.studyOfCountry}`,
-    "Hünäri": `${props.profile.major}`,
-    "Wezipesi": `${props.profile.position}`,
+    "Bilimi, okan ýeri": `${props.data.studyOfCountry}`,
+    "Hünäri": `${props.data.major}`,
+    "Wezipesi": `${props.data.position}`,
     "Türkmenistanda öňki işlän ýerleri": `vdfsvdfvs dfv sdfjklvvnd fvsdfvjndfsvn dfsajvk qaerw gearui SHdh`,
     "Maşgala ýagdaýy": `Aýaly-Takae Handa-30.07.1965 (JPN)`,
     "Daşary ýurtdaky ýaşaýan anyk salgysy": `JPN, 4-11-1 Kaminoge Setagaya-ku, Tokyo, Japan`,
@@ -81,7 +81,7 @@ const Profile = ({ ...props }) => {
                 {
                   stack: [
                     {
-                      text: `${props.profile?.firstName || ''} ${props.profile?.lastName || ''} ${props.profile?.middleName || ''}`,
+                      text: `${props.data?.firstName || ''} ${props.data?.lastName || ''} ${props.data?.middleName || ''}`,
                       alignment: "center", margin: [0, 5, 0, 2],
                     },
                     { canvas: [Utils.canvasDto('line', 35, 0, 370, 0, 0.5)] },
@@ -92,7 +92,7 @@ const Profile = ({ ...props }) => {
                 { text: "Doglan senesi we ýeri", alignment: "left", noWrap: true },
                 {
                   stack: [
-                    { text: `${props.profile.birthDay} ${props.profile.bornCountry}`, alignment: "center", margin: [0, 0, 0, 2] },
+                    { text: `${props.data.birthDay} ${props.data.bornCountry}`, alignment: "center", margin: [0, 0, 0, 2] },
                     { canvas: [Utils.canvasDto('line', -7, 0, 370, 0, 0.5)] },
                   ],
                 },
@@ -101,7 +101,7 @@ const Profile = ({ ...props }) => {
                 { text: "Raýatlygy", alignment: "left", noWrap: true },
                 {
                   stack: [
-                    { text: `${props.profile.citizenship}`, alignment: "center", margin: [0, 0, 0, 2] },
+                    { text: `${props.data.citizenship}`, alignment: "center", margin: [0, 0, 0, 2] },
                     { canvas: [Utils.canvasDto('line', -70, 0, 370, 0, 0.5)] },
                   ],
                 },
@@ -110,7 +110,7 @@ const Profile = ({ ...props }) => {
                 { text: "Pasportyň belgisi, berlen senesi we möhleti", alignment: "left", },
                 {
                   stack: [
-                    { text: `${props.profile.passport}`, alignment: "center", margin: [0, 10, 0, 2] },
+                    { text: `${props.data.passport}`, alignment: "center", margin: [0, 10, 0, 2] },
                     { canvas: [Utils.canvasDto('line', -15, 0, 370, 0, 0.5)] },
                   ],
                 },
@@ -128,7 +128,7 @@ const Profile = ({ ...props }) => {
                 { text: "Bilimi, okan ýeri", alignment: "left", noWrap: true },
                 {
                   stack: [
-                    { text: `${props.profile.studyOfCountry}`, alignment: "center", margin: [0, 0, 0, 2] },
+                    { text: `${props.data.studyOfCountry}`, alignment: "center", margin: [0, 0, 0, 2] },
                     { canvas: [Utils.canvasDto('line', -40, 0, 370, 0, 0.5)] },
                   ],
                 },
@@ -137,7 +137,7 @@ const Profile = ({ ...props }) => {
                 { text: "Hünäri", alignment: "left", noWrap: true },
                 {
                   stack: [
-                    { text: `${props.profile.major}`, alignment: "center", margin: [0, 0, 0, 2], },
+                    { text: `${props.data.major}`, alignment: "center", margin: [0, 0, 0, 2], },
                     { canvas: [Utils.canvasDto('line', -100, 0, 370, 0, 0.5)] },
                   ],
                 },
@@ -146,7 +146,7 @@ const Profile = ({ ...props }) => {
                 { text: "Wezipesi", alignment: "left" },
                 {
                   stack: [
-                    { text: `${props.profile.position}`, alignment: "center", margin: [0, 0, 0, 2], },
+                    { text: `${props.data.position}`, alignment: "center", margin: [0, 0, 0, 2], },
                     { canvas: [Utils.canvasDto('line', -90, 0, 370, 0, 0.5)] },
                   ],
                 },
