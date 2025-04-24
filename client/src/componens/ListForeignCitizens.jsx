@@ -1,7 +1,8 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import pdfMake from "pdfmake/build/pdfmake";
 import { vfs as customVfs } from "../vfs_fonts";
 import Utils from "../utils";
+import { bold, alignment, italics, fontSize } from '../utils/constants'
 
 pdfMake.vfs = customVfs;
 pdfMake.fonts = {
@@ -11,7 +12,10 @@ pdfMake.fonts = {
 };
 
 const ListForeignCitizens = ({ ...props }) => {
+
+  useEffect(() => generatePdf(), []);
   const [pdfUrl, setPdfUrl] = useState(null);
+
   const layout = {
     hLineWidth: () => 1,
     vLineWidth: () => 1,
@@ -20,6 +24,7 @@ const ListForeignCitizens = ({ ...props }) => {
     paddingTop: () => 6,
     paddingBottom: () => 6,
   };
+
 
   const [citizens, setCitizens] = useState([
     { lastName: "HANDA", firstName: "Hokuto", birthDate: "16.05.1967", gender: "Erkek", citizenship: "JPN", passport: "TZ1132601", position: "Baş menejer", visa: "Wiza №123456", address: "Garabogaz, Balkan Türkmenbaşy şäheri Aşgabat şäheri" },
@@ -32,16 +37,16 @@ const ListForeignCitizens = ({ ...props }) => {
   const tableBody = [
     Utils.thead(thead, "center", true),
     ...citizens.map((item, index) => [
-      { text: `${index + 1}`, alignment: "center", valign: "middle" },
-      { text: item.lastName, alignment: "center", valign: "middle" },
-      { text: item.firstName, alignment: "center", valign: "middle" },
-      { text: item.birthDate, alignment: "center", valign: "middle" },
-      { text: item.gender, alignment: "center", valign: "middle" },
-      { text: item.citizenship, alignment: "center", valign: "middle" },
-      { text: item.passport, alignment: "center", valign: "middle" },
-      { text: item.position, alignment: "center", valign: "middle" },
-      { text: item.visa, alignment: "center", valign: "middle" },
-      { text: item.address, alignment: "center", valign: "middle" },
+      { text: `${index + 1}`, alignment, valign: "middle" },
+      { text: item.lastName, alignment, valign: "middle" },
+      { text: item.firstName, alignment, valign: "middle" },
+      { text: item.birthDate, alignment, valign: "middle" },
+      { text: item.gender, alignment, valign: "middle" },
+      { text: item.citizenship, alignment, valign: "middle" },
+      { text: item.passport, alignment, valign: "middle" },
+      { text: item.position, alignment, valign: "middle" },
+      { text: item.visa, alignment, valign: "middle" },
+      { text: item.address, alignment, valign: "middle" },
     ]),
   ];
 
@@ -53,8 +58,8 @@ const ListForeignCitizens = ({ ...props }) => {
       pageMargins: [40, 30, 30, 30],
       defaultStyle: { font: "TimesNewRoman" },
       content: [
-        { text: `Belgi:   ${props.data?.asNo || ''}`, fontSize: 16, italics: true, bold: true },
-        { text: `Sene:   ${props.data?.date || ''}`, fontSize: 16, italics: true, bold: true },
+        { text: `Belgi:   ${props.data?.asNo || ''}`, fontSize: 16, italics, bold },
+        { text: `Sene:   ${props.data?.date || ''}`, fontSize: 16, italics, bold },
         { text: '\n' },
         {
           columns: [
@@ -63,9 +68,11 @@ const ListForeignCitizens = ({ ...props }) => {
         },
         { text: '\n' },
         {
-          layout,
-          fontSize: 14,
-          table: { widths: Utils.theadWidths(thead, "auto"), body: tableBody }
+          layout, fontSize,
+          table: {
+            widths: Utils.theadWidths(thead, "auto"),
+            body: tableBody
+          }
         },
         { text: '\n\n\n\n' },
         {
@@ -76,19 +83,15 @@ const ListForeignCitizens = ({ ...props }) => {
         },
       ],
     };
+
     pdfMake.createPdf(documentDefinition).getBlob((blob) => setPdfUrl(URL.createObjectURL(blob)));
   };
 
-  return (
-    <div>
-      <button onClick={generatePdf}>Daşary ýurt raýatlarynyň sanowy</button>
-      {pdfUrl && (
-        <div style={{ height: "100vh", marginTop: "20px" }}>
-          <iframe src={pdfUrl} width="100%" height="100%" title="PDF Viewer" />
-        </div>
-      )}
-    </div>
-  );
+  return (<>{
+    pdfUrl && (
+      <iframe src={pdfUrl} title="PDF Viewer" type="application/pdf" style={{ width: "100%", height: "100%", border: "none" }} />
+    )}
+  </>);
 };
 
 export default ListForeignCitizens;

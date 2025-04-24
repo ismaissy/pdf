@@ -7,12 +7,7 @@ import { bold, alignment, italics, fontSize } from '../utils/constants'
 
 pdfMake.vfs = customVfs;
 pdfMake.fonts = {
-  TimesNewRoman: {
-    normal: "TIMES.TTF",
-    bold: "TIMESBD.TTF",
-    italics: "TIMESI.TTF",
-    bolditalics: "TIMESBI.TTF",
-  },
+  TimesNewRoman: { normal: "TIMES.TTF", bold: "TIMESBD.TTF", italics: "TIMESI.TTF", bolditalics: "TIMESBI.TTF", },
 };
 
 const Profile = ({ ...props }) => {
@@ -30,8 +25,9 @@ const Profile = ({ ...props }) => {
     toBase64();
   }, []);
 
-
-  useEffect(() => generatePdf(), []);
+  useEffect(() => {
+    if (base64Image) generatePdf();
+  }, [base64Image]);
 
   const generatePdf = () => {
     if (!base64Image) return;
@@ -39,7 +35,7 @@ const Profile = ({ ...props }) => {
     const documentDefinition = {
       pageSize: "A4",
       pageOrientation: "portrait",
-      pageMargins: [20, 40, 20, 40],
+      pageMargins: [20, 20, 20, 40],
       defaultStyle: { font: "TimesNewRoman", },
       content: [
         { text: "DAŞARY YURT RAÝATLARYNY BELLIGE ALYŞ NAMASY\n", fontSize: 18, bold, alignment },
@@ -320,7 +316,7 @@ const Profile = ({ ...props }) => {
             vLineWidth: (i, node) => 0
           }
         },
-        { text: '\n' },
+        { text: '\n', pageBreak: 'before', pageOrientation: "landscape" },
         {
           table: {
             widths: ['*', '*', '*', '*', '*', '*'],
@@ -400,11 +396,12 @@ const Profile = ({ ...props }) => {
     pdfMake.createPdf(documentDefinition).getBlob((blob) => setPdfUrl(URL.createObjectURL(blob)));
   };
 
-  return (
-    <div>
-      {pdfUrl && (<iframe src={pdfUrl} width="100%" height="100%" title="PDF Viewer" />)}
-    </div>
-  );
+
+  return (<>{
+    pdfUrl && (
+      <iframe src={pdfUrl} title="PDF Viewer" type="application/pdf" style={{ width: "100%", height: "100%", border: "none" }} />
+    )}
+  </>);
 };
 
 export default Profile;

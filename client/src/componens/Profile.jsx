@@ -6,12 +6,7 @@ import Utils from "../utils";
 
 pdfMake.vfs = customVfs;
 pdfMake.fonts = {
-  TimesNewRoman: {
-    normal: "TIMES.TTF",
-    bold: "TIMESBD.TTF",
-    italics: "TIMESI.TTF",
-    bolditalics: "TIMESBI.TTF",
-  },
+  TimesNewRoman: { normal: "TIMES.TTF", bold: "TIMESBD.TTF", italics: "TIMESI.TTF", bolditalics: "TIMESBI.TTF", },
 };
 
 const Profile = ({ ...props }) => {
@@ -28,6 +23,10 @@ const Profile = ({ ...props }) => {
     };
     toBase64();
   }, []);
+
+  useEffect(() => {
+    if (base64Image) generatePdf();
+  }, [base64Image]);
 
   const qrData = {
     "ŞAHSY KAGYZY": "",
@@ -231,17 +230,11 @@ const Profile = ({ ...props }) => {
     pdfMake.createPdf(documentDefinition).getBlob((blob) => setPdfUrl(URL.createObjectURL(blob)));
   };
 
-  return (
-    <div>
-      <button onClick={generatePdf} disabled={!base64Image}>Profile</button>
-
-      {pdfUrl && (
-        <div style={{ height: "100vh", marginTop: "20px" }}>
-          <iframe src={pdfUrl} width="100%" height="100%" title="PDF Viewer" />
-        </div>
-      )}
-    </div>
-  );
+  return (<>{
+    pdfUrl && (
+      <iframe src={pdfUrl} title="PDF Viewer" type="application/pdf" style={{ width: "100%", height: "100%", border: "none" }} />
+    )}
+  </>);
 };
 
 export default Profile;

@@ -14,6 +14,9 @@ pdfMake.fonts = {
 const YashamalyYeri = ({ ...props }) => {
   const [pdfUrl, setPdfUrl] = useState(null);
   const [base64Image, setBase64Image] = useState(null);
+
+
+
   const layout = {
     hLineWidth: () => 1,
     vLineWidth: () => 1,
@@ -52,6 +55,10 @@ const YashamalyYeri = ({ ...props }) => {
     };
     toBase64();
   }, []);
+
+  useEffect(() => {
+    if (base64Image) generatePdf();
+  }, [base64Image]);
 
   const generatePdf = () => {
     if (!base64Image) return;
@@ -138,17 +145,11 @@ const YashamalyYeri = ({ ...props }) => {
     pdfMake.createPdf(documentDefinition).getBlob((blob) => setPdfUrl(URL.createObjectURL(blob)));
   };
 
-  return (
-    <div>
-      <button onClick={generatePdf} disabled={!base64Image}>Yashamaly Yeri</button>
-
-      {pdfUrl && (
-        <div style={{ height: "100vh", marginTop: "20px" }}>
-          <iframe src={pdfUrl} width="100%" height="100%" title="PDF Viewer" />
-        </div>
-      )}
-    </div>
-  );
+  return (<>{
+    pdfUrl && (
+      <iframe src={pdfUrl} title="PDF Viewer" type="application/pdf" style={{ width: "100%", height: "100%", border: "none" }} />
+    )}
+  </>);
 };
 
 export default YashamalyYeri;
