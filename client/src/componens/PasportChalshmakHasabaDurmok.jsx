@@ -2,7 +2,9 @@ import React, { useState, useEffect } from "react";
 import pdfMake from "pdfmake/build/pdfmake";
 import { vfs as customVfs } from "../vfs_fonts";
 import logoGapinsaat from "../assets/logo_gapinsaat.png";
-import logoCalikEnerji from "../assets/logoCalikEnerji1.png";
+import logoCalikEnerjiFooter from "../assets/logoCalikEnerjiFooter.png";
+import Utils from "../utils";
+import { bold, alignment, italics, fontSize, valign, layoutTable } from '../utils/constants'
 
 pdfMake.vfs = customVfs;
 pdfMake.fonts = {
@@ -11,21 +13,17 @@ pdfMake.fonts = {
   },
 };
 
+const citizens = [
+  { lastName: "HANDA", firstName: "Hokuto", birthDate: "16.05.1967", gender: "Erkek", citizenship: "JPN", passport: "TZ1132601", passportFinished: "07.12.2032", position: "Baş menejer", visa: "Wiza №123456", address: "Garabogaz, Balkan Türkmenbaşy şäheri Aşgabat şäheri" },
+  { lastName: "LEE", firstName: "Jin", birthDate: "10.09.1978", gender: "Erkek", citizenship: "KOR", passport: "AB987654", passportFinished: "01.11.2035", position: "Inžener", visa: "Wiza A654321 WP sdçasdý asýfdýdfrýçsdaça sdçsdaýasýddsaadsçadsçdsç çdassdasdç asdçdsçdssadçsdýasdýçdsa asdýsadý asdýdasýsdaý 05.01.2023 04.07.2023", address: "Türkmenbaşy şäheri Garabogaz, Balkan Türkmenbaşy şäheri Aşgabat şäheri Garabogaz, Balkan Türkmenbaşy şäheri Aşgabat şäheri Garabogaz, Balkan Türkmenbaşy şäheri Aşgabat şäheri" },
+  { lastName: "SMITH", firstName: "Anna", birthDate: "23.03.1985", gender: "Aýal", citizenship: "USA", passport: "XY123789", passportFinished: "12.05.2037", position: "Maslahatçy", visa: "Wiza №789123", address: "Aşgabat şäheri" },
+]
+
 const PasportChalshmakHasabaDurmok = ({ ...props }) => {
   const [pdfUrl, setPdfUrl] = useState(null);
   const [base64Image, setBase64Image] = useState(null);
   const [base64LogoFooter, setBase64LogoFooter] = useState(null);
 
-  // useEffect(() => {
-  //   const toBase64 = async () => {
-  //     const response = await fetch(logoGapinsaat);
-  //     const blob = await response.blob();
-  //     const reader = new FileReader();
-  //     reader.onloadend = () => setBase64Image(reader.result);
-  //     reader.readAsDataURL(blob);
-  //   };
-  //   toBase64();
-  // }, []);
   useEffect(() => {
     const toBase64 = async (url) => {
       const response = await fetch(url);
@@ -39,7 +37,7 @@ const PasportChalshmakHasabaDurmok = ({ ...props }) => {
 
     const loadImages = async () => {
       const gapinsaatLogo = await toBase64(logoGapinsaat);
-      const calikEnerjiLogo = await toBase64(logoCalikEnerji);
+      const calikEnerjiLogo = await toBase64(logoCalikEnerjiFooter);
       setBase64Image(gapinsaatLogo);
       setBase64LogoFooter(calikEnerjiLogo);
     };
@@ -47,50 +45,51 @@ const PasportChalshmakHasabaDurmok = ({ ...props }) => {
     loadImages();
   }, []);
 
-
-  // useEffect(() => {
-  //   if (base64Image) generatePdf();
-  // }, [base64Image]);
-
   useEffect(() => {
     if (base64Image && base64LogoFooter) generatePdf();
   }, [base64Image, base64LogoFooter]);
+
+  const thead = ['№', 'Familiýasy', 'Ady', 'Doglan senesi', 'Jynsy', 'Raýatlygy', 'Pasportynyň belgisi', 'Pasportynyň möhleti', 'Wezipesi', 'Wiza maglumatlary', 'Türkmenistandaky salgysy'];
+
+  const tableBody = [
+    Utils.thead(thead, "center", true),
+    ...citizens.map((item, index) => [
+      { text: `${index + 1}`, alignment, valign },
+      { text: item.lastName, alignment, valign },
+      { text: item.firstName, alignment, valign },
+      { text: item.birthDate, alignment, valign },
+      { text: item.gender, alignment, valign },
+      { text: item.citizenship, alignment, valign },
+      { text: item.passport, alignment, valign },
+      { text: item.passportFinished, alignment, valign },
+      { text: item.position, alignment, valign },
+      { text: item.visa, alignment, valign },
+      { text: item.address, alignment, valign },
+    ]),
+  ];
 
   const generatePdf = () => {
     if (!base64Image) return;
 
     const documentDefinition = {
-      pageSize: "A4",
+      pageSize: 'A4',
       pageOrientation: "portrait",
-      pageMargins: [40, 50, 50, 40],
+      pageMargins: [40, 20, 50, 70],
       defaultStyle: { font: "TimesNewRoman" },
-
-
-      footer: function (currentPage, pageCount) {
+      footer: (currentPage, pageCount) => {
         if (currentPage === 1) {
           return {
-            margin: [40, 0, 40, 10],
+            margin: [40, 2, 40, 30],
             columns: [
+              { image: base64LogoFooter, width: 320, height: 30, alignment: "left", margin: [0, 15, 0, 0] },
               {
-                image: base64LogoFooter,
-                width: 320, height: 30,
-                alignment: "left",
-                margin: [0, -5, 0, 0],
-              },
-              {
-                width: '*',
-                margin: [0, -10, 0, 0],
-                fontSize: 6,
-                // color: 'silver',
-                alignment: "right",
+                width: '*', fontSize: 8, alignment: "right",
                 text: [
                   { text: "Adres: Aşgabat şäheri,\n" },
                   { text: "Bitarap Türkmenistan şaýoly,538\n" },
-                  { text: 'T ', color: "#00246b" },
-                  { text: '+993 12 75 60 70\n' },
+                  { color: "#00246b", text: 'T ' }, { text: '+993 12 75 60 70\n' },
                   { text: '+993 12 75 70 57\n' },
-                  { text: 'F ', color: "#00246b" },
-                  { text: '+993 12 75 57 55\n' },
+                  { color: "#00246b", text: 'F ' }, { text: '+993 12 75 57 55\n' },
                   { text: 'info@gapinsaat.com' }
                 ]
               }
@@ -98,60 +97,70 @@ const PasportChalshmakHasabaDurmok = ({ ...props }) => {
           };
         }
         return null;
-      }
-
-
-
-      ,
-
+      },
       content: [
         {
           columns: [
             { image: base64Image, width: 150, height: 40, alignment: "left", margin: [0, 0, 0, 0], },
-            { text: "gapinsaat.com", link: 'https://gapinsaat.com/tr/index.html', alignment: "right", color: 'blue', fontSize: 10, bold: true, }
+            { text: "gapinsaat.com", link: 'https://gapinsaat.com/tr/index.html', alignment: "right", color: '#00246b', fontSize: 10, bold: true, }
           ],
         },
         { text: '\n\n\n\n\n' },
-        { text: `Belgi:   ${props.data?.asNo || ''}`, fontSize: 16, italics: true, bold: true },
-        { text: `Sene:   ${props.data?.date || ''}`, fontSize: 16, italics: true, bold: true },
+        { text: `Belgi:   ${'1/-46' || ''}`, fontSize: 15, italics, bold },
+        { text: `Sene:   ${'24.01.2023' || ''}`, fontSize: 15, italics, bold },
         { text: '\n\n' },
         {
           columns: [
-            { text: ' ', alignment: "left", fontSize: 10 },
-            {
-              text: "Türkmenhimiýa Döwlet Migrasiýa\nGullugynyň Ahal welaýaty boýunça müdirligine.",
-              alignment: "right",
-              fontSize: 15,
-              bold: true,
+            { text: ' ' }, {
+              text: `${'Türkmenistanyň Döwlet Migrasiýa'}\n${'Gullugynyň Ahal welaýaty'} boýunça müdirligine.`,
+              fontSize: 15, bold, width: 230
             },
           ],
         },
         { text: '\n\n' },
         {
-          leadingIndent: 20, fontSize: 14, alignment: 'justify',
+          leadingIndent: 25, fontSize, alignment: 'justify',
           text: [
             { text: 'Hatymyzyň goşundysynda görkezilen sanawdaky ' },
-            { text: `${3} (${'üç'}) sany `, bold: true },
-            { text: `daşary ýurt raýatlarynyň ` },
-            { text: `Türkmenistandan gidendigi sebäpli `, bold: true },
-            { text: 'hasapdan doly çykarmagyňyzy Sizden haýyş edýäris.' },
+            { text: `${3} (${'üç'}) sany `, bold },
+            { text: 'daşary ýurt raýatlarynyň ' },
+            { text: 'pasportyny çalyşmagy bilen baglanyşykly hasaba durmagy möhletini täze pasportyna geçirmegiňizi ', bold: true },
+            { text: 'Sizden haýyş edýäris.' },
           ]
         },
+        { text: '\n' },
         {
-          leadingIndent: 20, fontSize: 14, alignment: 'justify',
+          leadingIndent: 15, fontSize, alignment: 'justify',
           text: [
             { text: 'Daşary ýurt raýatynyň Türkmenistana gelmeginiň onda bolmagynyň we ondan ' },
             { text: 'gitmeginiň düzgünlerini berjaý etmegine jogapkärçiligi kompaniýamyz öz üstüne alýar.' },
           ]
         },
         { text: '\n\n\n\n' },
+        { text: `Sebit müdiriň orunbasary\t\t\t\t\t\t\t\t\t\t\t\t${'Recep AKÇI'}`, fontSize, bold, },
+
+        { text: ' ', pageBreak: 'before', pageOrientation: "landscape" },
+        { text: `Belgi:   ${'1/-46' || ''}`, fontSize: 11, italics, bold },
+        { text: `Sene:   ${'24.01.2023' || ''}`, fontSize: 11, italics, bold },
+        { text: 'Daşary ýurt raýatlarynyň sanawy', fontSize, bold, alignment },
+        { text: '\n' },
+        {
+          fontSize: 10,
+          layout: layoutTable,
+          table: {
+            widths: Utils.theadWidths(thead, (item, index) => index === 0 ? "*" : "auto"),
+            body: tableBody
+          }
+        },
+        { text: '\n' },
         {
           columns: [
-            { text: 'Sebit müdiriň orunbasary', alignment: "left", fontSize: 16, bold: true, },
-            { text: `Recep AKÇI`, alignment: "right", fontSize: 15, bold: true, },
+            { text: 'Sebit müdiriň orunbasary', alignment, fontSize, bold, },
+            { text: `Recep AKÇI`, alignment, fontSize, bold, },
           ],
         },
-      ],
+
+      ]
     };
 
     pdfMake.createPdf(documentDefinition).getBlob((blob) => setPdfUrl(URL.createObjectURL(blob)));
