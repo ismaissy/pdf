@@ -16,35 +16,39 @@ pdfMake.fonts = {
   },
 };
 
-const BlankPasportChalshmakHasabaDurmok = ({ ...props }) => {
+const BlankWizaRugsotnamaYatyrmak = ({ ...props }) => {
   const [pdfUrl, setPdfUrl] = useState(null);
   const [base64Image, setBase64Image] = useState(null);
   const [base64LogoFooter, setBase64LogoFooter] = useState(null);
 
+
   useEffect(() => {
+    // Converts an image URL to a Base64 string
     const toBase64 = async (url) => {
-      const response = await fetch(url);
-      const blob = await response.blob();
-      const reader = new FileReader();
+      const response = await fetch(url);         // Fetch the image from the given URL
+      const blob = await response.blob();        // Convert the response to a binary blob
+      const reader = new FileReader();           // Create a FileReader to read the blob
       return new Promise((resolve) => {
-        reader.onloadend = () => resolve(reader.result);
-        reader.readAsDataURL(blob);
+        reader.onloadend = () => resolve(reader.result); // When reading is done, resolve with Base64 string
+        reader.readAsDataURL(blob);             // Start reading the blob as DataURL (Base64)
       });
     };
 
+    // Loads two logos and sets them as Base64
     const loadImages = async () => {
-      const gapinsaatLogo = await toBase64(logoGapinsaat);
-      const calikEnerjiLogo = await toBase64(logoCalikEnerjiFooter);
-      setBase64Image(gapinsaatLogo);
-      setBase64LogoFooter(calikEnerjiLogo);
+      const gapinsaatLogo = await toBase64(logoGapinsaat);         // Convert first logo to Base64
+      const calikEnerjiLogo = await toBase64(logoCalikEnerjiFooter); // Convert second logo to Base64
+      setBase64Image(gapinsaatLogo);                               // Save first Base64 logo in state
+      setBase64LogoFooter(calikEnerjiLogo);                        // Save second Base64 logo in state
     };
 
-    loadImages();
+    loadImages(); // Start loading when component mounts
   }, []);
 
   useEffect(() => {
     if (base64Image && base64LogoFooter) generatePdf();
   }, [base64Image, base64LogoFooter]);
+
 
   const generatePdf = () => {
     if (!base64Image) return;
@@ -80,30 +84,28 @@ const BlankPasportChalshmakHasabaDurmok = ({ ...props }) => {
         {
           columns: [
             { image: base64Image, width: 150, height: 40, alignment: "left", },
-            { text: COMPANY_DATA.name, link: COMPANY_DATA.link, alignment: "right", color: '#00246b', fontSize: 10, bold, }
+            { text: COMPANY_DATA.name, link: COMPANY_DATA.link, alignment: "right", color: '#00246b', fontSize: 10, bold }
           ],
         },
         { text: '\n\n\n\n\n' },
-        { text: `Belgi:   ${'1/-46' || ''}`, fontSize: 15, italics, bold },
-        { text: `Sene:   ${'24.01.2023' || ''}`, fontSize: 15, italics, bold },
+        { text: `Belgi:   ${'4/-198' || ''}`, fontSize: 15, italics, bold },
+        { text: `Sene:   ${'11.04.2024' || ''}`, fontSize: 15, italics, bold },
         { text: '\n\n' },
         {
           columns: [
-            { text: ' ' },
-            {
-              fontSize, bold, width: 230,
-              text: `${'Türkmenistanyň Döwlet Migrasiýa'}\n${'Gullugynyň Ahal welaýaty'} boýunça müdirligine.`,
-            },
+            { text: `${'Adaty tertipde!'}`, fontSize: 10, italics, },
+            { text: `${'Türkmenistanyň Döwlet migrasiýa gullugynyň başlygyna'}`, fontSize, bold, width: 230 },
           ],
         },
         { text: '\n\n' },
         {
           leadingIndent, fontSize, alignment: 'justify',
           text: [
-            { text: 'Hatymyzyň goşundysynda görkezilen sanawdaky ' },
-            { text: `${3} (${'üç'}) sany `, bold },
-            { text: 'daşary ýurt raýatlarynyň ' },
-            { text: 'pasportyny çalyşmagy bilen baglanyşykly hasaba durmagy möhletini täze pasportyna geçirmegiňizi ', bold },
+            { text: 'Türkmenistanyň Prezidentiniň kararyna laýyklykda Türkmenistanyň dürli ' },
+            { text: 'pudaklarynda gurluşyk işlerini amala aşyrýan ' },
+            { text: `${'Türkiýäniň'} "«${'GAP Inşaat Yatirim we Diş Ticaret A. Ş.'}»" firmasy sanawdaky ` },
+            { text: `${1} (${'bir'}) sany daşary ýurt raýatynyň wizasyny we `, bold },
+            { text: `${1} (${'bir'}) sany işlemek üçin rugsatnamasyny ýatyrmagyňyzy `, bold },
             { text: 'Sizden haýyş edýäris.' },
           ]
         },
@@ -140,4 +142,4 @@ const BlankPasportChalshmakHasabaDurmok = ({ ...props }) => {
   );
 };
 
-export default BlankPasportChalshmakHasabaDurmok;
+export default BlankWizaRugsotnamaYatyrmak;

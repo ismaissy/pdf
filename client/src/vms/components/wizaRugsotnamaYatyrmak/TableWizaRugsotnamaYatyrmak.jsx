@@ -24,9 +24,12 @@ const citizens = [
   { lastName: "SMITH", firstName: "Anna", birthDate: "23.03.1985", gender: "Aýal", citizenship: "USA", passport: "XY123789", passportFinished: "12.05.2037", position: "Maslahatçy", visa: "Wiza №789123", address: "Aşgabat şäheri" },
   { lastName: "HANDA", firstName: "Hokuto", birthDate: "16.05.1967", gender: "Erkek", citizenship: "JPN", passport: "TZ1132601", passportFinished: "07.12.2032", position: "Baş menejer", visa: "Wiza №123456", address: "Garabogaz, Balkan Türkmenbaşy şäheri Aşgabat şäheri" },
   { lastName: "LEE", firstName: "Jin", birthDate: "10.09.1978", gender: "Erkek", citizenship: "KOR", passport: "AB987654", passportFinished: "01.11.2035", position: "Inžener", visa: "Wiza A654321 WP sdçasdý asýfdýdfrýçsdaça 05.01.2023 04.07.2023", address: "Türkmenbaşy şäheri Garabogaz, Balkan Türkmenbaşy şäheri Aşgabat şäheri Garabogaz, " },
+  { lastName: "HANDA", firstName: "Hokuto", birthDate: "16.05.1967", gender: "Erkek", citizenship: "JPN", passport: "TZ1132601", passportFinished: "07.12.2032", position: "Baş menejer", visa: "Wiza №123456", address: "Garabogaz, Balkan Türkmenbaşy şäheri Aşgabat şäheri" },
+  { lastName: "LEE", firstName: "Jin", birthDate: "10.09.1978", gender: "Erkek", citizenship: "KOR", passport: "AB987654", passportFinished: "01.11.2035", position: "Inžener", visa: "Wiza A654321 WP sdçasdý asýfdýdfrýçsdaça 05.01.2023 04.07.2023", address: "Türkmenbaşy şäheri Garabogaz, Balkan Türkmenbaşy şäheri Aşgabat şäheri Garabogaz," },
+  { lastName: "SMITH", firstName: "Anna", birthDate: "23.03.1985", gender: "Aýal", citizenship: "USA", passport: "XY123789", passportFinished: "12.05.2037", position: "Maslahatçy", visa: "Wiza №789123", address: "Aşgabat şäheri" },
 ]
 
-const TableIshlemaneRugsotEdilenYerler = ({ ...props }) => {
+const TableWizaRugsotnamaYatyrmak = ({ ...props }) => {
   const [pdfUrl, setPdfUrl] = useState(null);
 
   useEffect(() => generatePdf(), []);
@@ -61,11 +64,11 @@ const TableIshlemaneRugsotEdilenYerler = ({ ...props }) => {
       content: [
         {
           fontSize: 12, italics,
-          text: [{ text: 'Belgi:   ', bold }, { text: `${'11/-2945' || ''}` }]
+          text: [{ text: 'Belgi:   ', bold }, { text: `${'4/-198' || ''}` }]
         },
         {
           fontSize: 12, italics,
-          text: [{ text: 'Sene:   ', bold }, { text: `${'09.11.2018' || ''}` }]
+          text: [{ text: 'Sene:   ', bold }, { text: `${'11.04.2024' || ''}` }]
         },
         { text: 'Daşary ýurt raýatlarynyň sanawy', fontSize, bold, alignment },
         { text: '\n' },
@@ -102,4 +105,4 @@ const TableIshlemaneRugsotEdilenYerler = ({ ...props }) => {
   );
 };
 
-export default TableIshlemaneRugsotEdilenYerler; 
+export default TableWizaRugsotnamaYatyrmak; 

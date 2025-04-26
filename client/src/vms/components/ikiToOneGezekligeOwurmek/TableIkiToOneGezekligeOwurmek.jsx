@@ -73,6 +73,7 @@ const TableIkiToOneGezekligeOwurmek = ({ ...props }) => {
           fontSize: 10,
           layout: layoutTable,
           table: {
+            headerRows: 1,
             widths: Utils.theadWidths(thead, (item, index) => index === 0 ? 20 : "auto"),
             body: tableBody
           }

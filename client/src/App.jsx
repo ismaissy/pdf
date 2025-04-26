@@ -7,7 +7,9 @@ import BlankPasportChalshmakHasabaDurmok from "./vms/components/pasportChalshmak
 import TableBlankPasportChalshmakHasabaDurmok from "./vms/components/pasportChalshmakHasabaDurmok/TableBlankPasportChalshmakHasabaDurmok";
 import BlankIshlemaneRugsotEdilenYerler from "./vms/components/ishlemaneRugsotEdilenYerler/BlankIshlemaneRugsotEdilenYerler";
 import BlankIkiToOneGezekligeOwurmek from "./vms/components/ikiToOneGezekligeOwurmek/BlankIkiToOneGezekligeOwurmek";
-import TableIkiToOneGezekligeOwurmek from "./vms/components/ikiToOneGezekligeOwurmek/TableIkiToOneGezekligeOwurmek";
+import TableIshlemaneRugsotEdilenYerler from "./vms/components/ishlemaneRugsotEdilenYerler/TableIshlemaneRugsotEdilenYerler";
+import BlankWizaRugsotnamaYatyrmak from "./vms/components/wizaRugsotnamaYatyrmak/BlankWizaRugsotnamaYatyrmak";
+import TableWizaRugsotnamaYatyrmak from "./vms/components/wizaRugsotnamaYatyrmak/TableWizaRugsotnamaYatyrmak";
 
 import Profile from "./componens/Profile";
 import Konselari from "./componens/Konselari";
@@ -19,9 +21,14 @@ import BelligeAlmak from "./componens/BelligeAlmak";
 const componentMap = {
     BlankPasportChalshmakHasabaDurmok,
     TableBlankPasportChalshmakHasabaDurmok,
-    BlankIshlemaneRugsotEdilenYerler,
+
     BlankIkiToOneGezekligeOwurmek,
-    TableIkiToOneGezekligeOwurmek,
+
+    BlankIshlemaneRugsotEdilenYerler,
+    TableIshlemaneRugsotEdilenYerler,
+
+    BlankWizaRugsotnamaYatyrmak,
+    TableWizaRugsotnamaYatyrmak,
     // Profile,
     // Konselari,
     // HasapdanChykarmak,
@@ -50,7 +57,7 @@ export default function App() {
                         {Object.keys(componentMap).map((key) => (
                             <Dropdown.Item key={key} eventKey={key}>
                                 <img src={ic_pdf} alt="pdf icon" style={{ width: 16, height: 16, marginRight: 8 }} />
-                                {key}
+                                {key.replace(/([A-Z])/g, ' $1').trim()} {/* // ([A-Z]) - finds every capital letter. ' $1' - adds a space before it. .trim() - removes the extra space at the beginning of the line. */}
                             </Dropdown.Item>
                         ))}
                     </Dropdown.Menu>

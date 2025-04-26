@@ -21,6 +21,7 @@ const BlankIshlemaneRugsotEdilenYerler = ({ ...props }) => {
   const [base64Image, setBase64Image] = useState(null);
   const [base64LogoFooter, setBase64LogoFooter] = useState(null);
 
+
   useEffect(() => {
     // Converts an image URL to a Base64 string
     const toBase64 = async (url) => {
@@ -44,10 +45,10 @@ const BlankIshlemaneRugsotEdilenYerler = ({ ...props }) => {
     loadImages(); // Start loading when component mounts
   }, []);
 
-
   useEffect(() => {
     if (base64Image && base64LogoFooter) generatePdf();
   }, [base64Image, base64LogoFooter]);
+
 
   const generatePdf = () => {
     if (!base64Image) return;
@@ -83,30 +84,31 @@ const BlankIshlemaneRugsotEdilenYerler = ({ ...props }) => {
         {
           columns: [
             { image: base64Image, width: 150, height: 40, alignment: "left", },
-            { text: "gapinsaat.com", link: 'https://gapinsaat.com/tr/index.html', alignment: "right", color: '#00246b', fontSize: 10, bold, }
+            { text: COMPANY_DATA.name, link: COMPANY_DATA.link, alignment: "right", color: '#00246b', fontSize: 10, bold, }
           ],
         },
         { text: '\n\n\n\n\n' },
-        { text: `Belgi:   ${'1/-46' || ''}`, fontSize: 15, italics, bold },
-        { text: `Sene:   ${'24.01.2023' || ''}`, fontSize: 15, italics, bold },
+        { text: `Belgi:   ${'11/-2945' || ''}`, fontSize: 15, italics, bold },
+        { text: `Sene:   ${'09.11.2018' || ''}`, fontSize: 15, italics, bold },
         { text: '\n\n' },
         {
           columns: [
-            { text: ' ' },
-            {
-              fontSize, bold, width: 230,
-              text: `${'Türkmenistanyň Döwlet Migrasiýa'}\n${'Gullugynyň Ahal welaýaty'} boýunça müdirligine.`,
-            },
+            { text: `${'Adaty tertipde!'}`, fontSize: 10, italics, },
+            { text: `${'Türkmenistanyň Döwlet migrasiýa gullugynyň başlygyna'}`, fontSize, bold, width: 230 },
           ],
         },
         { text: '\n\n' },
         {
           leadingIndent, fontSize, alignment: 'justify',
           text: [
-            { text: 'Hatymyzyň goşundysynda görkezilen sanawdaky ' },
-            { text: `${3} (${'üç'}) sany `, bold },
-            { text: 'daşary ýurt raýatlarynyň ' },
-            { text: 'pasportyny çalyşmagy bilen baglanyşykly hasaba durmagy möhletini täze pasportyna geçirmegiňizi ', bold },
+            { text: 'Türkmenistanyň Prezidentiniň 2021-nji ýylyň Sentýabr aýynyň 26-da çykaran №2462 belgili kararyna laýyklykda, ' },
+            { text: 'Aşgabat şäherinde 400 orunlyk ' },
+            { text: `${'Halkara Sagaldyş-dikeldiş merkezini gurmak barada'} ${'Türkiýäniň'} «${'GAP Inşaat Yatirim ýe Diş Ticaret A. Ş.'}» ` },
+            { text: `${'şereketi bilen şertnama baglaşmaga ygtyýar berildi.'} ` },
+            { text: `${'Hatymyzyň goşundysynda görkezilen sanawdaky'} ` },
+            { text: `${3} (${'üç'}) `, bold },
+            { text: 'sany daşary ýurt raýatyna ', },
+            { text: `${'Aşgabat şäherinde hereket eder ýaly işlemäge rugsat bermegiňizi'}  `, bold },
             { text: 'Sizden haýyş edýäris.' },
           ]
         },
@@ -120,9 +122,10 @@ const BlankIshlemaneRugsotEdilenYerler = ({ ...props }) => {
         },
         { text: '\n\n\n\n' },
         {
+          fontSize, bold,
           columns: [
-            { text: 'Sebit müdiriň orunbasary', alignment: "left", fontSize, bold },
-            { text: `Recep AKÇI`, alignment, fontSize, bold },
+            { text: 'Sebit müdiriň orunbasary', alignment: "left" },
+            { text: `Recep AKÇI`, alignment },
           ],
         },
       ]
