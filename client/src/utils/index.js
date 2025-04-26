@@ -4,10 +4,12 @@ export default class Utils {
         return array.map((i, index) => typeof positionOrFn === "function" ? positionOrFn(i, index) : positionOrFn);
     }
 
-    static thead(array, alignment, bold) {
-        return array.map((i) => ({ text: i, alignment, bold }));
+    // static thead(array, alignment, bold) {
+    //     return array.map((i) => ({ text: i, alignment, bold }));
+    // }
+    static thead(array, alignment = 'center', bold = true) {
+        return array.map((i) => ({ text: i.name, alignment, bold }));
     }
-
     static canvasDto(type, x1, y1, x2, y2, lineWidth) {
         return { type, x1, y1, x2: x2, y2, lineWidth }
     }

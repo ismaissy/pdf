@@ -3,24 +3,20 @@ import pdfMake from "pdfmake/build/pdfmake";
 import { vfs as customVfs } from "../../../vfs_fonts";
 import logoGapinsaat from "../../../assets/logo_gapinsaat.png";
 import logoCalikEnerjiFooter from "../../../assets/logoCalikEnerjiFooter.png";
-import { alignment, bold, italics, fontSize, leadingIndent, COMPANY_DATA } from '../../../utils/constants'
+import {
+  bold, alignment, italics, fontSize, pageSize, TimesNewRomanObject,
+  COMPANY_DATA, leadingIndent, pageMarginsBlank, font, fontSizeBlankHeader
+} from '../../../utils/constants'
 
 // Font Style
 pdfMake.vfs = customVfs;
-pdfMake.fonts = {
-  TimesNewRoman: {
-    normal: "TIMES.TTF",
-    bold: "TIMESBD.TTF",
-    italics: "TIMESI.TTF",
-    bolditalics: "TIMESBI.TTF",
-  },
-};
+pdfMake.fonts = TimesNewRomanObject;
+
 
 const BlankIshlemaneRugsotEdilenYerler = ({ ...props }) => {
   const [pdfUrl, setPdfUrl] = useState(null);
   const [base64Image, setBase64Image] = useState(null);
   const [base64LogoFooter, setBase64LogoFooter] = useState(null);
-
 
   useEffect(() => {
     // Converts an image URL to a Base64 string
@@ -49,15 +45,14 @@ const BlankIshlemaneRugsotEdilenYerler = ({ ...props }) => {
     if (base64Image && base64LogoFooter) generatePdf();
   }, [base64Image, base64LogoFooter]);
 
-
   const generatePdf = () => {
     if (!base64Image) return;
 
     const documentDefinition = {
-      pageSize: 'A4',
+      pageSize,
       pageOrientation: "portrait",
-      pageMargins: [40, 20, 50, 70],
-      defaultStyle: { font: "TimesNewRoman" },
+      defaultStyle: { font },
+      pageMargins: pageMarginsBlank,
       footer: (currentPage, pageCount) => {
         if (currentPage === 1) {
           return {
@@ -88,8 +83,8 @@ const BlankIshlemaneRugsotEdilenYerler = ({ ...props }) => {
           ],
         },
         { text: '\n\n\n\n\n' },
-        { text: `Belgi:   ${'11/-2945' || ''}`, fontSize: 15, italics, bold },
-        { text: `Sene:   ${'09.11.2018' || ''}`, fontSize: 15, italics, bold },
+        { text: `Belgi:   ${'11/-2945' || ''}`, fontSize: fontSizeBlankHeader, italics, bold },
+        { text: `Sene:   ${'09.11.2018' || ''}`, fontSize: fontSizeBlankHeader, italics, bold },
         { text: '\n\n' },
         {
           columns: [

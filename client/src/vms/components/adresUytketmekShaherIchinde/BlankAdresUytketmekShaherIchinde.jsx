@@ -3,20 +3,16 @@ import pdfMake from "pdfmake/build/pdfmake";
 import { vfs as customVfs } from "../../../vfs_fonts";
 import logoGapinsaat from "../../../assets/logo_gapinsaat.png";
 import logoCalikEnerjiFooter from "../../../assets/logoCalikEnerjiFooter.png";
-import { alignment, bold, italics, fontSize, leadingIndent, COMPANY_DATA } from '../../../utils/constants'
+import {
+  bold, alignment, italics, fontSize, pageSize, TimesNewRomanObject,
+  COMPANY_DATA, leadingIndent, pageMarginsBlank, font, fontSizeBlankHeader
+} from '../../../utils/constants'
 
 // Font Style
 pdfMake.vfs = customVfs;
-pdfMake.fonts = {
-  TimesNewRoman: {
-    normal: "TIMES.TTF",
-    bold: "TIMESBD.TTF",
-    italics: "TIMESI.TTF",
-    bolditalics: "TIMESBI.TTF",
-  },
-};
+pdfMake.fonts = TimesNewRomanObject;
 
-const BlankPasportChalshmakHasabaDurmok = ({ ...props }) => {
+const BlankAdresUytketmekShaherIchinde = ({ ...props }) => {
   const [pdfUrl, setPdfUrl] = useState(null);
   const [base64Image, setBase64Image] = useState(null);
   const [base64LogoFooter, setBase64LogoFooter] = useState(null);
@@ -50,10 +46,10 @@ const BlankPasportChalshmakHasabaDurmok = ({ ...props }) => {
     if (!base64Image) return;
 
     const documentDefinition = {
-      pageSize: 'A4',
+      pageSize,
       pageOrientation: "portrait",
-      pageMargins: [40, 20, 50, 70],
-      defaultStyle: { font: "TimesNewRoman" },
+      defaultStyle: { font },
+      pageMargins: pageMarginsBlank,
       footer: (currentPage, pageCount) => {
         if (currentPage === 1) {
           return {
@@ -84,15 +80,15 @@ const BlankPasportChalshmakHasabaDurmok = ({ ...props }) => {
           ],
         },
         { text: '\n\n\n\n\n' },
-        { text: `Belgi:   ${'1/-46' || ''}`, fontSize: 15, italics, bold },
-        { text: `Sene:   ${'24.01.2023' || ''}`, fontSize: 15, italics, bold },
+        { text: `Belgi:   ${'8/-620' || ''}`, fontSize: fontSizeBlankHeader, italics, bold },
+        { text: `Sene:   ${'29.08.2024' || ''}`, fontSize: fontSizeBlankHeader, italics, bold },
         { text: '\n\n' },
         {
           columns: [
             { text: ' ' },
             {
               fontSize, bold, width: 230,
-              text: `${'Türkmenistanyň Döwlet Migrasiýa'}\n${'Gullugynyň Ahal welaýaty'} boýunça müdirligine.`,
+              text: `${'Türkmenistanyň Döwlet Migrasiýa'}\n${'Gullugynyň Aşgabat şäherin'} boýunça müdirliginiň müdirine.`,
             },
           ],
         },
@@ -101,9 +97,10 @@ const BlankPasportChalshmakHasabaDurmok = ({ ...props }) => {
           leadingIndent, fontSize, alignment: 'justify',
           text: [
             { text: 'Hatymyzyň goşundysynda görkezilen sanawdaky ' },
-            { text: `${3} (${'üç'}) sany `, bold },
-            { text: 'daşary ýurt raýatlarynyň ' },
-            { text: 'pasportyny çalyşmagy bilen baglanyşykly hasaba durmagy möhletini täze pasportyna geçirmegiňizi ', bold },
+            { text: `${1} (${'bir'}) `, bold },
+            { text: 'sany daşary ýurt raýatlarynyň ' },
+            { text: `${'ýaşaýan salgysyny çalyşandygy'} `, bold },
+            { text: 'sebäpli täze öý salgysyna hasaba almagyňyzy ' },
             { text: 'Sizden haýyş edýäris.' },
           ]
         },
@@ -140,4 +137,4 @@ const BlankPasportChalshmakHasabaDurmok = ({ ...props }) => {
   );
 };
 
-export default BlankPasportChalshmakHasabaDurmok;
+export default BlankAdresUytketmekShaherIchinde;

@@ -3,30 +3,21 @@ import pdfMake from 'pdfmake/build/pdfmake';
 import { vfs as customVfs } from '../../../vfs_fonts';
 import Utils from '../../../utils';
 import { citizens } from '../../../utils/data';
-import Table from '../../../utils/TablePdfMake';
 import {
-  bold, alignment, italics, fontSize, fontSizeTable, fontSizeTableHeader,
-  valign, layoutTable, pageMarginsTable, font, pageSize, TimesNewRomanObject
+  bold, alignment, italics, fontSize, fontSizeTable, fontSizeTableHeader, valign,
+  layoutTable, pageMarginsTable, font, pageSize, TimesNewRomanObject
 } from '../../../utils/constants'
 
 // Font Style
 pdfMake.vfs = customVfs;
 pdfMake.fonts = TimesNewRomanObject;
 
-
-const TableIshlemaneRugsotEdilenYerler = ({ ...props }) => {
+const TableAdresUytketmekShaherIchinde = ({ ...props }) => {
   const [pdfUrl, setPdfUrl] = useState(null);
 
   useEffect(() => generatePdf(), []);
 
-  // const thead = ['Ady', 'T/N', 'AS-№', 'Tassyknama belgisi', 'Familiýasy', 'Ady', 'Doglan senesi we ýurdy', 'Pasportynyň belgisi', 'Bilimi we wezipesi', 'Hereket edýän çägi', 'Rugsot edilen möhleti', 'Wiza belgisi', 'Wiza möhleti başlanýan senesi', 'Wiza möhleti tamamlanýan sene'];
-  const thead = [
-    { name: 'Ady', attr: 'firstName', style: { alignment, valign } },
-    { name: 'Familiýasy', attr: 'lastName', style: { alignment, valign } }
-  ]
-
-  const tt = new Table(thead, citizens);
-  tt.consolll();
+  const thead = ['№', 'Familiýasy', 'Ady', 'Doglan senesi', 'Jynsy', 'Raýatlygy', 'Pasportynyň belgisi', 'Pasportynyň möhleti', 'Wezipesi', 'Wiza maglumatlary', 'Türkmenistandaky salgysy'];
 
   const tableBody = [
     Utils.thead(thead, 'center', true),
@@ -34,8 +25,6 @@ const TableIshlemaneRugsotEdilenYerler = ({ ...props }) => {
       { text: `${index + 1}`, alignment, valign },
       { text: item.lastName, alignment, valign },
       { text: item.firstName, alignment, valign },
-      { text: item.birthDate, alignment, valign },
-      { text: item.birthDate, alignment, valign },
       { text: item.birthDate, alignment, valign },
       { text: item.gender, alignment, valign },
       { text: item.citizenship, alignment, valign },
@@ -47,7 +36,6 @@ const TableIshlemaneRugsotEdilenYerler = ({ ...props }) => {
     ]),
   ];
 
-
   const generatePdf = () => {
     const documentDefinition = {
       pageSize,
@@ -56,12 +44,14 @@ const TableIshlemaneRugsotEdilenYerler = ({ ...props }) => {
       pageMargins: pageMarginsTable,
       content: [
         {
-          fontSize: fontSizeTableHeader, italics,
-          text: [{ text: 'Belgi:   ', bold }, { text: `${'11/-2945' || ''}` }]
+          italics,
+          fontSize: fontSizeTableHeader,
+          text: [{ text: 'Belgi:   ', bold }, { text: `${'8/-620' || ''}` }]
         },
         {
-          fontSize: fontSizeTableHeader, italics,
-          text: [{ text: 'Sene:   ', bold }, { text: `${'09.11.2018' || ''}` }]
+          italics,
+          fontSize: fontSizeTableHeader,
+          text: [{ text: 'Sene:   ', bold }, { text: `${'29.08.2024' || ''}` }]
         },
         { text: 'Daşary ýurt raýatlarynyň sanawy', fontSize, bold, alignment },
         { text: '\n' },
@@ -70,7 +60,7 @@ const TableIshlemaneRugsotEdilenYerler = ({ ...props }) => {
           layout: layoutTable,
           table: {
             headerRows: 1,
-            widths: Utils.theadWidths(thead, (item, index) => index === 0 ? 20 : "auto"),
+            widths: Utils.theadWidths(thead, (item, index) => index === 0 ? "*" : "auto"),
             body: tableBody
           }
         },
@@ -98,4 +88,4 @@ const TableIshlemaneRugsotEdilenYerler = ({ ...props }) => {
   );
 };
 
-export default TableIshlemaneRugsotEdilenYerler; 
+export default TableAdresUytketmekShaherIchinde;

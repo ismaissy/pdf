@@ -15,3 +15,17 @@ export const data = {
     border: "Balkan welaýatynyň Garabogaz şäherinde",
     organization: "karbanit öndürýan zawodyny gurmak",
 };
+
+export const citizens = [
+    { lastName: "HANDA", firstName: "Hokuto", birthDate: "16.05.1967", gender: "Erkek", citizenship: "JPN", passport: "TZ1132601", passportFinished: "07.12.2032", position: "Baş menejer", visa: "Wiza №123456", address: "Garabogaz, Balkan Türkmenbaşy şäheri Aşgabat şäheri" },
+    { lastName: "LEE", firstName: "Jin", birthDate: "10.09.1978", gender: "Erkek", citizenship: "KOR", passport: "AB987654", passportFinished: "01.11.2035", position: "Inžener", visa: "Wiza A654321 WP sdçasdý asýfdýdfrýçsdaça 05.01.2023 04.07.2023", address: "Türkmenbaşy şäheri Garabogaz, Balkan Türkmenbaşy şäheri Aşgabat şäheri Garabogaz," },
+    { lastName: "SMITH", firstName: "Anna", birthDate: "23.03.1985", gender: "Aýal", citizenship: "USA", passport: "XY123789", passportFinished: "12.05.2037", position: "Maslahatçy", visa: "Wiza №789123", address: "Aşgabat şäheri" },
+    { lastName: "HANDA", firstName: "Hokuto", birthDate: "16.05.1967", gender: "Erkek", citizenship: "JPN", passport: "TZ1132601", passportFinished: "07.12.2032", position: "Baş menejer", visa: "Wiza №123456", address: "Garabogaz, Balkan Türkmenbaşy şäheri Aşgabat şäheri" },
+    { lastName: "LEE", firstName: "Jin", birthDate: "10.09.1978", gender: "Erkek", citizenship: "KOR", passport: "AB987654", passportFinished: "01.11.2035", position: "Inžener", visa: "Wiza A654321 WP sdçasdý asýfdýdfrýçsdaça 05.01.2023 04.07.2023", address: "Türkmenbaşy şäheri Garabogaz, Balkan Türkmenbaşy şäheri Aşgabat şäheri Garabogaz," },
+    { lastName: "SMITH", firstName: "Anna", birthDate: "23.03.1985", gender: "Aýal", citizenship: "USA", passport: "XY123789", passportFinished: "12.05.2037", position: "Maslahatçy", visa: "Wiza №789123", address: "Aşgabat şäheri" },
+    { lastName: "HANDA", firstName: "Hokuto", birthDate: "16.05.1967", gender: "Erkek", citizenship: "JPN", passport: "TZ1132601", passportFinished: "07.12.2032", position: "Baş menejer", visa: "Wiza №123456", address: "Garabogaz, Balkan Türkmenbaşy şäheri Aşgabat şäheri" },
+    { lastName: "LEE", firstName: "Jin", birthDate: "10.09.1978", gender: "Erkek", citizenship: "KOR", passport: "AB987654", passportFinished: "01.11.2035", position: "Inžener", visa: "Wiza A654321 WP sdçasdý asýfdýdfrýçsdaça 05.01.2023 04.07.2023", address: "Türkmenbaşy şäheri Garabogaz, Balkan Türkmenbaşy şäheri Aşgabat şäheri Garabogaz, " },
+    { lastName: "HANDA", firstName: "Hokuto", birthDate: "16.05.1967", gender: "Erkek", citizenship: "JPN", passport: "TZ1132601", passportFinished: "07.12.2032", position: "Baş menejer", visa: "Wiza №123456", address: "Garabogaz, Balkan Türkmenbaşy şäheri Aşgabat şäheri" },
+    { lastName: "LEE", firstName: "Jin", birthDate: "10.09.1978", gender: "Erkek", citizenship: "KOR", passport: "AB987654", passportFinished: "01.11.2035", position: "Inžener", visa: "Wiza A654321 WP sdçasdý asýfdýdfrýçsdaça 05.01.2023 04.07.2023", address: "Türkmenbaşy şäheri Garabogaz, Balkan Türkmenbaşy şäheri Aşgabat şäheri Garabogaz," },
+    { lastName: "SMITH", firstName: "Anna", birthDate: "23.03.1985", gender: "Aýal", citizenship: "USA", passport: "XY123789", passportFinished: "12.05.2037", position: "Maslahatçy", visa: "Wiza №789123", address: "Aşgabat şäheri" },
+]

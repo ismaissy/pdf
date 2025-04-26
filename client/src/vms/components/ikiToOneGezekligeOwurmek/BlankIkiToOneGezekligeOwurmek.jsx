@@ -3,18 +3,15 @@ import pdfMake from "pdfmake/build/pdfmake";
 import { vfs as customVfs } from "../../../vfs_fonts";
 import logoGapinsaat from "../../../assets/logo_gapinsaat.png";
 import logoCalikEnerjiFooter from "../../../assets/logoCalikEnerjiFooter.png";
-import { alignment, bold, italics, fontSize, leadingIndent, COMPANY_DATA } from '../../../utils/constants'
+import {
+  bold, alignment, italics, fontSize, pageSize, TimesNewRomanObject,
+  COMPANY_DATA, leadingIndent, pageMarginsBlank, font, fontSizeBlankHeader
+} from '../../../utils/constants'
 
 // Font Style
 pdfMake.vfs = customVfs;
-pdfMake.fonts = {
-  TimesNewRoman: {
-    normal: "TIMES.TTF",
-    bold: "TIMESBD.TTF",
-    italics: "TIMESI.TTF",
-    bolditalics: "TIMESBI.TTF",
-  },
-};
+pdfMake.fonts = TimesNewRomanObject;
+
 
 const BlankPasportChalshmakHasabaDurmok = ({ ...props }) => {
   const [pdfUrl, setPdfUrl] = useState(null);
@@ -44,7 +41,6 @@ const BlankPasportChalshmakHasabaDurmok = ({ ...props }) => {
     loadImages(); // Start loading when component mounts
   }, []);
 
-
   useEffect(() => {
     if (base64Image && base64LogoFooter) generatePdf();
   }, [base64Image, base64LogoFooter]);
@@ -53,10 +49,10 @@ const BlankPasportChalshmakHasabaDurmok = ({ ...props }) => {
     if (!base64Image) return;
 
     const documentDefinition = {
-      pageSize: 'A4',
+      pageSize,
       pageOrientation: "portrait",
-      pageMargins: [40, 20, 50, 70],
-      defaultStyle: { font: "TimesNewRoman" },
+      defaultStyle: { font },
+      pageMargins: pageMarginsBlank,
       footer: (currentPage, pageCount) => {
         if (currentPage === 1) {
           return {
@@ -87,8 +83,8 @@ const BlankPasportChalshmakHasabaDurmok = ({ ...props }) => {
           ],
         },
         { text: '\n\n\n\n\n' },
-        { text: `Belgi:   ${'1/-46' || ''}`, fontSize: 15, italics, bold },
-        { text: `Sene:   ${'24.01.2023' || ''}`, fontSize: 15, italics, bold },
+        { text: `Belgi:   ${'1/-46' || ''}`, fontSize: fontSizeBlankHeader, italics, bold },
+        { text: `Sene:   ${'24.01.2023' || ''}`, fontSize: fontSizeBlankHeader, italics, bold },
         { text: '\n\n' },
         {
           columns: [

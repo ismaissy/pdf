@@ -1,15 +1,18 @@
-import { useState } from "react";
-import { Dropdown } from "react-bootstrap";
-import { data } from "./utils/data";
-import ic_pdf from "./assets/svg/ic_pdf.svg";
+import { useState } from 'react';
+import { Dropdown } from 'react-bootstrap';
+import { data } from './utils/data';
+import ic_pdf from './assets/svg/ic_pdf.svg';
 
-import BlankPasportChalshmakHasabaDurmok from "./vms/components/pasportChalshmakHasabaDurmok/BlankPasportChalshmakHasabaDurmok";
-import TableBlankPasportChalshmakHasabaDurmok from "./vms/components/pasportChalshmakHasabaDurmok/TableBlankPasportChalshmakHasabaDurmok";
-import BlankIshlemaneRugsotEdilenYerler from "./vms/components/ishlemaneRugsotEdilenYerler/BlankIshlemaneRugsotEdilenYerler";
-import BlankIkiToOneGezekligeOwurmek from "./vms/components/ikiToOneGezekligeOwurmek/BlankIkiToOneGezekligeOwurmek";
-import TableIshlemaneRugsotEdilenYerler from "./vms/components/ishlemaneRugsotEdilenYerler/TableIshlemaneRugsotEdilenYerler";
-import BlankWizaRugsotnamaYatyrmak from "./vms/components/wizaRugsotnamaYatyrmak/BlankWizaRugsotnamaYatyrmak";
-import TableWizaRugsotnamaYatyrmak from "./vms/components/wizaRugsotnamaYatyrmak/TableWizaRugsotnamaYatyrmak";
+import BlankPasportChalshmakHasabaDurmok from './vms/components/pasportChalshmakHasabaDurmok/BlankPasportChalshmakHasabaDurmok';
+import TablePasportChalshmakHasabaDurmok from './vms/components/pasportChalshmakHasabaDurmok/TablePasportChalshmakHasabaDurmok';
+import BlankIshlemaneRugsotEdilenYerler from './vms/components/ishlemaneRugsotEdilenYerler/BlankIshlemaneRugsotEdilenYerler';
+import BlankIkiToOneGezekligeOwurmek from './vms/components/ikiToOneGezekligeOwurmek/BlankIkiToOneGezekligeOwurmek';
+import TableIshlemaneRugsotEdilenYerler from './vms/components/ishlemaneRugsotEdilenYerler/TableIshlemaneRugsotEdilenYerler';
+import BlankWizaRugsotnamaYatyrmak from './vms/components/wizaRugsotnamaYatyrmak/BlankWizaRugsotnamaYatyrmak';
+import TableWizaRugsotnamaYatyrmak from './vms/components/wizaRugsotnamaYatyrmak/TableWizaRugsotnamaYatyrmak';
+import BlankAdresUytketmekShaherIchinde from './vms/components/adresUytketmekShaherIchinde/BlankAdresUytketmekShaherIchinde';
+import TableAdresUytketmekShaherIchinde from './vms/components/adresUytketmekShaherIchinde/TableAdresUytketmekShaherIchinde';
+
 
 import Profile from "./componens/Profile";
 import Konselari from "./componens/Konselari";
@@ -20,7 +23,7 @@ import BelligeAlmak from "./componens/BelligeAlmak";
 
 const componentMap = {
     BlankPasportChalshmakHasabaDurmok,
-    TableBlankPasportChalshmakHasabaDurmok,
+    TablePasportChalshmakHasabaDurmok,
 
     BlankIkiToOneGezekligeOwurmek,
 
@@ -29,6 +32,11 @@ const componentMap = {
 
     BlankWizaRugsotnamaYatyrmak,
     TableWizaRugsotnamaYatyrmak,
+
+    BlankAdresUytketmekShaherIchinde,
+    TableAdresUytketmekShaherIchinde,
+
+
     // Profile,
     // Konselari,
     // HasapdanChykarmak,

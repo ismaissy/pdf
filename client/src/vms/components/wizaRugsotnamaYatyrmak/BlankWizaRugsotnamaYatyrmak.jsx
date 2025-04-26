@@ -3,18 +3,14 @@ import pdfMake from "pdfmake/build/pdfmake";
 import { vfs as customVfs } from "../../../vfs_fonts";
 import logoGapinsaat from "../../../assets/logo_gapinsaat.png";
 import logoCalikEnerjiFooter from "../../../assets/logoCalikEnerjiFooter.png";
-import { alignment, bold, italics, fontSize, leadingIndent, COMPANY_DATA } from '../../../utils/constants'
+import {
+  bold, alignment, italics, fontSize, pageSize, TimesNewRomanObject,
+  COMPANY_DATA, leadingIndent, pageMarginsBlank, font, fontSizeBlankHeader
+} from '../../../utils/constants'
 
 // Font Style
 pdfMake.vfs = customVfs;
-pdfMake.fonts = {
-  TimesNewRoman: {
-    normal: "TIMES.TTF",
-    bold: "TIMESBD.TTF",
-    italics: "TIMESI.TTF",
-    bolditalics: "TIMESBI.TTF",
-  },
-};
+pdfMake.fonts = TimesNewRomanObject;
 
 const BlankWizaRugsotnamaYatyrmak = ({ ...props }) => {
   const [pdfUrl, setPdfUrl] = useState(null);
@@ -54,10 +50,10 @@ const BlankWizaRugsotnamaYatyrmak = ({ ...props }) => {
     if (!base64Image) return;
 
     const documentDefinition = {
-      pageSize: 'A4',
+      pageSize,
       pageOrientation: "portrait",
-      pageMargins: [40, 20, 50, 70],
-      defaultStyle: { font: "TimesNewRoman" },
+      defaultStyle: { font },
+      pageMargins: pageMarginsBlank,
       footer: (currentPage, pageCount) => {
         if (currentPage === 1) {
           return {
@@ -88,8 +84,8 @@ const BlankWizaRugsotnamaYatyrmak = ({ ...props }) => {
           ],
         },
         { text: '\n\n\n\n\n' },
-        { text: `Belgi:   ${'4/-198' || ''}`, fontSize: 15, italics, bold },
-        { text: `Sene:   ${'11.04.2024' || ''}`, fontSize: 15, italics, bold },
+        { text: `Belgi:   ${'4/-198' || ''}`, fontSize: fontSizeBlankHeader, italics, bold },
+        { text: `Sene:   ${'11.04.2024' || ''}`, fontSize: fontSizeBlankHeader, italics, bold },
         { text: '\n\n' },
         {
           columns: [

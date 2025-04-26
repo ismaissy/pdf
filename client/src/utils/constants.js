@@ -3,8 +3,25 @@ export const bold = true;
 export const alignment = 'center';
 export const italics = true;
 export const fontSize = 14;
+export const fontSizeTable = 10;
+export const fontSizeBlankHeader = 15; // Belgi: 8/-620 Sene: 29.08.2024 
+export const fontSizeTableHeader = 12; // Belgi: 8/-620 Sene: 29.08.2024 Tablisiya dokumendyn shapkasynda ulonylya
 export const valign = 'middle';
-export const leadingIndent = 20; // Indentation from a red line 
+export const leadingIndent = 20;
+export const pageMarginsBlank = [40, 20, 50, 70];
+export const pageMarginsTable = [10, 20, 10, 10];
+export const font = 'TimesNewRoman';
+export const pageSize = 'A4';
+export const TimesNewRomanObject = {
+    TimesNewRoman: {
+        normal: "TIMES.TTF",
+        bold: "TIMESBD.TTF",
+        italics: "TIMESI.TTF",
+        bolditalics: "TIMESBI.TTF",
+    },
+};
+
+
 export const COMPANY_DATA = {
     name: 'gapinsaat.com',
     link: 'https://gapinsaat.com/tr/index.html',
