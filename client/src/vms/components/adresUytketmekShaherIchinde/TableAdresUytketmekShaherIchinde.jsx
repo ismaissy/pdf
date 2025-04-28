@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import pdfMake from 'pdfmake/build/pdfmake';
 import { vfs as customVfs } from '../../../vfs_fonts';
-import Utils from '../../../utils';
-import { citizens } from '../../../utils/data';
+import TablePdfMake from '../../../utils/TablePdfMake';
 import {
   bold, alignment, italics, fontSize, fontSizeTable, fontSizeTableHeader, valign,
-  layoutTable, pageMarginsTable, font, pageSize, TimesNewRomanObject
+  layoutTable, pageMarginsTable, font, pageSize, TimesNewRomanObject, tableBodyStyle
 } from '../../../utils/constants'
+import { citizens } from '../../../utils/data';
 
 // Font Style
 pdfMake.vfs = customVfs;
@@ -17,24 +17,21 @@ const TableAdresUytketmekShaherIchinde = ({ ...props }) => {
 
   useEffect(() => generatePdf(), []);
 
-  const thead = ['№', 'Familiýasy', 'Ady', 'Doglan senesi', 'Jynsy', 'Raýatlygy', 'Pasportynyň belgisi', 'Pasportynyň möhleti', 'Wezipesi', 'Wiza maglumatlary', 'Türkmenistandaky salgysy'];
+  const thead = [
+    { width: '*', name: '№', attr: '', style: tableBodyStyle },
+    { width: 'auto', name: 'Familiýasy', attr: 'firstName', style: tableBodyStyle },
+    { width: 'auto', name: 'Ady', attr: 'lastName', style: tableBodyStyle },
+    { width: 'auto', name: 'Doglan senesi', attr: 'birthDate', style: tableBodyStyle },
+    { width: 'auto', name: 'Jynsy', attr: 'gender', style: tableBodyStyle },
+    { width: 'auto', name: 'Raýatlygy', attr: 'citizenship', style: tableBodyStyle },
+    { width: 'auto', name: 'Pasportynyň belgisi', attr: 'passport', style: tableBodyStyle },
+    { width: 'auto', name: 'Pasportynyň möhleti', attr: 'passportFinished', style: tableBodyStyle },
+    { width: 'auto', name: 'Wezipesi', attr: 'position', style: tableBodyStyle },
+    { width: 'auto', name: 'Wiza maglumatlary', attr: 'visa', style: tableBodyStyle },
+    { width: 'auto', name: 'Türkmenistandaky salgysy', attr: 'address', style: tableBodyStyle },
+  ]
 
-  const tableBody = [
-    Utils.thead(thead, 'center', true),
-    ...citizens.map((item, index) => [
-      { text: `${index + 1}`, alignment, valign },
-      { text: item.lastName, alignment, valign },
-      { text: item.firstName, alignment, valign },
-      { text: item.birthDate, alignment, valign },
-      { text: item.gender, alignment, valign },
-      { text: item.citizenship, alignment, valign },
-      { text: item.passport, alignment, valign },
-      { text: item.passportFinished, alignment, valign },
-      { text: item.position, alignment, valign },
-      { text: item.visa, alignment, valign },
-      { text: item.address, alignment, valign },
-    ]),
-  ];
+  const tablePdfMake = new TablePdfMake(true, thead, citizens, layoutTable, { fontSize: fontSizeTable });
 
   const generatePdf = () => {
     const documentDefinition = {
@@ -55,15 +52,7 @@ const TableAdresUytketmekShaherIchinde = ({ ...props }) => {
         },
         { text: 'Daşary ýurt raýatlarynyň sanawy', fontSize, bold, alignment },
         { text: '\n' },
-        {
-          fontSize: fontSizeTable,
-          layout: layoutTable,
-          table: {
-            headerRows: 1,
-            widths: Utils.theadWidths(thead, (item, index) => index === 0 ? "*" : "auto"),
-            body: tableBody
-          }
-        },
+        tablePdfMake.table,
         { text: '\n' },
         {
           alignment, fontSize, bold,

@@ -12,6 +12,8 @@ export const pageMarginsBlank = [40, 20, 50, 70];
 export const pageMarginsTable = [10, 20, 10, 10];
 export const font = 'TimesNewRoman';
 export const pageSize = 'A4';
+export const tableBodyStyle = { alignment, valign };
+
 export const TimesNewRomanObject = {
     TimesNewRoman: {
         normal: "TIMES.TTF",
