@@ -12,6 +12,8 @@ import BlankWizaRugsotnamaYatyrmak from './vms/components/wizaRugsotnamaYatyrmak
 import TableWizaRugsotnamaYatyrmak from './vms/components/wizaRugsotnamaYatyrmak/TableWizaRugsotnamaYatyrmak';
 import BlankAdresUytketmekShaherIchinde from './vms/components/adresUytketmekShaherIchinde/BlankAdresUytketmekShaherIchinde';
 import TableAdresUytketmekShaherIchinde from './vms/components/adresUytketmekShaherIchinde/TableAdresUytketmekShaherIchinde';
+import BlankWShShW from './vms/components/wShShW/BlankWShShW';
+import TableWShShW from './vms/components/wShShW/TableWShShW';
 
 
 import Profile from "./componens/Profile";
@@ -36,6 +38,8 @@ const componentMap = {
     BlankAdresUytketmekShaherIchinde,
     TableAdresUytketmekShaherIchinde,
 
+    BlankWShShW,
+    TableWShShW,
 
     // Profile,
     // Konselari,
