@@ -12,14 +12,14 @@ import { citizens } from '../../../utils/data';
 pdfMake.vfs = customVfs;
 pdfMake.fonts = TimesNewRomanObject;
 
-const TableWShShW = ({ ...props }) => {
+const TablePasportChalshmak = ({ ...props }) => {
   const [pdfUrl, setPdfUrl] = useState(null);
 
   useEffect(() => generatePdf(), []);
 
   const thead = [
     {
-      width: '*', name: '№', style: tableBodyStyle,
+      width: 20, name: '№', style: tableBodyStyle,
       value: (prop, rowIndex) => { return `${rowIndex + 1}` },
     },
     {
@@ -31,37 +31,53 @@ const TableWShShW = ({ ...props }) => {
       value: (prop) => { return `${prop?.lastName}` },
     },
     {
-      width: 'auto', name: 'Doglan senesi', style: tableBodyStyle,
-      value: (prop) => { return `${prop?.birthDate}` },
-    }, {
-      width: 'auto', name: 'Jynsy', style: tableBodyStyle,
-      value: (prop) => { return `${prop?.gender}` },
-    }, {
-      width: 'auto', name: 'Raýatlygy', style: tableBodyStyle,
-      value: (prop) => { return `${prop?.citizenship}` },
-    }, {
-      width: 'auto', name: 'Pasportynyň belgisi', style: tableBodyStyle,
-      value: (prop) => { return `${prop?.passport}` },
+      width: 'auto', name: 'Doglan senesi we ýeri', style: tableBodyStyle,
+      value: (prop) => { return `${prop?.birthDate} ${prop?.citizenship}` },
     },
     {
-      width: 'auto', name: 'Pasportynyň möhleti', style: tableBodyStyle,
-      value: (prop) => { return `${prop?.passportFinished}` },
+      width: 'auto', name: 'Jynsy', style: tableBodyStyle,
+      value: (prop) => { return `${prop?.gender}` },
+    },
+    {
+      width: 'auto', name: 'Raýatlygy', style: tableBodyStyle,
+      value: (prop) => { return `${prop?.citizenship}` },
+    },
+    {
+      width: 'auto', name: 'Pasportynyň belgisi we möhleti', style: tableBodyStyle,
+      value: (prop) => { return `${prop?.passport} ${prop?.passportFinished}` },
+    },
+    {
+      width: 'auto', name: 'Bilimi we okan ýeri', style: tableBodyStyle,
+      value: (prop) => { return `Ýokory, ${prop?.study}` },
+    },
+    {
+      width: 'auto', name: 'Bilimine görä hünäri', style: tableBodyStyle,
+      value: (prop) => { return `Injener` },
     },
     {
       width: 'auto', name: 'Wezipesi', style: tableBodyStyle,
       value: (prop) => { return `${prop?.position}` },
     },
     {
-      width: 'auto', name: 'Wiza maglumatlary', style: tableBodyStyle,
-      value: (prop) => { return `${prop?.visa}` },
+      width: 'auto', name: 'Wiza Möhleti we görnüşi', style: tableBodyStyle,
+      value: (prop) => { return `15.07.2019ý 14.08.2019ý\n${'A1368785'}\n${'BS'}` },
     },
     {
       width: 'auto', name: 'Türkmenistandaky salgysy', style: tableBodyStyle,
       value: (prop) => { return `${prop?.address}` },
-    }
+    },
+    {
+      width: 'auto', name: 'Daşary ýurtdaky salgysy', style: tableBodyStyle,
+      value: (prop) => { return `${'TUR, ŞAHIN ÖZBILEN MH.285 SK. NO:85/2 ÝEYHAN/ADANA'}` },
+    },
+    {
+      width: 'auto', name: 'Barjak serhet ýakasy', style: tableBodyStyle,
+      value: (prop) => { return `` },
+    },
   ]
 
   const tablePdfMake = new TablePdfMake(thead, citizens, layoutTable, { fontSize: fontSizeTable });
+  const tablePdfMakeNewPassport = new TablePdfMake(thead, citizens, layoutTable, { fontSize: fontSizeTable });
 
   const generatePdf = () => {
     const documentDefinition = {
@@ -72,15 +88,21 @@ const TableWShShW = ({ ...props }) => {
       content: [
         {
           fontSize: fontSizeTableHeader, italics,
-          text: [{ text: 'Belgi:   ', bold }, { text: `${'1/-46' || ''}` }]
+          text: [{ text: 'Belgi:   ', bold }, { text: `${'7/-5020' || ''}` }]
         },
         {
           fontSize: fontSizeTableHeader, italics,
-          text: [{ text: 'Sene:   ', bold }, { text: `${'24.01.2023' || ''}` }]
+          text: [{ text: 'Sene:   ', bold }, { text: `${'17.07.2019' || ''}` }]
         },
         { text: 'Daşary ýurt raýatlarynyň sanawy', fontSize, bold, alignment },
+        { text: '\n\n' },
+        { text: 'Köne pasportyň maglumatlary', fontSize, alignment },
         { text: '\n' },
         tablePdfMake.table,
+        { text: '\n' },
+        { text: 'Täze pasportyň maglumatlary', fontSize, alignment },
+        { text: '\n' },
+        tablePdfMakeNewPassport.table,
         { text: '\n' },
         {
           alignment, fontSize, bold,
@@ -105,4 +127,4 @@ const TableWShShW = ({ ...props }) => {
   );
 };
 
-export default TableWShShW;
+export default TablePasportChalshmak;

@@ -4,8 +4,8 @@ import { vfs as customVfs } from "../../../vfs_fonts";
 import logoGapinsaat from "../../../assets/logo_gapinsaat.png";
 import logoCalikEnerjiFooter from "../../../assets/logoCalikEnerjiFooter.png";
 import {
-  bold, alignment, italics, fontSize, pageSize, TimesNewRomanObject, COMPANY_POLICY_RESPONSIBILITY,
-  COMPANY_DATA, leadingIndent, pageMarginsBlank, font, fontSizeBlankHeader
+  bold, alignment, italics, fontSize, pageSize, TimesNewRomanObject,
+  COMPANY_DATA, leadingIndent, pageMarginsBlank, font, fontSizeBlankHeader, COMPANY_POLICY_RESPONSIBILITY
 } from '../../../utils/constants'
 import useBase64Image from "../../../hooks/useBase64Image";
 import Utils from "../../../utils";
@@ -14,8 +14,9 @@ import Utils from "../../../utils";
 pdfMake.vfs = customVfs;
 pdfMake.fonts = TimesNewRomanObject;
 
-const BlankAdresUytketmekShaherIchinde = ({ ...props }) => {
+const BlankKomandirowochnye = ({ ...props }) => {
   const [pdfUrl, setPdfUrl] = useState(null);
+
   const base64Image = useBase64Image(logoGapinsaat);
   const base64LogoFooter = useBase64Image(logoCalikEnerjiFooter);
 
@@ -26,7 +27,6 @@ const BlankAdresUytketmekShaherIchinde = ({ ...props }) => {
   }, [base64Image, base64LogoFooter]);
 
   const generatePdf = () => {
-
     const documentDefinition = {
       pageSize,
       pageOrientation: "portrait",
@@ -41,15 +41,15 @@ const BlankAdresUytketmekShaherIchinde = ({ ...props }) => {
           ],
         },
         { text: '\n\n\n\n\n' },
-        { text: `Belgi:   ${'8/-620' || ''}`, fontSize: fontSizeBlankHeader, italics, bold },
-        { text: `Sene:   ${'29.08.2024' || ''}`, fontSize: fontSizeBlankHeader, italics, bold },
+        { text: `Belgi:   ${'7/-5020' || ''}`, fontSize: fontSizeBlankHeader, italics, bold },
+        { text: `Sene:   ${'17.07.2019' || ''}`, fontSize: fontSizeBlankHeader, italics, bold },
         { text: '\n\n' },
         {
           columns: [
             { text: ' ' },
             {
               fontSize, bold, width: 230,
-              text: `${'Türkmenistanyň Döwlet Migrasiýa'}\n${'Gullugynyň Aşgabat şäherin'} boýunça müdirliginiň müdirine.`,
+              text: `${'Türkmenistanyň Döwlet Migrasiýa'}\n${'Gullugynyň Ahal welaýaty'} boýunça müdürligine.`,
             },
           ],
         },
@@ -58,11 +58,14 @@ const BlankAdresUytketmekShaherIchinde = ({ ...props }) => {
           leadingIndent, fontSize, alignment: 'justify',
           text: [
             { text: 'Hatymyzyň goşundysynda görkezilen sanawdaky ' },
-            { text: `${1} (${'bir'}) `, bold },
-            { text: 'sany daşary ýurt raýatlarynyň ' },
-            { text: `${'ýaşaýan salgysyny çalyşandygy'} `, bold },
-            { text: 'sebäpli täze öý salgysyna hasaba almagyňyzy ' },
-            { text: 'Sizden haýyş edýäris.' },
+            { text: `${1} (${'bir'}) sany `, bold },
+            { text: 'daşary ýurt raýatynyň makasdy bilen ', bold },
+            { text: `${'01.07.2019'}-den ${'01.08.2019'}-ne `, bold },
+            { text: `çenli ` },
+            { text: `${'15'} günlük `, bold },
+            { text: `möhlet bilen önümçilik zerurlygy sebäpli ${'Aşgabat'} ${'şähyerine'}` },
+            { text: `${'iş saparyna gidýändigini'} `, bold },
+            { text: 'size habar berýäris.' },
           ]
         },
         { text: '\n' },
@@ -72,7 +75,7 @@ const BlankAdresUytketmekShaherIchinde = ({ ...props }) => {
           fontSize, bold,
           columns: [
             { text: 'Sebit müdiriň orunbasary', alignment: "left" },
-            { text: `Recep AKÇI`, alignment },
+            { text: `${'Recep AKÇI'}`, alignment },
           ],
         },
       ]
@@ -92,4 +95,4 @@ const BlankAdresUytketmekShaherIchinde = ({ ...props }) => {
   );
 };
 
-export default BlankAdresUytketmekShaherIchinde;
+export default BlankKomandirowochnye;

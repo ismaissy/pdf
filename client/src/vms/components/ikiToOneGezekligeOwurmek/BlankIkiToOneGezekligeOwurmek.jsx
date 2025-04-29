@@ -4,7 +4,7 @@ import { vfs as customVfs } from "../../../vfs_fonts";
 import logoGapinsaat from "../../../assets/logo_gapinsaat.png";
 import logoCalikEnerjiFooter from "../../../assets/logoCalikEnerjiFooter.png";
 import {
-  bold, alignment, italics, fontSize, pageSize, TimesNewRomanObject,
+  bold, alignment, italics, fontSize, pageSize, TimesNewRomanObject, COMPANY_POLICY_RESPONSIBILITY,
   COMPANY_DATA, leadingIndent, pageMarginsBlank, font, fontSizeBlankHeader
 } from '../../../utils/constants'
 import useBase64Image from "../../../hooks/useBase64Image";
@@ -67,13 +67,7 @@ const BlankPasportChalshmakHasabaDurmok = ({ ...props }) => {
           ]
         },
         { text: '\n' },
-        {
-          leadingIndent, fontSize, alignment: 'justify',
-          text: [
-            { text: 'Daşary ýurt raýatynyň Türkmenistana gelmeginiň onda bolmagynyň we ondan ' },
-            { text: 'gitmeginiň düzgünlerini berjaý etmegine jogapkärçiligi kompaniýamyz öz üstüne alýar.' },
-          ]
-        },
+        COMPANY_POLICY_RESPONSIBILITY,
         { text: '\n\n\n\n' },
         {
           fontSize, bold,

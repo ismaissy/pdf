@@ -12,7 +12,7 @@ import { citizens } from '../../../utils/data';
 pdfMake.vfs = customVfs;
 pdfMake.fonts = TimesNewRomanObject;
 
-const TableWShShW = ({ ...props }) => {
+const TableHasapdanChykmak = ({ ...props }) => {
   const [pdfUrl, setPdfUrl] = useState(null);
 
   useEffect(() => generatePdf(), []);
@@ -33,13 +33,16 @@ const TableWShShW = ({ ...props }) => {
     {
       width: 'auto', name: 'Doglan senesi', style: tableBodyStyle,
       value: (prop) => { return `${prop?.birthDate}` },
-    }, {
+    },
+    {
       width: 'auto', name: 'Jynsy', style: tableBodyStyle,
       value: (prop) => { return `${prop?.gender}` },
-    }, {
+    },
+    {
       width: 'auto', name: 'Raýatlygy', style: tableBodyStyle,
       value: (prop) => { return `${prop?.citizenship}` },
-    }, {
+    },
+    {
       width: 'auto', name: 'Pasportynyň belgisi', style: tableBodyStyle,
       value: (prop) => { return `${prop?.passport}` },
     },
@@ -105,4 +108,4 @@ const TableWShShW = ({ ...props }) => {
   );
 };
 
-export default TableWShShW;
+export default TableHasapdanChykmak;

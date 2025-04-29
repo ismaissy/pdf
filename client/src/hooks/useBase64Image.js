@@ -33,25 +33,3 @@ const useBase64Image = (url) => {
 }
 
 export default useBase64Image;
-
-// import { useState, useEffect } from 'react';
-
-// const useBase64Image = (url) => {
-//     const [data, setData] = useState(null);
-//     useEffect(() => {
-//         let cancelled = false;
-//         (async () => {
-//             const res = await fetch(url);
-//             const blob = await res.blob();
-//             const reader = new FileReader();
-//             reader.onloadend = () => {
-//                 if (!cancelled) setData(reader.result);
-//             };
-//             reader.readAsDataURL(blob);
-//         })();
-//         return () => { cancelled = true; };
-//     }, [url]);
-//     return data;
-// }
-
-// export default useBase64Image;

@@ -13,6 +13,13 @@ export const pageMarginsTable = [10, 20, 10, 10];
 export const font = 'TimesNewRoman';
 export const pageSize = 'A4';
 export const tableBodyStyle = { alignment, valign };
+export const COMPANY_POLICY_RESPONSIBILITY = {
+    leadingIndent, fontSize, alignment: 'justify',
+    text: [
+        { text: 'Daşary ýurt raýatynyň Türkmenistana gelmeginiň onda bolmagynyň we ondan ' },
+        { text: 'gitmeginiň düzgünlerini berjaý etmegine jogapkärçiligi kompaniýamyz öz üstüne alýar.' },
+    ]
+};
 
 export const TimesNewRomanObject = {
     TimesNewRoman: {
@@ -23,7 +30,6 @@ export const TimesNewRomanObject = {
     },
 };
 
-
 export const COMPANY_DATA = {
     name: 'gapinsaat.com',
     link: 'https://gapinsaat.com/tr/index.html',
@@ -33,8 +39,8 @@ export const COMPANY_DATA = {
     fax: '+993 12 75 57 55',
     city: 'Aşgabat şäheri',
     street: 'Bitarap Türkmenistan şaýoly, 538',
-
 };
+
 export const layoutTable = {
     hLineWidth: () => 1,
     vLineWidth: () => 1,

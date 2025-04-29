@@ -12,14 +12,14 @@ import { citizens } from '../../../utils/data';
 pdfMake.vfs = customVfs;
 pdfMake.fonts = TimesNewRomanObject;
 
-const TableWShShW = ({ ...props }) => {
+const TableKomandirowochnye = ({ ...props }) => {
   const [pdfUrl, setPdfUrl] = useState(null);
 
   useEffect(() => generatePdf(), []);
 
   const thead = [
     {
-      width: '*', name: '№', style: tableBodyStyle,
+      width: 20, name: '№', style: tableBodyStyle,
       value: (prop, rowIndex) => { return `${rowIndex + 1}` },
     },
     {
@@ -31,34 +31,37 @@ const TableWShShW = ({ ...props }) => {
       value: (prop) => { return `${prop?.lastName}` },
     },
     {
-      width: 'auto', name: 'Doglan senesi', style: tableBodyStyle,
-      value: (prop) => { return `${prop?.birthDate}` },
-    }, {
-      width: 'auto', name: 'Jynsy', style: tableBodyStyle,
-      value: (prop) => { return `${prop?.gender}` },
-    }, {
-      width: 'auto', name: 'Raýatlygy', style: tableBodyStyle,
-      value: (prop) => { return `${prop?.citizenship}` },
-    }, {
-      width: 'auto', name: 'Pasportynyň belgisi', style: tableBodyStyle,
-      value: (prop) => { return `${prop?.passport}` },
+      width: 'auto', name: 'Doglan senesi we ýeri', style: tableBodyStyle,
+      value: (prop) => { return `${prop?.birthDate} ${prop?.citizenship}` },
     },
     {
-      width: 'auto', name: 'Pasportynyň möhleti', style: tableBodyStyle,
-      value: (prop) => { return `${prop?.passportFinished}` },
+      width: 'auto', name: 'Jynsy', style: tableBodyStyle,
+      value: (prop) => { return `${prop?.gender}` },
+    },
+    {
+      width: 'auto', name: 'Raýatlygy', style: tableBodyStyle,
+      value: (prop) => { return `${prop?.citizenship}` },
+    },
+    {
+      width: 'auto', name: 'Pasportynyň belgisi we möhleti', style: tableBodyStyle,
+      value: (prop) => { return `${prop?.passport} ${prop?.passportFinished}` },
     },
     {
       width: 'auto', name: 'Wezipesi', style: tableBodyStyle,
       value: (prop) => { return `${prop?.position}` },
     },
     {
-      width: 'auto', name: 'Wiza maglumatlary', style: tableBodyStyle,
-      value: (prop) => { return `${prop?.visa}` },
+      width: 'auto', name: 'Möhleti we gezekligi', style: tableBodyStyle,
+      value: (prop) => { return `${'A1368785'}\n${'BS'}\n15.07.2019 14.08.2019` },
     },
     {
       width: 'auto', name: 'Türkmenistandaky salgysy', style: tableBodyStyle,
       value: (prop) => { return `${prop?.address}` },
-    }
+    },
+    {
+      width: 'auto', name: 'Iş saparynda boljak salgysy', style: tableBodyStyle,
+      value: (prop) => { return `${'Aşgabat ş, 2086 köçe, jaý-107, öý-13'}` },
+    },
   ]
 
   const tablePdfMake = new TablePdfMake(thead, citizens, layoutTable, { fontSize: fontSizeTable });
@@ -72,11 +75,11 @@ const TableWShShW = ({ ...props }) => {
       content: [
         {
           fontSize: fontSizeTableHeader, italics,
-          text: [{ text: 'Belgi:   ', bold }, { text: `${'1/-46' || ''}` }]
+          text: [{ text: 'Belgi:   ', bold }, { text: `${'7/-5020' || ''}` }]
         },
         {
           fontSize: fontSizeTableHeader, italics,
-          text: [{ text: 'Sene:   ', bold }, { text: `${'24.01.2023' || ''}` }]
+          text: [{ text: 'Sene:   ', bold }, { text: `${'17.07.2019' || ''}` }]
         },
         { text: 'Daşary ýurt raýatlarynyň sanawy', fontSize, bold, alignment },
         { text: '\n' },
@@ -105,4 +108,4 @@ const TableWShShW = ({ ...props }) => {
   );
 };
 
-export default TableWShShW;
+export default TableKomandirowochnye;

@@ -18,25 +18,62 @@ const TableWizaRugsotnamaYatyrmak = ({ ...props }) => {
   const [pdfUrl, setPdfUrl] = useState(null);
 
   useEffect(() => generatePdf(), []);
-
   const thead = [
-    { width: 20, name: 'T/N', attr: '', style: tableBodyStyle },
-    { width: 'auto', name: 'AS-№', attr: 'lastName', style: tableBodyStyle },
-    { width: 'auto', name: 'Tassyknama belgisi', attr: 'firstName', style: tableBodyStyle },
-    { width: 'auto', name: 'Familiýasy', attr: 'birthDate', style: tableBodyStyle },
-    { width: 'auto', name: 'Ady', attr: 'birthDate', style: tableBodyStyle },
-    { width: 'auto', name: 'Doglan senesi we ýurdy', attr: ['birthDate', 'citizenship'], style: tableBodyStyle },
-    { width: 'auto', name: 'Pasportynyň belgisi', attr: 'gender', style: tableBodyStyle },
-    { width: 'auto', name: 'Bilimi we wezipesi', attr: ['birthDate', 'position'], style: tableBodyStyle },
-    { width: 'auto', name: 'Hereket edýän çägi', attr: 'citizenship', style: tableBodyStyle },
-    { width: 'auto', name: 'Rugsot edilen möhleti', attr: 'passportFinished', style: tableBodyStyle },
-    { width: 'auto', name: 'Wiza belgisi', attr: 'passport', style: tableBodyStyle },
-    { width: 'auto', name: 'Wiza möhleti başlanýan senesi', attr: 'visa', style: tableBodyStyle },
-    { width: 'auto', name: 'Wiza möhleti tamamlanýan sene', attr: 'position', style: tableBodyStyle },
+    {
+      width: 20, name: 'T/N', style: tableBodyStyle,
+      value: (prop, rowIndex) => { return `${rowIndex + 1}` },
+    },
+    {
+      width: 'auto', name: 'AS-№', style: tableBodyStyle,
+      value: (prop) => { return `${prop?.citizenship}${prop?.birthDate}` },
+    },
+    {
+      width: 'auto', name: 'Tassyknama belgisi', style: tableBodyStyle,
+      value: (prop) => { return `${prop?.passport}${prop?.citizenship}` },
+    },
+    {
+      width: 'auto', name: 'Familiýasy', style: tableBodyStyle,
+      value: (prop) => { return `${prop?.lastName}` }
+    },
+    {
+      width: 'auto', name: 'Ady', style: tableBodyStyle,
+      value: (prop) => { return `${prop?.firstName}` }
+    },
+    {
+      width: 'auto', name: 'Doglan senesi we ýurdy', style: tableBodyStyle,
+      value: (prop) => { return `${prop?.birthDate} - ${prop?.citizenship}` }
+    },
+    {
+      width: 'auto', name: 'Pasportynyň belgisi', style: tableBodyStyle,
+      value: (prop) => { return `${prop?.passport}` }
+    },
+    {
+      width: 'auto', name: 'Bilimi we wezipesi', style: tableBodyStyle,
+      value: (prop) => { return `${prop?.study} - ${prop?.position}` }
+    },
+    {
+      width: 'auto', name: 'Hereket edýän çägi', style: tableBodyStyle,
+      value: (prop) => { return `${prop?.address}` }
+    },
+    {
+      width: 'auto', name: 'Rugsot edilen möhleti', style: tableBodyStyle,
+      value: (prop) => { return `${prop?.passport}` }
+    },
+    {
+      width: 'auto', name: 'Wiza belgisi', style: tableBodyStyle,
+      value: (prop) => { return `${prop?.passport}` }
+    },
+    {
+      width: 'auto', name: 'Wiza möhleti başlanýan senesi', style: tableBodyStyle,
+      value: (prop) => { return `${prop?.visa}` }
+    },
+    {
+      width: 'auto', name: 'Wiza möhleti tamamlanýan sene', style: tableBodyStyle,
+      value: (prop) => { return `${prop?.position}` }
+    },
   ]
 
-
-  const tablePdfMake = new TablePdfMake(true, thead, citizens, layoutTable, { fontSize: fontSizeTable });
+  const tablePdfMake = new TablePdfMake(thead, citizens, layoutTable, { fontSize: fontSizeTable });
 
   const generatePdf = () => {
     const documentDefinition = {

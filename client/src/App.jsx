@@ -14,7 +14,12 @@ import BlankAdresUytketmekShaherIchinde from './vms/components/adresUytketmekSha
 import TableAdresUytketmekShaherIchinde from './vms/components/adresUytketmekShaherIchinde/TableAdresUytketmekShaherIchinde';
 import BlankWShShW from './vms/components/wShShW/BlankWShShW';
 import TableWShShW from './vms/components/wShShW/TableWShShW';
-
+import BlankHasapdanChykmak from './vms/components/hasapdanChykmak/BlankHasapdanChykmak';
+import TableHasapdanChykmak from './vms/components/hasapdanChykmak/TableHasapdanChykmak';
+import BlankKomandirowochnye from './vms/components/komandirowochnye/BlankKomandirowochnye';
+import TableKomandirowochnye from './vms/components/komandirowochnye/TableKomandirowochnye';
+import BlankPasportChalshmak from './vms/components/pasportChalshmak/BlankPasportChalshmak';
+import TablePasportChalshmak from './vms/components/pasportChalshmak/TablePasportChalshmak';
 
 import Profile from "./componens/Profile";
 import Konselari from "./componens/Konselari";
@@ -41,6 +46,16 @@ const componentMap = {
     BlankWShShW,
     TableWShShW,
 
+    BlankHasapdanChykmak,
+    TableHasapdanChykmak,
+
+    BlankKomandirowochnye,
+    TableKomandirowochnye,
+
+    BlankPasportChalshmak,
+    TablePasportChalshmak,
+
+
     // Profile,
     // Konselari,
     // HasapdanChykarmak,
@@ -58,11 +73,9 @@ export default function App() {
         <div>
             <div style={{ display: "flex", justifyContent: "center", margin: "20px" }}>
                 <Dropdown onSelect={handleSelect}>
-                    <Dropdown.Toggle variant="primary" size="sm" id="dropdown-basic">{
-                        selectedComponent || <>
-                            <img src={ic_pdf} alt="pdf icon" style={{ width: 20, height: 20, margin: 8 }} />
-                            "Selcet Document PDF preview"
-                        </>}
+                    <Dropdown.Toggle variant="primary" size="sm" id="dropdown-basic">
+                        <img src={ic_pdf} alt="pdf icon" style={{ width: 20, height: 20, margin: 8 }} />
+                        {selectedComponent?.replace(/([A-Z])/g, ' $1').trim() || <>"Selcet Document PDF preview"</>}
                     </Dropdown.Toggle>
 
                     <Dropdown.Menu>

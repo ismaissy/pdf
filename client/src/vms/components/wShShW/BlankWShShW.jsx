@@ -4,7 +4,7 @@ import { vfs as customVfs } from "../../../vfs_fonts";
 import logoGapinsaat from "../../../assets/logo_gapinsaat.png";
 import logoCalikEnerjiFooter from "../../../assets/logoCalikEnerjiFooter.png";
 import {
-  bold, alignment, italics, fontSize, pageSize, TimesNewRomanObject,
+  bold, alignment, italics, fontSize, pageSize, TimesNewRomanObject, COMPANY_POLICY_RESPONSIBILITY,
   COMPANY_DATA, leadingIndent, pageMarginsBlank, font, fontSizeBlankHeader
 } from '../../../utils/constants'
 import useBase64Image from "../../../hooks/useBase64Image";
@@ -17,36 +17,9 @@ pdfMake.fonts = TimesNewRomanObject;
 const BlankWShShW = ({ ...props }) => {
   const [pdfUrl, setPdfUrl] = useState(null);
 
-  // const [base64Image, setBase64Image] = useState(null);
-  // const [base64LogoFooter, setBase64LogoFooter] = useState(null);
-  // useEffect(() => {
-  //   const toBase64 = async (url) => {
-  //     const response = await fetch(url);
-  //     const blob = await response.blob();
-  //     const reader = new FileReader();
-  //     return new Promise((resolve) => {
-  //       reader.onloadend = () => resolve(reader.result);
-  //       reader.readAsDataURL(blob);
-  //     });
-  //   };
-  //   const loadImages = async () => {
-  //     const gapinsaatLogo = await toBase64(logoGapinsaat);
-  //     const calikEnerjiLogo = await toBase64(logoCalikEnerjiFooter);
-  //     setBase64Image(gapinsaatLogo);
-  //     setBase64LogoFooter(calikEnerjiLogo);
-  //   };
-
-  //   loadImages();
-  // }, []);
-  // useEffect(() => {
-  //   if (base64Image && base64LogoFooter) generatePdf();
-  // }, [base64Image, base64LogoFooter]);
-
-  // ← вот тут используем ваш хук
   const base64Image = useBase64Image(logoGapinsaat);
   const base64LogoFooter = useBase64Image(logoCalikEnerjiFooter);
 
-  // ждем, когда обе картинки загрузятся
   useEffect(() => {
     if (base64Image && base64LogoFooter) {
       generatePdf();
@@ -54,34 +27,11 @@ const BlankWShShW = ({ ...props }) => {
   }, [base64Image, base64LogoFooter]);
 
   const generatePdf = () => {
-    // if (!base64Image) return;
     const documentDefinition = {
       pageSize,
       pageOrientation: "portrait",
       defaultStyle: { font },
       pageMargins: pageMarginsBlank,
-      // footer: (currentPage, pageCount) => {
-      //   if (currentPage === 1) {
-      //     return {
-      //       margin: [40, 2, 40, 30],
-      //       columns: [
-      //         { image: base64LogoFooter, width: 320, height: 30, alignment: "left", margin: [0, 15, 0, 0] },
-      //         {
-      //           width: '*', fontSize: 8, alignment: "right",
-      //           text: [
-      //             { text: `Adres: ${COMPANY_DATA.city}\n` },
-      //             { text: `${COMPANY_DATA.street}\n` },
-      //             { color: "#00246b", text: 'T ' }, { text: `${COMPANY_DATA.phoneNumberOne}\n` },
-      //             { text: `${COMPANY_DATA.phoneNumberTwo}\n` },
-      //             { color: "#00246b", text: 'F ' }, { text: `${COMPANY_DATA.fax}\n` },
-      //             { text: `${COMPANY_DATA.email}` }
-      //           ]
-      //         }
-      //       ]
-      //     };
-      //   }
-      //   return null;
-      // },
       footer: Utils.createFooter(base64LogoFooter),
       content: [
         {
@@ -116,13 +66,7 @@ const BlankWShShW = ({ ...props }) => {
           ]
         },
         { text: '\n' },
-        {
-          leadingIndent, fontSize, alignment: 'justify',
-          text: [
-            { text: 'Daşary ýurt raýatynyň Türkmenistana gelmeginiň onda bolmagynyň we ondan ' },
-            { text: 'gitmeginiň düzgünlerini berjaý etmegine jogapkärçiligi kompaniýamyz öz üstüne alýar.' },
-          ]
-        },
+        COMPANY_POLICY_RESPONSIBILITY,
         { text: '\n\n\n\n' },
         {
           fontSize, bold,

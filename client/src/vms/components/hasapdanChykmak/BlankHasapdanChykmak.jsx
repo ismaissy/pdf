@@ -14,8 +14,9 @@ import Utils from "../../../utils";
 pdfMake.vfs = customVfs;
 pdfMake.fonts = TimesNewRomanObject;
 
-const BlankAdresUytketmekShaherIchinde = ({ ...props }) => {
+const BlankHasapdanChykmak = ({ ...props }) => {
   const [pdfUrl, setPdfUrl] = useState(null);
+
   const base64Image = useBase64Image(logoGapinsaat);
   const base64LogoFooter = useBase64Image(logoCalikEnerjiFooter);
 
@@ -26,7 +27,6 @@ const BlankAdresUytketmekShaherIchinde = ({ ...props }) => {
   }, [base64Image, base64LogoFooter]);
 
   const generatePdf = () => {
-
     const documentDefinition = {
       pageSize,
       pageOrientation: "portrait",
@@ -41,15 +41,15 @@ const BlankAdresUytketmekShaherIchinde = ({ ...props }) => {
           ],
         },
         { text: '\n\n\n\n\n' },
-        { text: `Belgi:   ${'8/-620' || ''}`, fontSize: fontSizeBlankHeader, italics, bold },
-        { text: `Sene:   ${'29.08.2024' || ''}`, fontSize: fontSizeBlankHeader, italics, bold },
+        { text: `Belgi:   ${'6/-4801' || ''}`, fontSize: fontSizeBlankHeader, italics, bold },
+        { text: `Sene:   ${'14.06.2019' || ''}`, fontSize: fontSizeBlankHeader, italics, bold },
         { text: '\n\n' },
         {
           columns: [
             { text: ' ' },
             {
               fontSize, bold, width: 230,
-              text: `${'Türkmenistanyň Döwlet Migrasiýa'}\n${'Gullugynyň Aşgabat şäherin'} boýunça müdirliginiň müdirine.`,
+              text: `${'Türkmenistanyň Döwlet Migrasiýa'}\n${'Gullugynyň Balkan welaýaty'} boýunça müdürliginiň Garabogaz şäheri bölümine.`,
             },
           ],
         },
@@ -58,14 +58,13 @@ const BlankAdresUytketmekShaherIchinde = ({ ...props }) => {
           leadingIndent, fontSize, alignment: 'justify',
           text: [
             { text: 'Hatymyzyň goşundysynda görkezilen sanawdaky ' },
-            { text: `${1} (${'bir'}) `, bold },
-            { text: 'sany daşary ýurt raýatlarynyň ' },
-            { text: `${'ýaşaýan salgysyny çalyşandygy'} `, bold },
-            { text: 'sebäpli täze öý salgysyna hasaba almagyňyzy ' },
+            { text: `${3} (${'üç'}) sany `, bold },
+            { text: 'daşary ýurt raýatlarynyň ' },
+            { text: `${'Türkmenistanda gidendigi sebäpli '} `, bold },
+            { text: 'hasapdan doly çykarmagyňyzy ' },
             { text: 'Sizden haýyş edýäris.' },
           ]
         },
-        { text: '\n' },
         COMPANY_POLICY_RESPONSIBILITY,
         { text: '\n\n\n\n' },
         {
@@ -92,4 +91,4 @@ const BlankAdresUytketmekShaherIchinde = ({ ...props }) => {
   );
 };
 
-export default BlankAdresUytketmekShaherIchinde;
+export default BlankHasapdanChykmak;
