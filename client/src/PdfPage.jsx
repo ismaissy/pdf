@@ -566,9 +566,18 @@ const PdfPage = () => {
 
   // ]
 
+
   const content = [
     { text: "Alem Tilsimat", color: "blue", link: "https://alemtilsimat.com/" },
     {
+      // info: {
+      //   title: 'Request Report',
+      //   author: 'Your Company Name',
+      //   subject: 'Internal Document',
+      //   keywords: 'requests, report, company name',
+      //   creator: 'Your App Name',
+      //   producer: 'pdfmake'
+      // },
       columns: [
         // {
         //     width: 150,
@@ -1637,6 +1646,14 @@ const PdfPage = () => {
     // pdfMake.createPdf(documentDefinition).getBlob((blob) => {
     //     const url = URL.createObjectURL(blob);
     //     setPdfUrl(url);
+    // });
+    // pdfMake.createPdf(documentDefinition).getBlob((blob) => {
+    //   const url = URL.createObjectURL(blob);
+    //   const link = document.createElement('a');
+    //   link.href = url;
+    //   link.download = 'My_Custom_Name.pdf'; // 👈 задаёшь имя
+    //   link.click();
+    //   URL.revokeObjectURL(url); // Очистка URL из памяти
     // });
   };
 

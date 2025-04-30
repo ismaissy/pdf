@@ -34,11 +34,12 @@ const BlankIshlemaneRugsotEdilenYerler = ({ ...props }) => {
       defaultStyle: { font },
       pageMargins: pageMarginsBlank,
       footer: Utils.createFooter(base64LogoFooter),
+      info: Utils.documentProperties('Işlemane Rugsot Edilen Ýerler', COMPANY_DATA.name),
       content: [
         {
           columns: [
             { image: base64Image, width: 150, height: 40, alignment: "left", },
-            { text: COMPANY_DATA.name, link: COMPANY_DATA.link, alignment: "right", color: '#00246b', fontSize: 10, bold, }
+            { text: COMPANY_DATA.linkName, link: COMPANY_DATA.link, alignment: "right", color: '#00246b', fontSize: 10, bold, }
           ],
         },
         { text: '\n\n\n\n\n' },

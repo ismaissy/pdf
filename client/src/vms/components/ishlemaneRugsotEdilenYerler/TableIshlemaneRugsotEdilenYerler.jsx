@@ -5,8 +5,10 @@ import { citizens } from '../../../utils/data';
 import TablePdfMake from '../../../utils/TablePdfMake';
 import {
   bold, alignment, italics, fontSize, fontSizeTable, fontSizeTableHeader,
-  layoutTable, pageMarginsTable, font, pageSize, TimesNewRomanObject, tableBodyStyle
+  layoutTable, pageMarginsTable, font, pageSize, TimesNewRomanObject, tableBodyStyle,
+  COMPANY_DATA
 } from '../../../utils/constants'
+import Utils from '../../../utils';
 
 // Font Style
 pdfMake.vfs = customVfs;
@@ -82,6 +84,7 @@ const TableIshlemaneRugsotEdilenYerler = ({ ...props }) => {
       pageOrientation: "landscape",
       defaultStyle: { font },
       pageMargins: pageMarginsTable,
+      info: Utils.documentProperties('Işlemane Rugsot Edilen Ýerler', COMPANY_DATA.name),
       content: [
         {
           italics, fontSize: fontSizeTableHeader,

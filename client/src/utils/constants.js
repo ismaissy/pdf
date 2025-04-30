@@ -16,7 +16,7 @@ export const tableBodyStyle = { alignment, valign };
 export const COMPANY_POLICY_RESPONSIBILITY = {
     leadingIndent, fontSize, alignment: 'justify',
     text: [
-        { text: 'Daşary ýurt raýatynyň Türkmenistana gelmeginiň onda bolmagynyň we ondan ' },
+        { text: 'Daşary ýurt raýatynyň Türkmenistana gelmeginiň, onda bolmagynyň we ondan ' },
         { text: 'gitmeginiň düzgünlerini berjaý etmegine jogapkärçiligi kompaniýamyz öz üstüne alýar.' },
     ]
 };
@@ -31,7 +31,8 @@ export const TimesNewRomanObject = {
 };
 
 export const COMPANY_DATA = {
-    name: 'gapinsaat.com',
+    name: 'Gap inşaat',
+    linkName: 'gapinsaat.com',
     link: 'https://gapinsaat.com/tr/index.html',
     email: 'info@gapinsaat.com',
     phoneNumberOne: '+993 12 75 60 70',

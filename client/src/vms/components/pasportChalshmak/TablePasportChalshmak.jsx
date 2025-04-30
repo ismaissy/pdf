@@ -4,9 +4,11 @@ import { vfs as customVfs } from '../../../vfs_fonts';
 import TablePdfMake from '../../../utils/TablePdfMake';
 import {
   bold, alignment, italics, fontSize, fontSizeTable, fontSizeTableHeader,
-  layoutTable, pageMarginsTable, font, pageSize, TimesNewRomanObject, tableBodyStyle
+  layoutTable, pageMarginsTable, font, pageSize, TimesNewRomanObject, tableBodyStyle,
+  COMPANY_DATA
 } from '../../../utils/constants'
 import { citizens } from '../../../utils/data';
+import Utils from '../../../utils';
 
 // Font Style
 pdfMake.vfs = customVfs;
@@ -85,6 +87,7 @@ const TablePasportChalshmak = ({ ...props }) => {
       pageOrientation: "landscape",
       defaultStyle: { font },
       pageMargins: pageMarginsTable,
+      info: Utils.documentProperties('Pasport Çalşmak', COMPANY_DATA.name),
       content: [
         {
           fontSize: fontSizeTableHeader, italics,

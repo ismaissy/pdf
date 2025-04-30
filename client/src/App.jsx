@@ -20,6 +20,10 @@ import BlankKomandirowochnye from './vms/components/komandirowochnye/BlankKomand
 import TableKomandirowochnye from './vms/components/komandirowochnye/TableKomandirowochnye';
 import BlankPasportChalshmak from './vms/components/pasportChalshmak/BlankPasportChalshmak';
 import TablePasportChalshmak from './vms/components/pasportChalshmak/TablePasportChalshmak';
+import BlankVizaUzaltmak from './vms/components/vizaUzaltmak/BlankVizaUzaltmak';
+import TableVizaUzaltmak from './vms/components/vizaUzaltmak/TableVizaUzaltmak';
+import BlankHasabaAlmak from './vms/components/hasabaAlmak/BlankHasabaAlmak';
+import TableHasabaAlmak from './vms/components/hasabaAlmak/TableHasabaAlmak';
 
 import Profile from "./componens/Profile";
 import Konselari from "./componens/Konselari";
@@ -29,32 +33,27 @@ import YashamalyYeri from "./componens/YashamalyYeri";
 import BelligeAlmak from "./componens/BelligeAlmak";
 
 const componentMap = {
-    BlankPasportChalshmakHasabaDurmok,
-    TablePasportChalshmakHasabaDurmok,
+    BlankPasportChalshmakHasabaDurmok, TablePasportChalshmakHasabaDurmok,
 
     BlankIkiToOneGezekligeOwurmek,
 
-    BlankIshlemaneRugsotEdilenYerler,
-    TableIshlemaneRugsotEdilenYerler,
+    BlankIshlemaneRugsotEdilenYerler, TableIshlemaneRugsotEdilenYerler,
 
-    BlankWizaRugsotnamaYatyrmak,
-    TableWizaRugsotnamaYatyrmak,
+    BlankWizaRugsotnamaYatyrmak, TableWizaRugsotnamaYatyrmak,
 
-    BlankAdresUytketmekShaherIchinde,
-    TableAdresUytketmekShaherIchinde,
+    BlankAdresUytketmekShaherIchinde, TableAdresUytketmekShaherIchinde,
 
-    BlankWShShW,
-    TableWShShW,
+    BlankWShShW, TableWShShW,
 
-    BlankHasapdanChykmak,
-    TableHasapdanChykmak,
+    BlankHasapdanChykmak, TableHasapdanChykmak,
 
-    BlankKomandirowochnye,
-    TableKomandirowochnye,
+    BlankKomandirowochnye, TableKomandirowochnye,
 
-    BlankPasportChalshmak,
-    TablePasportChalshmak,
+    BlankPasportChalshmak, TablePasportChalshmak,
 
+    BlankVizaUzaltmak, TableVizaUzaltmak,
+
+    BlankHasabaAlmak, TableHasabaAlmak,
 
     // Profile,
     // Konselari,
@@ -82,7 +81,8 @@ export default function App() {
                         {Object.keys(componentMap).map((key) => (
                             <Dropdown.Item key={key} eventKey={key}>
                                 <img src={ic_pdf} alt="pdf icon" style={{ width: 16, height: 16, marginRight: 8 }} />
-                                {key.replace(/([A-Z])/g, ' $1').trim()} {/* // ([A-Z]) - finds every capital letter. ' $1' - adds a space before it. .trim() - removes the extra space at the beginning of the line. */}
+                                {/* // ([A-Z]) - finds every capital letter. ' $1' - adds a space before it. .trim() - removes the extra space at the beginning of the line. */}
+                                {key.replace(/([A-Z])/g, ' $1').trim()}
                             </Dropdown.Item>
                         ))}
                     </Dropdown.Menu>

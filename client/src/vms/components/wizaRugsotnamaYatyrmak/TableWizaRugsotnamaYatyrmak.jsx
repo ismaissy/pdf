@@ -6,7 +6,8 @@ import TablePdfMake from '../../../utils/TablePdfMake';
 import { citizens } from '../../../utils/data';
 import {
   bold, alignment, italics, fontSize, fontSizeTable, fontSizeTableHeader,
-  valign, layoutTable, pageMarginsTable, font, pageSize, TimesNewRomanObject, tableBodyStyle
+  valign, layoutTable, pageMarginsTable, font, pageSize, TimesNewRomanObject, tableBodyStyle,
+  COMPANY_DATA
 } from '../../../utils/constants'
 
 // Font Style
@@ -81,6 +82,7 @@ const TableWizaRugsotnamaYatyrmak = ({ ...props }) => {
       pageOrientation: "landscape",
       defaultStyle: { font },
       pageMargins: pageMarginsTable,
+      info: Utils.documentProperties('Wiza Rugsotnama Ýatyrmak', COMPANY_DATA.name),
       content: [
         {
           italics, fontSize: fontSizeTableHeader,

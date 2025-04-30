@@ -14,7 +14,7 @@ import Utils from '../../../utils';
 pdfMake.vfs = customVfs;
 pdfMake.fonts = TimesNewRomanObject;
 
-const TableWShShW = ({ ...props }) => {
+const TableVizaUzaltmak = ({ ...props }) => {
   const [pdfUrl, setPdfUrl] = useState(null);
 
   useEffect(() => generatePdf(), []);
@@ -35,13 +35,16 @@ const TableWShShW = ({ ...props }) => {
     {
       width: 'auto', name: 'Doglan senesi', style: tableBodyStyle,
       value: (prop) => { return `${prop?.birthDate}` },
-    }, {
+    },
+    {
       width: 'auto', name: 'Jynsy', style: tableBodyStyle,
       value: (prop) => { return `${prop?.gender}` },
-    }, {
+    },
+    {
       width: 'auto', name: 'Raýatlygy', style: tableBodyStyle,
       value: (prop) => { return `${prop?.citizenship}` },
-    }, {
+    },
+    {
       width: 'auto', name: 'Pasportynyň belgisi', style: tableBodyStyle,
       value: (prop) => { return `${prop?.passport}` },
     },
@@ -71,7 +74,7 @@ const TableWShShW = ({ ...props }) => {
       pageOrientation: "landscape",
       defaultStyle: { font },
       pageMargins: pageMarginsTable,
-      info: Utils.documentProperties('ŞW-WŞ üýtketmek', COMPANY_DATA.name),
+      info: Utils.documentProperties('Hasaba Almak', COMPANY_DATA.name),
       content: [
         {
           fontSize: fontSizeTableHeader, italics,
@@ -108,4 +111,4 @@ const TableWShShW = ({ ...props }) => {
   );
 };
 
-export default TableWShShW;
+export default TableVizaUzaltmak;
