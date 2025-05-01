@@ -3,6 +3,8 @@ import { Dropdown } from 'react-bootstrap';
 import { data } from './utils/data';
 import ic_pdf from './assets/svg/ic_pdf.svg';
 
+import Profile from './vms/components/profile/Profile';
+import BelligeAlmak from "./vms/components/belligeAlmak/BelligeAlmak";
 import BlankPasportChalshmakHasabaDurmok from './vms/components/pasportChalshmakHasabaDurmok/BlankPasportChalshmakHasabaDurmok';
 import TablePasportChalshmakHasabaDurmok from './vms/components/pasportChalshmakHasabaDurmok/TablePasportChalshmakHasabaDurmok';
 import BlankIshlemaneRugsotEdilenYerler from './vms/components/ishlemaneRugsotEdilenYerler/BlankIshlemaneRugsotEdilenYerler';
@@ -24,13 +26,8 @@ import BlankVizaUzaltmak from './vms/components/vizaUzaltmak/BlankVizaUzaltmak';
 import TableVizaUzaltmak from './vms/components/vizaUzaltmak/TableVizaUzaltmak';
 import BlankHasabaAlmak from './vms/components/hasabaAlmak/BlankHasabaAlmak';
 import TableHasabaAlmak from './vms/components/hasabaAlmak/TableHasabaAlmak';
-
-import Profile from "./componens/Profile";
-import Konselari from "./componens/Konselari";
-import HasapdanChykarmak from "./componens/HasapdanChykarmak";
-import ListForeignCitizens from "./componens/ListForeignCitizens";
-import YashamalyYeri from "./componens/YashamalyYeri";
-import BelligeAlmak from "./componens/BelligeAlmak";
+import BlankKonselari from "./vms/components/konselari/BlankKonselari";
+import BlankYashamalyYeri from "./vms/components/yashamalyYeri/BlankYashamalyYeri";
 
 const componentMap = {
     BlankPasportChalshmakHasabaDurmok, TablePasportChalshmakHasabaDurmok,
@@ -55,12 +52,10 @@ const componentMap = {
 
     BlankHasabaAlmak, TableHasabaAlmak,
 
-    // Profile,
-    // Konselari,
-    // HasapdanChykarmak,
-    // ListForeignCitizens,
-    // YashamalyYeri,
-    // BelligeAlmak,
+    Profile,
+    BlankKonselari,
+    BlankYashamalyYeri,
+    BelligeAlmak,
 };
 
 export default function App() {

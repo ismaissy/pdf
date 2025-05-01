@@ -1,17 +1,21 @@
+
 /** This is default data for object pdfmake */
-export const bold = true;
+
+export const pageSize = 'A4';
+export const PORTRAIT = 'portrait';
+export const font = 'TimesNewRoman';
+export const valign = 'middle';
 export const alignment = 'center';
+export const bold = true;
 export const italics = true;
+export const noWrap = true;
 export const fontSize = 14;
 export const fontSizeTable = 10;
 export const fontSizeBlankHeader = 15; // Belgi: 8/-620 Sene: 29.08.2024 
 export const fontSizeTableHeader = 12; // Belgi: 8/-620 Sene: 29.08.2024 Tablisiya dokumendyn shapkasynda ulonylya
-export const valign = 'middle';
 export const leadingIndent = 20;
 export const pageMarginsBlank = [40, 20, 50, 70];
 export const pageMarginsTable = [10, 20, 10, 10];
-export const font = 'TimesNewRoman';
-export const pageSize = 'A4';
 export const tableBodyStyle = { alignment, valign };
 export const COMPANY_POLICY_RESPONSIBILITY = {
     leadingIndent, fontSize, alignment: 'justify',

@@ -1,20 +1,6 @@
 import { COMPANY_DATA } from "./constants";
 
 export default class Utils {
-    // Компоратор берип боля анонимный функциян усти билен Utils.theadWidths(thead, (item, index) => index === 0 ? 30 : "auto");
-    static theadWidths(array, positionOrFn) {
-        return array.map((i, index) => typeof positionOrFn === "function" ? positionOrFn(i, index) : positionOrFn);
-    }
-
-    // static thead(array, alignment, bold) {
-    //     return array.map((i) => ({ text: i, alignment, bold }));
-    // }
-
-    static thead(array, alignment = 'center', bold = true) {
-        return array.map((i) => ({ text: i.name, alignment, bold }));
-    }
-
-
     static documentProperties(title = '-', author = '-', subject = '-', keywords = '-', creator = '-', producer = '-') {
         return { title, author, subject, keywords, creator, producer }
     }
@@ -49,5 +35,4 @@ export default class Utils {
             return null;
         };
     }
-
 }

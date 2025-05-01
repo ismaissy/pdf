@@ -34,7 +34,6 @@ const BlankWShShW = ({ ...props }) => {
       pageMargins: pageMarginsBlank,
       footer: Utils.createFooter(base64LogoFooter),
       info: Utils.documentProperties('ŞW-WŞ üýtketmek', COMPANY_DATA.name),
-
       content: [
         {
           columns: [
