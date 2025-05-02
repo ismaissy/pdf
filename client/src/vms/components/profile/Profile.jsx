@@ -3,6 +3,7 @@ import pdfMake from "pdfmake/build/pdfmake";
 import { vfs as customVfs } from "../../../vfs_fonts";
 import Utils from "../../../utils";
 import { bold, alignment, pageSize, TimesNewRomanObject, font, noWrap } from '../../../utils/constants'
+import PreviewDocWrapper from "../../PreviewDoc";
 
 pdfMake.vfs = customVfs;
 pdfMake.fonts = TimesNewRomanObject;
@@ -220,13 +221,17 @@ const Profile = ({ ...props }) => {
     pdfMake.createPdf(documentDefinition).getBlob((blob) => setPdfUrl(URL.createObjectURL(blob)));
   };
 
-  return (<>
-    {
-      pdfUrl && (
-        <iframe title="PDF Viewer" type="application/pdf" className="iframeDocument" src={pdfUrl} />
-      )
-    }
-  </>);
+  return (
+    <PreviewDocWrapper>
+      <>
+        {
+          pdfUrl && (
+            <iframe title="PDF Viewer" type="application/pdf" className="iframeDocument" src={pdfUrl} />
+          )
+        }
+      </>
+    </PreviewDocWrapper>
+  );
 };
 
 export default Profile;

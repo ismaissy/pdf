@@ -7,6 +7,7 @@ import {
   COMPANY_DATA, leadingIndent, pageMarginsBlank, font, fontSizeBlankHeader,
   // fontSize
 } from '../../../utils/constants';
+import PreviewDocWrapper from "../../PreviewDoc";
 
 const fontSize = 12;
 
@@ -398,13 +399,17 @@ const Profile = ({ ...props }) => {
   };
 
 
-  return (<>
-    {
-      pdfUrl && (
-        <iframe title="PDF Viewer" type="application/pdf" className="iframeDocument" src={pdfUrl} />
-      )
-    }
-  </>);
+  return (
+    <PreviewDocWrapper>
+      <>
+        {
+          pdfUrl && (
+            <iframe title="PDF Viewer" type="application/pdf" className="iframeDocument" src={pdfUrl} />
+          )
+        }
+      </>
+    </PreviewDocWrapper>
+  );
 };
 
 export default Profile;

@@ -9,6 +9,7 @@ import {
 } from '../../../utils/constants'
 import { citizens } from '../../../utils/data';
 import Utils from '../../../utils';
+import PreviewDocWrapper from '../../PreviewDoc';
 
 // Font Style
 pdfMake.vfs = customVfs;
@@ -102,12 +103,15 @@ const TableVizaUzaltmak = ({ ...props }) => {
   };
 
   return (
-    <>
-      {
-        pdfUrl && (
-          <iframe title="PDF Viewer" type="application/pdf" className="iframeDocument" src={pdfUrl} />
-        )}
-    </>
+    <PreviewDocWrapper>
+      <>
+        {
+          pdfUrl && (
+            <iframe title="PDF Viewer" type="application/pdf" className="iframeDocument" src={pdfUrl} />
+          )
+        }
+      </>
+    </PreviewDocWrapper>
   );
 };
 

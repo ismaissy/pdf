@@ -1,5 +1,4 @@
-const PreviewDocWrapper = ({...props}) => {
-    
+const PreviewDocWrapper = ({ ...props }) => {
     return (
         <div className="d-flex flex-column">
             <span>id</span>

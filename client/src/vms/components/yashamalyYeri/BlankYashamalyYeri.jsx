@@ -10,6 +10,7 @@ import {
   bold, alignment, italics, fontSize, pageSize, TimesNewRomanObject, COMPANY_POLICY_RESPONSIBILITY,
   COMPANY_DATA, leadingIndent, pageMarginsBlank, font, fontSizeBlankHeader, tableBodyStyle, PORTRAIT
 } from '../../../utils/constants';
+import PreviewDocWrapper from "../../PreviewDoc";
 
 pdfMake.vfs = customVfs;
 pdfMake.fonts = TimesNewRomanObject;
@@ -121,13 +122,15 @@ const BlankYashamalyYeri = ({ ...props }) => {
 
 
   return (
-    <>
-      {
-        pdfUrl && (
-          <iframe title="PDF Viewer" type="application/pdf" className="iframeDocument" src={pdfUrl} />
-        )
-      }
-    </>
+    <PreviewDocWrapper>
+      <>
+        {
+          pdfUrl && (
+            <iframe title="PDF Viewer" type="application/pdf" className="iframeDocument" src={pdfUrl} />
+          )
+        }
+      </>
+    </PreviewDocWrapper>
   );
 };
 

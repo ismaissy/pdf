@@ -9,6 +9,7 @@ import {
   valign, layoutTable, pageMarginsTable, font, pageSize, TimesNewRomanObject, tableBodyStyle,
   COMPANY_DATA
 } from '../../../utils/constants'
+import PreviewDocWrapper from '../../PreviewDoc';
 
 // Font Style
 pdfMake.vfs = customVfs;
@@ -110,12 +111,15 @@ const TableWizaRugsotnamaYatyrmak = ({ ...props }) => {
   };
 
   return (
-    <>
-      {
-        pdfUrl && (
-          <iframe title="PDF Viewer" type="application/pdf" className="iframeDocument" src={pdfUrl} />
-        )}
-    </>
+    <PreviewDocWrapper>
+      <>
+        {
+          pdfUrl && (
+            <iframe title="PDF Viewer" type="application/pdf" className="iframeDocument" src={pdfUrl} />
+          )
+        }
+      </>
+    </PreviewDocWrapper>
   );
 };
 

@@ -9,6 +9,7 @@ import {
   bold, alignment, italics, fontSize, pageSize, TimesNewRomanObject, PORTRAIT,
   COMPANY_DATA, leadingIndent, pageMarginsBlank, font, fontSizeBlankHeader
 } from '../../../utils/constants';
+import PreviewDocWrapper from "../../PreviewDoc";
 
 // Font Style
 pdfMake.vfs = customVfs;
@@ -103,13 +104,15 @@ const BlankKonselari = ({ ...props }) => {
   };
 
   return (
-    <>
-      {
-        pdfUrl && (
-          <iframe title="PDF Viewer" type="application/pdf" className="iframeDocument" src={pdfUrl} />
-        )
-      }
-    </>
+    <PreviewDocWrapper>
+      <>
+        {
+          pdfUrl && (
+            <iframe title="PDF Viewer" type="application/pdf" className="iframeDocument" src={pdfUrl} />
+          )
+        }
+      </>
+    </PreviewDocWrapper>
   );
 };
 
