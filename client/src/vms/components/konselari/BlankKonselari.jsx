@@ -75,9 +75,13 @@ const BlankKonselari = ({ ...props }) => {
           leadingIndent, fontSize, alignment: 'justify',
           text: [
             { text: 'Gurluşygyň bellenilen möhletde tamamlanmagy üçin hatymyza goşundyda görkezlen sanawdaky ' },
-            { text: `1 (bir) sany daşary ýurt raýatyna 1 (bir) aý `, bold },
+            {
+              text: `1 (bir) sany daşary ýurt raýatyna 1 (bir) aý `, bold
+            },
             { text: 'möhlet bilen ' },
-            { text: `iki gezeklik çakylyk we iş rugsotnamasynyň resmileşdirilmegine `, bold },
+            {
+              text: `iki gezeklik çakylyk we iş rugsotnamasynyň resmileşdirilmegine `, bold
+            },
             { text: `Aşgabat şäheri we Balkan welaýatynyň Türkmenbaşy etrabynyň Gyýanly obasynda hereket eder ýaly`, bold },
             { text: `ýardam etmegiňizi Sizden haýyş edýäris.` },
           ]

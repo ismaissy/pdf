@@ -23,6 +23,7 @@ const pages = [
     { name: 'Table Komandirowachnye', link: '/preview-doc/table/komandirowachnye' },
 
     { name: 'Blank Konselari', link: '/preview-doc/blank/konselari' },
+    { name: 'Table Konselari', link: '/preview-doc/table/konselari' },
 
     { name: 'Blank Pasport Chalshmak', link: '/preview-doc/blank/pasport-chalshmak' },
     { name: 'Table Pasport Chalshmak', link: '/preview-doc/table/pasport-chalshmak' },
@@ -42,6 +43,10 @@ const pages = [
     { name: 'Table Welayat-Shaher, Shaher-Welaya', link: '/preview-doc/table/wshshw' },
 
     { name: 'Blank Yashamaly Yeri', link: '/preview-doc/blank/yashamaly-yeri' },
+
+    { name: 'Blank Taslamanyn Kepilligi', link: '/preview-doc/blank/taslamanyn-kepilligi' },
+    { name: 'Table Taslamanyn Kepilligi', link: '/preview-doc/table/taslamanyn-kepilligi' },
+
 ]
 
 const Main = () => {

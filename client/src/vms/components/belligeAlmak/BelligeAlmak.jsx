@@ -326,9 +326,9 @@ const Profile = ({ ...props }) => {
               [
                 { text: 'Hasaba alan, möhletini uzaldan TDMG-nyň edarasy', alignment },
                 { text: 'Hasaba alyş, uzaldyş belgisi', alignment },
-                { text: 'Hasaba alnan,', alignment },
+                { text: 'Hasaba alnan, uzaldylan wagty', alignment },
                 { text: 'Möhleti', alignment },
-                { text: 'Esas(belgisi we wagty)', alignment },
+                { text: 'Esas (belgisi we wagty)', alignment },
                 { text: 'Jogapkär işgäriň familiýasy we goly', alignment },
               ],
               [

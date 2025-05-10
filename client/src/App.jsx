@@ -14,6 +14,7 @@ import TableIshlemaneRugsotEdilenYerler from './vms/components/ishlemaneRugsotEd
 import BlankKomandirowochnye from './vms/components/komandirowochnye/BlankKomandirowochnye';
 import TableKomandirowochnye from './vms/components/komandirowochnye/TableKomandirowochnye';
 import BlankKonselari from './vms/components/konselari/BlankKonselari';
+import TableKonselari from './vms/components/konselari/TableKonselari';
 import BlankPasportChalshmak from './vms/components/pasportChalshmak/BlankPasportChalshmak';
 import TablePasportChalshmak from './vms/components/pasportChalshmak/TablePasportChalshmak';
 import BlankPasportChalshmakHasabaDurmok from './vms/components/pasportChalshmakHasabaDurmok/BlankPasportChalshmakHasabaDurmok';
@@ -26,6 +27,10 @@ import TableWizaRugsotnamaYatyrmak from './vms/components/wizaRugsotnamaYatyrmak
 import BlankWShShW from './vms/components/wShShW/BlankWShShW';
 import TableWShShW from './vms/components/wShShW/TableWShShW';
 import BlankYashamalyYeri from './vms/components/yashamalyYeri/BlankYashamalyYeri';
+
+
+import BlankTaslamanynKepilligi from './vms/components/taslamanynKepilligi/BlankTaslamanynKepilligi';
+import TableTaslamanynKepilligi from './vms/components/taslamanynKepilligi/TableTaslamanynKepilligi';
 
 
 export default function App() {
@@ -54,6 +59,7 @@ export default function App() {
                 <Route path='/preview-doc/table/komandirowachnye' element={<TableKomandirowochnye />} />
 
                 <Route path='/preview-doc/blank/konselari' element={<BlankKonselari data={data} />} />
+                <Route path='/preview-doc/table/konselari' element={<TableKonselari data={data} />} />
 
                 <Route path='/preview-doc/blank/pasport-chalshmak' element={<BlankPasportChalshmak />} />
                 <Route path='/preview-doc/table/pasport-chalshmak' element={<TablePasportChalshmak />} />
@@ -73,6 +79,11 @@ export default function App() {
                 <Route path='/preview-doc/table/wshshw' element={<TableWShShW />} />
 
                 <Route path='/preview-doc/blank/yashamaly-yeri' element={<BlankYashamalyYeri />} />
+
+
+
+                <Route path='/preview-doc/blank/taslamanyn-kepilligi' element={<BlankTaslamanynKepilligi />} />
+                <Route path='/preview-doc/table/taslamanyn-kepilligi' element={<TableTaslamanynKepilligi />} />
 
             </Routes>
         </BrowserRouter>
