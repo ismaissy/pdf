@@ -27,10 +27,9 @@ import TableWizaRugsotnamaYatyrmak from './vms/components/wizaRugsotnamaYatyrmak
 import BlankWShShW from './vms/components/wShShW/BlankWShShW';
 import TableWShShW from './vms/components/wShShW/TableWShShW';
 import BlankYashamalyYeri from './vms/components/yashamalyYeri/BlankYashamalyYeri';
-
-
 import BlankTaslamanynKepilligi from './vms/components/taslamanynKepilligi/BlankTaslamanynKepilligi';
 import TableTaslamanynKepilligi from './vms/components/taslamanynKepilligi/TableTaslamanynKepilligi';
+import ShahsyKagyzy from './vms/components/shahsyKagyzy/ShahsyKagyzy';
 
 
 export default function App() {
@@ -80,10 +79,10 @@ export default function App() {
 
                 <Route path='/preview-doc/blank/yashamaly-yeri' element={<BlankYashamalyYeri />} />
 
-
-
                 <Route path='/preview-doc/blank/taslamanyn-kepilligi' element={<BlankTaslamanynKepilligi />} />
                 <Route path='/preview-doc/table/taslamanyn-kepilligi' element={<TableTaslamanynKepilligi />} />
+
+                <Route path='/preview-doc/shahsy-kagyzy' element={<ShahsyKagyzy data={data} />} />
 
             </Routes>
         </BrowserRouter>

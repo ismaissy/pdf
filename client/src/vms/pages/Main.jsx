@@ -47,6 +47,8 @@ const pages = [
     { name: 'Blank Taslamanyn Kepilligi', link: '/preview-doc/blank/taslamanyn-kepilligi' },
     { name: 'Table Taslamanyn Kepilligi', link: '/preview-doc/table/taslamanyn-kepilligi' },
 
+    { name: 'Shahsy Kagyzy', link: '/preview-doc/shahsy-kagyzy' },
+
 ]
 
 const Main = () => {
