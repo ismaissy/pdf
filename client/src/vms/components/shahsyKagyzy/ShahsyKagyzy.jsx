@@ -2,15 +2,29 @@ import React, { useState, useEffect } from "react";
 import pdfMake from "pdfmake/build/pdfmake";
 import { vfs as customVfs } from "../../../vfs_fonts";
 import Utils from "../../../utils";
-import { bold, alignment, pageSize, TimesNewRomanObject, font, noWrap } from '../../../utils/constants'
+import { bold, alignment, pageSize, TimesNewRomanObject, fontSize, font, noWrap, COMPANY_DATA } from '../../../utils/constants'
 import PreviewDocWrapper from "../../PreviewDoc";
+import useBase64Image from "../../../hooks/useBase64Image";
+import logoGapinsaat from "../../../assets/Turkmenistan_Gerb.png";
+// import logoCalikEnerjiFooter from "../../../assets/logoCalikEnerjiFooter.png";
+import logoUser from "../../../assets/logoUser.png";
+
+const border = [false, false, false, false];
 
 pdfMake.vfs = customVfs;
 pdfMake.fonts = TimesNewRomanObject;
 
 const ShahsyKagyzy = ({ ...props }) => {
   const [pdfUrl, setPdfUrl] = useState(null);
-  useEffect(() => generatePdf(), []);
+  const base64Image = useBase64Image(logoGapinsaat);
+  const base64LogoUser = useBase64Image(logoUser);
+
+  useEffect(() => {
+    if (base64Image && base64LogoUser) {
+      generatePdf();
+    }
+  }, [base64Image, base64LogoUser]);
+
 
   const qrData = {
     "ŞAHSY KAGYZY": "",
@@ -34,33 +48,254 @@ const ShahsyKagyzy = ({ ...props }) => {
     const documentDefinition = {
       pageSize,
       pageOrientation: "portrait",
-      pageMargins: [40, 40, 40, 40],
+      pageMargins: [20, 20, 20, 40],
       defaultStyle: { font },
-      footer: (currentPage) => ({ text: String(currentPage), alignment, margin: [0, 10, 0, 0], fontSize: 10, }),
+      footer: (currentPage) => {
+        if (currentPage === 2) return 'V015'
+      },
       background: (currentPage, pageSize) => {
         return {
           canvas: [
             {
-              type: "rect", x: 15, y: 25,
-              w: pageSize.width - 35,
-              h: pageSize.height - 70,
+              type: "rect",
+              x: 20, y: 20,
+              w: pageSize.width - 40,
+              h: pageSize.height - 60,
               lineWidth: 1,
             },
           ],
         };
       },
       content: [
-        { text: "ŞAHSY KAGYZY", fontSize: 16, bold, margin: [180, 0, 0, 0] },
         {
-          canvas: [{
-            type: "rect",
-            x: 0, y: 0, w: 90, h: 115,
-            lineWidth: 1,
-            dash: { length: 4 },
-          }],
-          width: 90, height: 115, margin: [400, 0, 0, 0]
+          fontSize: 13,
+          layout: {
+            hLineWidth: (i, node) => 1.5,
+            vLineWidth: () => 1.5,
+            paddingLeft: () => 2,
+            paddingRight: () => 2,
+            paddingTop: () => 1,
+            paddingBottom: () => 2,
+          },
+          table: {
+
+            widths: ['*', '*', '*', '*', '*'], // пять равных колонок
+            body: [
+              [
+                { image: base64Image, width: 80, height: 80, alignment, margin: [0, 5] },
+                {
+                  text: [
+                    { text: 'Daşary ýurt raýatyna işewürlik (BS1, BS2), maý goýum (IN), işçi ' },
+                    { text: '(WP), maşgala (FM), Sport (SP1, SP2), ynsanperwerlik (HM), hususy ' },
+                    { text: '(PR1, PR2), talyp (ST), syýahatçylyk (TU), üstaşyr (TR1, TR2), ' },
+                    { text: 'Saglygy bejeriş (HL), sürüjilik (DR) wizasyny resmileşdirmek üçin\n' },
+                    { text: "\nŞAHSY KAGYZY", bold, fontSize }
+                  ],
+                  fontSize: 9,
+                  alignment,
+                  colSpan: 3,
+                  border: [false, true, false, false],
+                  margin: [25, 8]
+                }, {}, {},
+                { image: base64LogoUser, width: 80, height: 80, alignment, rowSpan: 2, border: [true, true, true, false], },
+              ],
+
+
+              [
+                { text: "I. Ýüztutmanyň maglumatlary:", bold, fontSize: 10, colSpan: 4, fillColor: '#d3d3d3', }, {}, {}, {}, {},
+              ],
+              [
+                {
+                  colSpan: 2,
+                  layout: {
+                    hLineWidth: (i, node) => 0.1,
+                    vLineWidth: () => 0.1,
+                    paddingLeft: () => 1,
+                    paddingRight: () => 1,
+                    paddingTop: () => 1,
+                    paddingBottom: () => 1
+                  },
+                  table: {
+                    widths: ['*',],
+                    body: [
+                      [{ text: 'Ýüz tutmanyň görnüşi *', fontSize: 10, border: [false], margin: [0, 0, 0, 0] },],
+                      [{ text: 'CAKL - CAKYLYK', bold, fontSize: 13, }]
+                    ]
+                  },
+                },
+                {},
+                {
+                  colSpan: 2,
+                  layout: {
+                    hLineWidth: (i, node) => 0.1,
+                    vLineWidth: () => 0.1,
+                    paddingLeft: () => 1,
+                    paddingRight: () => 1,
+                    paddingTop: () => 1,
+                    paddingBottom: () => 1
+                  },
+                  table: {
+                    widths: ['*',],
+                    body: [
+                      [{ text: 'Seretmegiň tertibi *', fontSize: 10, border: [false], margin: [0, 0, 0, 0] },],
+                      [{ text: 'TIZ', bold, fontSize: 13, }]
+                    ]
+                  },
+                },
+                {},
+                { text: "FOTO", fontSize: 9, bold, alignment, border: [true, false, true, true], },
+              ],
+
+              [
+                { text: "Çagyryjy tarap - fiziki şahs:", border, colSpan: 5, fontSize: 10 }, {}, {}, {}, {},
+              ],
+              [
+                {
+                  border, colSpan: 2,
+                  layout: {
+                    hLineWidth: (i, node) => 0.1,
+                    vLineWidth: () => 0.1,
+                    paddingLeft: () => 2,
+                    paddingRight: () => 1,
+                    paddingTop: () => 1,
+                    paddingBottom: () => 1
+                  },
+                  table: {
+                    widths: ['*',],
+                    body: [
+                      [{ text: 'Familiýasy *', fontSize: 10, border, margin: [0, 0, 0, 0] },],
+                      [{ text: ' ' }]
+                    ]
+                  },
+                }, {},
+                {
+                  border, colSpan: 2,
+                  layout: {
+                    hLineWidth: (i, node) => 0.1,
+                    vLineWidth: () => 0.1,
+                    paddingLeft: () => 2,
+                    paddingRight: () => 1,
+                    paddingTop: () => 1,
+                    paddingBottom: () => 1
+                  },
+                  table: {
+                    widths: ['*',],
+                    body: [
+                      [{ text: 'Ady *', fontSize: 10, border: [false], margin: [0, 0, 0, 0] },],
+                      [{ text: ' ' }]
+                    ]
+                  },
+                }, {},
+                {
+                  border,
+                  layout: {
+                    hLineWidth: (i, node) => 0.1,
+                    vLineWidth: () => 0.1,
+                    paddingLeft: () => 2,
+                    paddingRight: () => 1,
+                    paddingTop: () => 1,
+                    paddingBottom: () => 1
+                  },
+                  table: {
+                    widths: ['*',],
+                    body: [
+                      [{ text: 'Atasynyň ady', fontSize: 10, border: [false], margin: [0, 0, 0, 0] },],
+                      [{ text: ' ' }]
+                    ]
+                  },
+                },
+              ],
+
+
+
+              [
+                {
+                  border, colSpan: 4,
+                  layout: {
+                    hLineWidth: (i, node) => 0.1,
+                    vLineWidth: () => 0.1,
+                    paddingLeft: () => 2,
+                    paddingRight: () => 1,
+                    paddingTop: () => 1,
+                    paddingBottom: () => 1
+                  },
+                  table: {
+                    widths: ['*',],
+                    body: [
+                      [{ text: 'Ýaşaýan salgysy *:', fontSize: 10, border, margin: [0, 0, 0, 0] },],
+                      [{ text: ' ' }],
+                      [{ text: ' ' }]
+                    ]
+                  },
+                },
+                {}, {}, {},
+                {
+                  border,
+                  layout: {
+                    hLineWidth: (i, node) => 0.1,
+                    vLineWidth: () => 0.1,
+                    paddingLeft: () => 2,
+                    paddingRight: () => 1,
+                    paddingTop: () => 1,
+                    paddingBottom: () => 1
+                  },
+                  table: {
+                    widths: ['*'],
+                    body: [
+                      [{ text: 'Telefon belgi (ler) *', fontSize: 10, border: [false], margin: [0, 0, 0, 0] },],
+                      [{ text: ' ' }],
+                      [{ text: ' ' }]
+                    ]
+                  },
+                },
+              ],
+
+              [
+                {
+                  border, colSpan: 4,
+                  layout: {
+                    hLineWidth: (i, node) => 0.1,
+                    vLineWidth: () => 0.1,
+                    paddingLeft: () => 2,
+                    paddingRight: () => 1,
+                    paddingTop: () => 1,
+                    paddingBottom: () => 1
+                  },
+                  table: {
+                    widths: ['*',],
+                    body: [
+                      [{ text: 'Pasport belgisi we berlen ýeri *', fontSize: 10, border, margin: [0, 0, 0, 0] },],
+                      [{ text: ' ' }]
+                    ]
+                  },
+                },
+                {}, {}, {},
+                {
+                  border,
+                  layout: {
+                    hLineWidth: (i, node) => 0.1,
+                    vLineWidth: () => 0.1,
+                    paddingLeft: () => 2,
+                    paddingRight: () => 1,
+                    paddingTop: () => 1,
+                    paddingBottom: () => 1
+                  },
+                  table: {
+                    widths: ['*',],
+                    body: [
+                      [{ text: 'E-mail', fontSize: 10, border: [false], margin: [0, 0, 0, 0] },],
+                      [{ text: ' ' }]
+                    ]
+                  },
+                },
+              ],
+            ],
+          },
         },
-        { text: "\n\n" },
+
+
+
+
         {
           fontSize: 13,
           layout: {
@@ -72,160 +307,25 @@ const ShahsyKagyzy = ({ ...props }) => {
             paddingBottom: () => 5,
           },
           table: {
-            widths: [135, "*"],
+            widths: ['*', '*', '*', '*', '*'],
             body: [
               [
                 { text: "Familiýasy, ady, atasynyň ady", alignment: "left", noWrap },
-                {
-                  stack: [
-                    {
-                      text: `${props.data?.firstName || ''} ${props.data?.lastName || ''} ${props.data?.middleName || ''}`,
-                      alignment, margin: [0, 5, 0, 2],
-                    },
-                    { canvas: [Utils.canvasDto('line', 35, 0, 370, 0, 0.5)] },
-                  ],
-                },
+
               ],
-              [
-                { text: "Doglan senesi we ýeri", alignment: "left", noWrap },
-                {
-                  stack: [
-                    { text: `${props.data.birthDay} ${props.data.bornCountry}`, alignment, margin: [0, 0, 0, 2] },
-                    { canvas: [Utils.canvasDto('line', -7, 0, 370, 0, 0.5)] },
-                  ],
-                },
-              ],
-              [
-                { text: "Raýatlygy", alignment: "left", noWrap },
-                {
-                  stack: [
-                    { text: `${props.data.citizenship}`, alignment, margin: [0, 0, 0, 2] },
-                    { canvas: [Utils.canvasDto('line', -70, 0, 370, 0, 0.5)] },
-                  ],
-                },
-              ],
-              [
-                { text: "Pasportyň belgisi, berlen senesi we möhleti", alignment: "left", },
-                {
-                  stack: [
-                    { text: `${props.data.passport}`, alignment, margin: [0, 10, 0, 2] },
-                    { canvas: [Utils.canvasDto('line', -15, 0, 370, 0, 0.5)] },
-                  ],
-                },
-              ],
-              [
-                { text: "Şahsy belgisi", alignment: "left", noWrap },
-                {
-                  stack: [
-                    { text: ` `, alignment, margin: [0, 0, 0, 2] },
-                    { canvas: [Utils.canvasDto('line', -60, 0, 370, 0, 0.5)] },
-                  ],
-                },
-              ],
-              [
-                { text: "Bilimi, okan ýeri", alignment: "left", noWrap },
-                {
-                  stack: [
-                    { text: `${props.data.studyOfCountry}`, alignment, margin: [0, 0, 0, 2] },
-                    { canvas: [Utils.canvasDto('line', -40, 0, 370, 0, 0.5)] },
-                  ],
-                },
-              ],
-              [
-                { text: "Hünäri", alignment: "left", noWrap },
-                {
-                  stack: [
-                    { text: `${props.data.major}`, alignment, margin: [0, 0, 0, 2], },
-                    { canvas: [Utils.canvasDto('line', -100, 0, 370, 0, 0.5)] },
-                  ],
-                },
-              ],
-              [
-                { text: "Wezipesi", alignment: "left" },
-                {
-                  stack: [
-                    { text: `${props.data.position}`, alignment, margin: [0, 0, 0, 2], },
-                    { canvas: [Utils.canvasDto('line', -90, 0, 370, 0, 0.5)] },
-                  ],
-                },
-              ],
-              [
-                { text: "Türkmenistanda öňki işlän ýerleri:", alignment: "left" },
-                {
-                  stack: [
-                    { text: `vdfsvdfvs  dfv  sdfjklvvnd fvsdfvjndfsvn dfsajvk qaerw gearui SHdh`, alignment, margin: [0, 5, 0, 2], },
-                    { canvas: [Utils.canvasDto('line', -20, 0, 370, 0, 0.5)] },
-                  ],
-                },
-              ],
-              [
-                { text: "Maşgala ýagdaýy", alignment: "left", noWrap },
-                {
-                  stack: [
-                    { text: `Aýaly-Takae Handa-30.07.1965 (JPN)`, alignment, margin: [0, 0, 0, 2], },
-                    { canvas: [Utils.canvasDto('line', -40, 0, 370, 0, 0.5)] },
-                  ],
-                },
-              ],
-              [
-                { text: "Daşary ýurtdaky ýaşaýan anyk salgysy", alignment: "left" },
-                {
-                  stack: [
-                    { text: `JPN, 4-11-1 Kaminoge Setagaya-ku, Tokyo, Japan`, alignment, margin: [0, 5, 0, 2], },
-                    { canvas: [Utils.canvasDto('line', -20, 0, 370, 0, 0.5)] },
-                  ],
-                },
-              ],
-              [
-                {
-                  text: "Daşary ýurt raýaylary barada galp maglumatlary görkezilýan ýagdaýynda Türkmenistanyň kanunçylygyna laýyklykda doly jogapkärçiligi çekýarin.",
-                  colSpan: 2, alignment: "justify",
-                }, {}
-              ],
-              [{ text: "\n\nYgtyýarly adam.", colSpan: 2, alignment: "left", }, {}],
+
             ],
+
           }
         },
-        {
-          fontSize: 12,
-          layout: {
-            hLineWidth: () => 0,
-            vLineWidth: () => 0,
-            paddingLeft: () => 5,
-            paddingRight: () => 5,
-            paddingTop: () => 5,
-            paddingBottom: () => 5,
-          },
-          table: {
-            widths: ["*", "*"],
-            body: [
-              [
-                { text: `\n"_____"_______________20_______ý`, alignment: "left" },
-                { text: `M.Ý____________________`, alignment: "right" },
-              ],
-              [
-                { text: "goly", colSpan: 2, alignment: "right", margin: [0, -20, 50, 0], }, {}
-              ],
-            ],
-          },
-        },
+        { text: '...', pageBreak: 'before' },
+
         {
           qr: JSON.stringify(qrData),
           alignment,
           margin: [0, 30, 0, 0],
           fit: 300,
         },
-        {
-          text: "Status (select one):",
-          style: "subHeader",
-          margin: [0, 20, 0, 2],
-        },
-        {
-          stack: [
-            { text: "☐ Employed   ☐ Student   ☐ Retired   ☐ Other", margin: [0, 0, 0, 5] },
-            { canvas: [Utils.canvasDto('line', 0, 0, 400, 0, 0.5)] },
-          ],
-        }
       ],
     };
 
