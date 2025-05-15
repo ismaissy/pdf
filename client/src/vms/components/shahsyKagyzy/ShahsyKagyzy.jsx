@@ -9,6 +9,14 @@ import logoGapinsaat from "../../../assets/Turkmenistan_Gerb.png";
 // import logoCalikEnerjiFooter from "../../../assets/logoCalikEnerjiFooter.png";
 import logoUser from "../../../assets/logoUser.png";
 
+pdfMake.vfs = customVfs;
+pdfMake.fonts = TimesNewRomanObject;
+
+
+const fontSizeCell = 9;
+const fontSizeEmptyCell = 12;
+const fontSizeHeadCell = 11;
+const sectionHeadColor = '#e2e1df';
 const border = [false, false, false, false];
 const layout = {
   hLineWidth: (i, node) => 0.1,
@@ -20,8 +28,8 @@ const layout = {
 };
 
 
-pdfMake.vfs = customVfs;
-pdfMake.fonts = TimesNewRomanObject;
+
+
 
 const ShahsyKagyzy = ({ ...props }) => {
   const [pdfUrl, setPdfUrl] = useState(null);
@@ -81,15 +89,15 @@ const ShahsyKagyzy = ({ ...props }) => {
             vLineWidth: () => 1.5,
             paddingLeft: () => 2,
             paddingRight: () => 2,
-            paddingTop: () => 1,
-            paddingBottom: () => 2,
+            paddingTop: () => 0,
+            paddingBottom: () => 0,
           },
           table: {
 
             widths: ['*', '*', '*', '*', '*'], // пять равных колонок
             body: [
               [
-                { image: base64Image, width: 80, height: 80, alignment, margin: [0, 5] },
+                { image: base64Image, width: 80, height: 80, alignment, margin: [0, 5], },
                 {
                   text: [
                     { text: 'Daşary ýurt raýatyna işewürlik (BS1, BS2), maý goýum (IN), işçi ' },
@@ -98,55 +106,62 @@ const ShahsyKagyzy = ({ ...props }) => {
                     { text: 'Saglygy bejeriş (HL), sürüjilik (DR) wizasyny resmileşdirmek üçin\n' },
                     { text: "\nŞAHSY KAGYZY", bold, fontSize }
                   ],
-                  fontSize: 9,
-                  alignment,
-                  colSpan: 3,
+                  fontSize: 10, alignment, colSpan: 3,
                   border: [false, true, false, false],
-                  margin: [25, 8]
-                }, {}, {},
-                { image: base64LogoUser, width: 80, height: 80, alignment, rowSpan: 2, border: [true, true, true, false], },
-              ],
-
-              [
-                { text: "I. Ýüztutmanyň maglumatlary:", bold, fontSize: 10, colSpan: 4, fillColor: '#d3d3d3', }, {}, {}, {}, {},
+                  margin: [20, 8]
+                },
+                {}, {},
+                {
+                  rowSpan: 3,
+                  stack: [
+                    { image: base64LogoUser, width: 100, height: 100, alignment, margin: [0, 5] },
+                    { text: 'FOTO', bold, alignment, fontSize: 11, margin: [0, 15, 0, 0] }
+                  ],
+                },
               ],
 
               [
                 {
-                  colSpan: 2,
-                  layout: {
-                    hLineWidth: (i, node) => 0.1,
-                    vLineWidth: () => 0.1,
-                    paddingLeft: () => 2,
-                    paddingRight: () => 1,
-                    paddingTop: () => 1,
-                    paddingBottom: () => 1
-                  },
+                  text: "I. Ýüztutmanyň maglumatlary:",
+                  colSpan: 4, bold, margin: [2, 2, 0, 2],
+                  fontSize: fontSizeHeadCell, fillColor: sectionHeadColor,
+                },
+                {}, {}, {}, {},
+              ],
+
+              [
+
+                {
+                  colSpan: 2, layout, margin: [0, 1, 0, 2],
                   table: {
                     widths: ['*',],
                     body: [
-                      [{ text: 'Ýüz tutmanyň görnüşi *', fontSize: 10, border: [false], margin: [0, 0, 0, 0] },],
-                      [{ text: 'CAKL - CAKYLYK', bold, fontSize: 13, }]
+                      [{ text: 'Ýüz tutmanyň görnüşi *', border, fontSize: fontSizeCell, }],
+                      [{ text: 'CAKL - CAKYLYK', bold, fontSize: fontSizeEmptyCell, margin: [0, 2, 0, 0] }]
                     ]
                   },
                 },
                 {},
                 {
-                  colSpan: 2, layout,
+                  colSpan: 2, layout, margin: [0, 1, 0, 2],
                   table: {
                     widths: ['*',],
                     body: [
-                      [{ text: 'Seretmegiň tertibi *', fontSize: 10, border: [false], margin: [0, 0, 0, 0] },],
-                      [{ text: 'TIZ', bold, fontSize: 13, }]
+                      [{ text: 'Seretmegiň tertibi *', border, fontSize: fontSizeCell, }],
+                      [{ text: 'TIZ', bold, fontSize: fontSizeEmptyCell, margin: [0, 2, 0, 0] }]
                     ]
                   },
                 },
                 {},
-                { text: "FOTO", fontSize: 9, bold, alignment, border: [true, false, true, true], },
+                {},
               ],
 
               [
-                { text: "Çagyryjy tarap - fiziki şahs:", border: [true, false, true, false], colSpan: 5, fontSize: 10 }, {}, {}, {}, {},
+                {
+                  text: "Çagyryjy tarap - fiziki şahs:",
+                  margin: [2, 0, 0, 1],
+                  colSpan: 5, fontSize: 10, border: [true, false, true, false],
+                }, {}, {}, {}, {},
               ],
               [
                 {
@@ -154,8 +169,8 @@ const ShahsyKagyzy = ({ ...props }) => {
                   table: {
                     widths: ['*',],
                     body: [
-                      [{ text: 'Familiýasy *', fontSize: 10, border, margin: [0, 0, 0, 0] },],
-                      [{ text: ' ' }]
+                      [{ text: 'Familiýasy *', fontSize: fontSizeCell, border }],
+                      [{ text: ' ', fontSize: fontSizeEmptyCell }]
                     ]
                   },
                 }, {},
@@ -164,8 +179,8 @@ const ShahsyKagyzy = ({ ...props }) => {
                   table: {
                     widths: ['*',],
                     body: [
-                      [{ text: 'Ady *', fontSize: 10, border: [false], margin: [0, 0, 0, 0] },],
-                      [{ text: ' ' }]
+                      [{ text: 'Ady *', fontSize: fontSizeCell, border }],
+                      [{ text: ' ', fontSize: fontSizeEmptyCell }]
                     ]
                   },
                 }, {},
@@ -174,8 +189,8 @@ const ShahsyKagyzy = ({ ...props }) => {
                   table: {
                     widths: ['*',],
                     body: [
-                      [{ text: 'Atasynyň ady', fontSize: 10, border: [false], margin: [0, 0, 0, 0] },],
-                      [{ text: ' ' }]
+                      [{ text: 'Atasynyň ady', fontSize: fontSizeCell, border }],
+                      [{ text: ' ', fontSize: fontSizeEmptyCell }]
                     ]
                   },
                 },
@@ -189,9 +204,9 @@ const ShahsyKagyzy = ({ ...props }) => {
                   table: {
                     widths: ['*',],
                     body: [
-                      [{ text: 'Ýaşaýan salgysy *:', fontSize: 10, border, margin: [0, 0, 0, 0] },],
-                      [{ text: ' ' }],
-                      [{ text: ' ' }]
+                      [{ text: 'Ýaşaýan salgysy *:', fontSize: fontSizeCell, border, margin: [0, 0, 0, 0] },],
+                      [{ text: ' ', fontSize: fontSizeEmptyCell }],
+                      [{ text: ' ', fontSize: fontSizeEmptyCell }]
                     ]
                   },
                 },
@@ -201,9 +216,9 @@ const ShahsyKagyzy = ({ ...props }) => {
                   table: {
                     widths: ['*'],
                     body: [
-                      [{ text: 'Telefon belgi (ler) *', fontSize: 10, border: [false], margin: [0, 0, 0, 0] },],
-                      [{ text: ' ' }],
-                      [{ text: ' ' }]
+                      [{ text: 'Telefon belgi (ler) *', fontSize: fontSizeCell, border },],
+                      [{ text: ' ', fontSize: fontSizeEmptyCell }],
+                      [{ text: ' ', fontSize: fontSizeEmptyCell }]
                     ]
                   },
                 },
@@ -211,40 +226,49 @@ const ShahsyKagyzy = ({ ...props }) => {
 
               [
                 {
-                  colSpan: 4, border: [true, false, false, true], layout,
+                  colSpan: 4, layout, margin: [0, 0, 0, 2], border: [true, false, false, true],
                   table: {
                     widths: ['*',],
                     body: [
-                      [{ text: 'Pasport belgisi we berlen ýeri *', fontSize: 10, border, margin: [0, 0, 0, 0] },],
-                      [{ text: ' ' }]
+                      [{ text: 'Pasport belgisi we berlen ýeri *', fontSize: fontSizeCell, border },],
+                      [{ text: ' ', fontSize: fontSizeEmptyCell }]
                     ]
                   },
                 },
                 {}, {}, {},
                 {
-                  layout, border: [false, false, true, true],
+                  layout, border: [false, false, true, true], margin: [0, 0, 0, 2],
                   table: {
                     widths: ['*',],
                     body: [
-                      [{ text: 'E-mail', fontSize: 10, border: [false], margin: [0, 0, 0, 0] },],
-                      [{ text: ' ' }]
+                      [{ text: 'E-mail', fontSize: fontSizeCell, border }],
+                      [{ text: ' ', fontSize: fontSizeEmptyCell }]
                     ]
                   },
                 },
               ],
 
-
               [
-                { text: "Çagyryjy tarap - ýuridik şahs (ýa-da hususy telekeçi):", border: [true, false, true, false], colSpan: 5, fontSize: 10 }, {}, {}, {}, {},
+                {
+                  text: "Çagyryjy tarap - ýuridik şahs (ýa-da hususy telekeçi):",
+                  colSpan: 5, fontSize: 10, margin: [2, 0, 0, 1],
+                  border: [true, false, true, false],
+                },
+                {}, {}, {}, {},
               ],
               [
                 {
                   colSpan: 5, layout, border: [true, false, true, false],
                   table: {
-                    widths: ['*',],
+                    widths: ['*'],
                     body: [
-                      [{ text: 'Kärhananyň, edaranyň ady (hususy telekeçiniň F.A.A.)* (ENG)', fontSize: 10, border, margin: [0, 0, 0, 0] },],
-                      [{ text: ' ' }]
+                      [
+                        {
+                          text: 'Kärhananyň, edaranyň ady (hususy telekeçiniň F.A.A.)* (ENG)',
+                          fontSize: fontSizeCell, border
+                        }
+                      ],
+                      [{ text: ' ', fontSize: fontSizeEmptyCell }]
                     ]
                   },
                 },
@@ -253,40 +277,45 @@ const ShahsyKagyzy = ({ ...props }) => {
 
               [
                 {
-                  colSpan: 2, layout, border: [true, false, false, false],
+                  colSpan: 2, layout, border: [true, false, false, false], margin: [0, 0, 0, 2],
                   table: {
-                    widths: ['*',],
+                    widths: ['*'],
                     body: [
-                      [{ text: 'Hukuk salgysy *:', fontSize: 10, border, margin: [0, 0, 0, 0] },],
-                      [{ text: ' ' }]
+                      [{ text: 'Hukuk salgysy *:', fontSize: fontSizeCell, border }],
+                      [{ text: ' ', fontSize: fontSizeEmptyCell }]
                     ]
                   },
                 }, {},
                 {
-                  colSpan: 2, layout, border,
+                  colSpan: 2, layout, border, margin: [0, 0, 0, 2],
                   table: {
                     widths: ['*',],
                     body: [
-                      [{ text: 'E-mail *', fontSize: 10, border, margin: [0, 0, 0, 0] },],
-                      [{ text: ' ' }]
+                      [{ text: 'E-mail *', fontSize: fontSizeCell, border }],
+                      [{ text: ' ', fontSize: fontSizeEmptyCell }]
                     ]
                   },
                 }, {},
                 {
-                  layout, border: [false, false, true, false],
+                  layout, border: [false, false, true, false], margin: [0, 0, 0, 2],
                   table: {
                     widths: ['*',],
                     body: [
-                      [{ text: 'Telefon belgi (ler) *', fontSize: 10, border: [false], margin: [0, 0, 0, 0] },],
-                      [{ text: ' ' }]
+                      [{ text: 'Telefon belgi (ler) *', fontSize: fontSizeCell, border }],
+                      [{ text: ' ', fontSize: fontSizeEmptyCell }]
                     ]
                   },
                 },
               ],
 
-
+              //TODO
               [
-                { text: 'II. Çagyrylýan daşary ýurt raýatynyň şahsy maglumatlary:', bold, fontSize: 11, colSpan: 5, fillColor: '#d3d3d3', }, {}, {}, {}, {},
+
+                {
+                  text: 'II. Çagyrylýan daşary ýurt raýatynyň şahsy maglumatlary:',
+                  bold, colSpan: 5, margin: [2, 2, 0, 2],
+                  fontSize: fontSizeHeadCell, fillColor: sectionHeadColor,
+                }, {}, {}, {}, {},
               ],
 
               // [
@@ -329,154 +358,169 @@ const ShahsyKagyzy = ({ ...props }) => {
 
               [
                 {
-                  colSpan: 5, layout: {
+                  colSpan: 5, border: [true, false, true, true],
+                  layout: {
                     hLineWidth: () => 0.1,
                     vLineWidth: () => 0.1,
                     paddingLeft: () => 2,
                     paddingRight: () => 0,
-                    paddingTop: () => 0.5,
-                    paddingBottom: () => 0.5
-                  }, border: [true, false, true, false],
+                    paddingTop: () => 1,
+                    paddingBottom: () => 0.6
+                  },
                   table: {
-                    fontSize: 9,
+                    fontSize: fontSizeCell,
                     widths: ['*', 2, '*', 2, '*', 2, '*', 2, '*', 2, '*', 2, '*', 2, '*', 2, '*', 2, '*', 2, '*', 2, '*'],
                     body: [
 
                       [
-                        { text: '1. Familiýasy*', fontSize: 9, colSpan: 11, border },
+
+                        {
+                          text: '1. Familiýasy*', border, colSpan: 11,
+                          margin: [0, 1, 0, 1], fontSize: fontSizeCell,
+                        },
                         {}, {}, {}, {}, {}, {}, {}, {}, {}, {},
                         { text: '', border },
-                        { text: '2. Doglan wagtyndaky familiýasy (ozalky familiýa(lary) sy)', fontSize: 9, colSpan: 11, border },
+                        {
+                          text: '2. Doglan wagtyndaky familiýasy (ozalky familiýa(lary) sy)',
+                          colSpan: 11, border,
+                          margin: [0, 1, 0, 1], fontSize: fontSizeCell,
+                        },
                         {}, {}, {}, {}, {}, {}, {}, {}, {}, {},
                       ],
                       [
-                        { text: ' ', colSpan: 11, fontSize: 11, },
+                        { text: ' ', colSpan: 11, fontSize: fontSizeEmptyCell, },
                         {}, {}, {}, {}, {}, {}, {}, {}, {}, {},
                         { text: '', border },
-                        { text: ' ', colSpan: 11, fontSize: 11, },
+                        { text: ' ', colSpan: 11, fontSize: fontSizeEmptyCell, },
                         {}, {}, {}, {}, {}, {}, {}, {}, {}, {},
                       ],
 
 
                       [
-                        { text: '3. Ady *', colSpan: 11, fontSize: 9, border },
+                        { text: '3. Ady *', colSpan: 11, fontSize: fontSizeCell, border },
                         {}, {}, {}, {}, {}, {}, {}, {}, {}, {},
                         { text: '', border },
-                        { text: '4. Doglan senesi (GG.AA.ÝÝÝÝ) *', fontSize: 9, colSpan: 5, border },
+                        { text: '4. Doglan senesi (GG.AA.ÝÝÝÝ) *', fontSize: fontSizeCell, colSpan: 5, border },
                         {}, {}, {}, {},
                         { text: '', border },
-                        { text: '5. Jynsy *', colSpan: 5, fontSize: 9, border },
+                        { text: '5. Jynsy *', colSpan: 5, fontSize: fontSizeCell, border },
                         {}, {}, {}, {},
                       ], [
-                        { text: ' ', fontSize: 11, colSpan: 11 },
+                        { text: ' ', fontSize: fontSizeEmptyCell, colSpan: 11 },
                         {}, {}, {}, {}, {}, {}, {}, {}, {}, {},
                         { text: '', border },
                         { text: '', fontSize: 11, colSpan: 5 },
                         {}, {}, {}, {},
                         { text: '', border },
-                        { text: '', fontSize: 11, colSpan: 5 },
+                        { text: ' ', fontSize: 11, colSpan: 5 },
                         {}, {}, {}, {},
                       ],
 
 
                       [
-                        { text: '6. Raýatlygy *', fontSize: 9, colSpan: 7, border },
+                        { text: '6. Raýatlygy *', fontSize: fontSizeCell, colSpan: 7, border },
                         {}, {}, {}, {}, {}, {},
                         { text: '', border },
-                        { text: '7. Doglan ýurdy *', fontSize: 9, colSpan: 7, border },
+                        { text: '7. Doglan ýurdy *', fontSize: fontSizeCell, colSpan: 7, border },
                         {}, {}, {}, {}, {}, {},
                         { text: '', border },
-                        { text: '8. Doglan ýeri *', fontSize: 9, colSpan: 7, border },
+                        { text: '8. Doglan ýeri *', fontSize: fontSizeCell, colSpan: 7, border },
                         {}, {}, {}, {}, {}, {},
                       ], [
-                        { text: ' ', fontSize: 11, colSpan: 7 },
+                        { text: ' ', fontSize: fontSizeEmptyCell, colSpan: 7 },
                         {}, {}, {}, {}, {}, {},
                         { text: '', border },
-                        { text: '', fontSize: 11, colSpan: 7 },
+                        { text: ' ', fontSize: fontSizeEmptyCell, colSpan: 7 },
                         {}, {}, {}, {}, {}, {},
                         { text: '', border },
-                        { text: '', fontSize: 11, colSpan: 7 },
+                        { text: ' ', fontSize: fontSizeEmptyCell, colSpan: 7 },
                         {}, {}, {}, {}, {}, {},
                       ],
 
 
                       [
-                        { text: '9. Şahsy belgisi', fontSize: 9, colSpan: 5, border },
+                        { text: '9. Şahsy belgisi', fontSize: fontSizeCell, colSpan: 5, border },
                         {}, {}, {}, {},
                         { text: '', border },
-                        { text: '10. Pasportynyň görnüşi *', fontSize: 9, colSpan: 5, border },
+                        { text: '10. Pasportynyň görnüşi *', fontSize: fontSizeCell, colSpan: 5, border },
                         {}, {}, {}, {},
                         { text: '', border },
                         { text: '11. Pasportynyň belgisi *', fontSize: 8, colSpan: 3, border },
                         {}, {},
                         { text: '', border },
-                        { text: '12. Berlen senesi*', fontSize: 9, colSpan: 3, border },
+                        { text: '12. Berlen senesi*', fontSize: fontSizeCell, colSpan: 3, border },
                         {}, {},
                         { text: '', border },
-                        { text: '13. Möhleti *', colSpan: 3, fontSize: 9, border },
+                        { text: '13. Möhleti *', colSpan: 3, fontSize: fontSizeCell, border },
                         {}, {},
                       ], [
-                        { text: ' ', colSpan: 5, fontSize: 11, },
+                        { text: ' ', colSpan: 5, fontSize: fontSizeEmptyCell, },
                         {}, {}, {}, {},
                         { text: '', border },
-                        { text: ' ', colSpan: 5, fontSize: 11, },
+                        { text: ' ', colSpan: 5, fontSize: fontSizeEmptyCell, },
                         {}, {}, {}, {},
                         { text: '', border },
-                        { text: '', colSpan: 3, fontSize: 11, },
+                        { text: ' ', colSpan: 3, fontSize: fontSizeEmptyCell, },
                         {}, {},
                         { text: '', border },
-                        { text: ' ', colSpan: 3, fontSize: 11, },
+                        { text: ' ', colSpan: 3, fontSize: fontSizeEmptyCell, },
                         {}, {},
                         { text: '', border },
-                        { text: '', colSpan: 3, fontSize: 11, },
+                        { text: ' ', colSpan: 3, fontSize: fontSizeEmptyCell, },
                         {}, {},
                       ],
 
 
                       [
-                        { text: '14. Berlen ýeri (ýurdy)*', fontSize: 9, colSpan: 7, border },
+                        { text: '14. Berlen ýeri (ýurdy)*', fontSize: fontSizeCell, colSpan: 7, border },
                         {}, {}, {}, {}, {}, {},
                         { text: '', border },
-                        { text: '15. Daşary ýurtdaky ýaşaýan salgysy *', colSpan: 15, fontSize: 9, border },
+                        { text: '15. Daşary ýurtdaky ýaşaýan salgysy *', colSpan: 15, fontSize: fontSizeCell, border },
                         {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {},
                       ], [
-                        { text: ' ', colSpan: 7, fontSize: 11, },
+                        { text: ' ', colSpan: 7, fontSize: fontSizeEmptyCell },
                         {}, {}, {}, {}, {}, {},
                         { text: '', border },
-                        { text: '', colSpan: 15, fontSize: 11, },
+                        { text: ' ', colSpan: 15, fontSize: fontSizeEmptyCell, },
                         {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {},
                       ],
 
 
-                      [{ text: '16. E-mail', fontSize: 9, colSpan: 23, border }, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}],
-                      [{ text: ' ', fontSize: 9, colSpan: 23 }, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}],
+                      [{ text: '16. E-mail', fontSize: fontSizeCell, colSpan: 23, border }, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}],
+                      [{ text: ' ', fontSize: fontSizeEmptyCell, colSpan: 23 }, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}],
                       [
-                        { text: '17. Türkmenistanda jenaýat/administratiw jogapkärçiligine çekilendigi ýa-da çekilmändigi barada *', fontSize: 9, colSpan: 23, border },
+                        {
+                          text: '17. Türkmenistanda jenaýat/administratiw jogapkärçiligine çekilendigi ýa-da çekilmändigi barada *',
+                          fontSize: fontSizeCell, colSpan: 23, border
+                        },
                         {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}
                       ],
-                      [{ text: ' ', fontSize: 9, colSpan: 23 }, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}],
+                      [{ text: ' ', fontSize: fontSizeEmptyCell, colSpan: 23 }, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}],
                       [
-                        { text: '18. Maşgala ýagdaýy *', fontSize: 9, colSpan: 4, border }, {}, {}, {},
-                        { text: 'Sallah/Durmuşa çykmadyk', fontSize: 9, colSpan: 5, }, {}, {}, {}, {},
-                        { text: 'Äriniň/aýalynyň we çagalarynyň raýatlygy, doglan senesi, FAA', fontSize: 9, colSpan: 14, border },
+                        { text: '18. Maşgala ýagdaýy *', fontSize: fontSizeCell, colSpan: 4, border, margin: [0, 1] }, {}, {}, {},
+                        { text: 'Sallah/Durmuşa çykmadyk', fontSize: fontSizeCell, colSpan: 5, margin: [0, 1] }, {}, {}, {}, {},
+                        {
+                          text: 'Äriniň/aýalynyň we çagalarynyň raýatlygy, doglan senesi, FAA',
+                          fontSize: fontSizeCell, colSpan: 14, border, margin: [0, 1]
+                        },
                         {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}
                       ],
-                      [{ text: ' ', fontSize: 9, colSpan: 23 }, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}],
-                      [{ text: ' ', fontSize: 9, colSpan: 23 }, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}],
-                      [{ text: ' ', fontSize: 9, colSpan: 23 }, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}],
-                      [{ text: '19. Bilimi (*-Diňe BS, IN, WP üçin)', fontSize: 9, colSpan: 23, border }, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}],
-                      [{ text: ' ', fontSize: 9, colSpan: 23 }, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}],
-                      [{ text: '20. Hünäri (*Diňe BS, IN, WP üçin)', fontSize: 9, colSpan: 23, border }, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}],
-                      [{ text: ' ', fontSize: 9, colSpan: 23 }, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}],
-                      [{ text: '21. Okan (okaýan) ýeri *(Diňe BS, IN, WP üçin)', fontSize: 9, colSpan: 23, border }, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}],
-                      [{ text: ' ', fontSize: 9, colSpan: 23 }, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}],
-                      [{ text: '22. Işleýän ýeri we iş telefony, şahsy telefony *', fontSize: 9, colSpan: 23, border }, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}],
-                      [{ text: ' ', fontSize: 9, colSpan: 23 }, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}],
-                      [{ text: '23. Wezipesi (*-Diňe BS, IN, WP üçin)', fontSize: 9, colSpan: 23, border }, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}],
-                      [{ text: ' ', fontSize: 9, colSpan: 23 }, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}],
-                      [{ text: '24. Wezipe boýunça iş tejribesi', fontSize: 9, colSpan: 23, border }, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}],
-                      [{ text: ' ', fontSize: 9, colSpan: 23 }, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}],
-                      [{ text: ' ', fontSize: 9, colSpan: 23 }, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}],
+                      [{ text: ' ', fontSize: fontSizeEmptyCell, colSpan: 23 }, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}],
+                      [{ text: ' ', fontSize: fontSizeEmptyCell, colSpan: 23 }, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}],
+                      [{ text: ' ', fontSize: fontSizeEmptyCell, colSpan: 23 }, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}],
+                      [{ text: '19. Bilimi (*-Diňe BS, IN, WP üçin)', fontSize: fontSizeCell, colSpan: 23, border, margin: [0, 0.2] }, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}],
+                      [{ text: ' ', fontSize: fontSizeEmptyCell, colSpan: 23 }, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}],
+                      [{ text: '20. Hünäri (*Diňe BS, IN, WP üçin)', fontSize: fontSizeCell, colSpan: 23, border, margin: [0, 0.2] }, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}],
+                      [{ text: ' ', fontSize: fontSizeEmptyCell, colSpan: 23 }, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}],
+                      [{ text: '21. Okan (okaýan) ýeri *(Diňe BS, IN, WP üçin)', fontSize: fontSizeCell, colSpan: 23, border, margin: [0, 0.2] }, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}],
+                      [{ text: ' ', fontSize: fontSizeEmptyCell, colSpan: 23 }, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}],
+                      [{ text: '22. Işleýän ýeri we iş telefony, şahsy telefony *', fontSize: fontSizeCell, colSpan: 23, border, margin: [0, 0.2] }, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}],
+                      [{ text: ' ', fontSize: fontSizeEmptyCell, colSpan: 23 }, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}],
+                      [{ text: '23. Wezipesi (*-Diňe BS, IN, WP üçin)', fontSize: fontSizeCell, colSpan: 23, border, margin: [0, 0.2] }, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}],
+                      [{ text: ' ', fontSize: fontSizeEmptyCell, colSpan: 23 }, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}],
+                      [{ text: '24. Wezipe boýunça iş tejribesi', fontSize: fontSizeCell, colSpan: 23, border, margin: [0, 0.2] }, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}],
+                      [{ text: ' ', fontSize: fontSizeEmptyCell, colSpan: 23 }, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}],
+                      [{ text: ' ', fontSize: fontSizeEmptyCell, colSpan: 23,  }, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}],
 
                     ]
                   },
