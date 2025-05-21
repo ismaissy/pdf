@@ -14,7 +14,7 @@ pdfMake.fonts = TimesNewRomanObject;
 
 
 const fontSizeCell = 9;
-const fontSizeEmptyCell = 12;
+const fontSizeEmptyCell = 10;
 const fontSizeHeadCell = 11;
 const sectionHeadColor = '#e2e1df';
 const border = [false, false, false, false];
@@ -68,19 +68,19 @@ const ShahsyKagyzy = ({ ...props }) => {
       pageMargins: [20, 20, 20, 40],
       defaultStyle: { font },
       footer: (currentPage) => currentPage === 2 ? 'V015' : '',
-      background: (currentPage, pageSize) => {
-        return {
-          canvas: [
-            {
-              type: "rect",
-              x: 20, y: 20,
-              w: pageSize.width - 40,
-              h: pageSize.height - 60,
-              lineWidth: 1,
-            },
-          ],
-        };
-      },
+      // background: (currentPage, pageSize) => {
+      //   return {
+      //     canvas: [
+      //       {
+      //         type: "rect",
+      //         x: 20, y: 20,
+      //         w: pageSize.width - 40,
+      //         h: pageSize.height - 60,
+      //         lineWidth: 1,
+      //       },
+      //     ],
+      //   };
+      // },
       content: [
         {
           fontSize: 13,
@@ -130,7 +130,6 @@ const ShahsyKagyzy = ({ ...props }) => {
               ],
 
               [
-
                 {
                   colSpan: 2, layout, margin: [0, 1, 0, 2],
                   table: {
@@ -195,8 +194,6 @@ const ShahsyKagyzy = ({ ...props }) => {
                   },
                 },
               ],
-
-
 
               [
                 {
@@ -317,44 +314,6 @@ const ShahsyKagyzy = ({ ...props }) => {
                   fontSize: fontSizeHeadCell, fillColor: sectionHeadColor,
                 }, {}, {}, {}, {},
               ],
-
-              // [
-              //   {
-              //     colSpan: 5, layout: {
-              //       hLineWidth: () => 0.1,
-              //       vLineWidth: () => 0.1,
-              //       paddingLeft: () => 2,
-              //       paddingRight: () => 0,
-              //       paddingTop: () => 0,
-              //       paddingBottom: () => 0
-              //     }, border: [true, false, true, false],
-              //     table: {
-              //       widths: ['*', '*', 2, '*', 2, 'auto'],
-              //       body: [
-              //         [
-              //           { text: '1. Familiýasy *', colSpan: 3, fontSize: 9, border, },
-              //           { text: '', border },
-              //           { text: '', border },
-              //           { text: '2. Doglan wagtyndaky familiýasy (ozalky familiýa(lary) sy)', colSpan: 3, fontSize: 9, border },
-              //           { text: '', border },
-              //           { text: '', border },
-              //         ],
-              //         [
-              //           { text: ' ', colSpan: 2, }, {}, { text: ' ', border },
-              //           { text: '', colSpan: 3, }, {}, {},
-              //         ],
-              //         [
-              //           { text: '3. Ady *', colSpan: 3, fontSize: 9, border, }, {}, {},
-              //           { text: '', text: '4. Doglan senesi (GG.AA.ÝÝÝÝ) *', colSpan: 2, fontSize: 9, border, }, {},
-              //           { text: '5. Jynsy *', fontSize: 9, border, },
-              //         ],
-              //         [{ text: ' ', colSpan: 2 }, {}, { text: '', border }, { text: '', }, { text: '', border }, { text: '' },],
-              //         // [{ text: ' ', }, { text: '', }, { text: ' ', }, { text: '', }, { text: '' }, { text: '' },]
-              //       ]
-              //     },
-              //   },
-              //   {}, {}, {}, {},
-              // ],
 
               [
                 {
@@ -520,7 +479,7 @@ const ShahsyKagyzy = ({ ...props }) => {
                       [{ text: ' ', fontSize: fontSizeEmptyCell, colSpan: 23 }, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}],
                       [{ text: '24. Wezipe boýunça iş tejribesi', fontSize: fontSizeCell, colSpan: 23, border, margin: [0, 0.2] }, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}],
                       [{ text: ' ', fontSize: fontSizeEmptyCell, colSpan: 23 }, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}],
-                      [{ text: ' ', fontSize: fontSizeEmptyCell, colSpan: 23,  }, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}],
+                      [{ text: ' ', fontSize: fontSizeEmptyCell, colSpan: 23, }, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}],
 
                     ]
                   },
@@ -534,10 +493,247 @@ const ShahsyKagyzy = ({ ...props }) => {
         },
 
 
+        // page 2
+        {
+          fontSize: 13, pageBreak: 'before',
+          layout: {
+            hLineWidth: (i, node) => 1.5,
+            vLineWidth: () => 1.5,
+            paddingLeft: () => 2,
+            paddingRight: () => 2,
+            paddingTop: () => 0,
+            paddingBottom: () => 0,
+          },
+          table: {
+            widths: ['*', '*', '*', '*', '*'], // пять равных колонок
+            body: [
+              [
+                {
+                  text: 'III.Wiza maglumatlary:',
+                  bold, colSpan: 5, margin: [2, 2, 0, 2],
+                  fontSize: fontSizeHeadCell, fillColor: sectionHeadColor,
+                }, {}, {}, {}, {},
+              ],
+
+              [
+                {
+                  colSpan: 5, border: [true, false, true, true], margin: [0, 0, 0, 2],
+                  layout: {
+                    hLineWidth: () => 0.1,
+                    vLineWidth: () => 0.1,
+                    paddingLeft: () => 2,
+                    paddingRight: () => 0,
+                    paddingTop: () => 1,
+                    paddingBottom: () => 0.6
+                  },
+                  table: {
+                    fontSize: fontSizeCell,
+                    widths: ['*', 2, '*', 2, '*', 2, '*', 2, '*', 2, '*', 2, '*', 2, '*', 2, '*', 2, '*', 2, '*', 2, '*'],
+                    body: [
+                      [
+                        {
+                          text: '25. Wizanyň derejesi *', border, colSpan: 11,
+                          margin: [0, 1, 0, 1], fontSize: fontSizeCell,
+                        }, {}, {}, {}, {}, {}, {}, {}, {}, {}, {},
+                        { text: '', border },
+                        {
+                          text: '26. Wizanyň görnüşi (gezekligi) *',
+                          colSpan: 11, border,
+                          margin: [0, 1, 0, 1], fontSize: fontSizeCell,
+                        },
+                        {}, {}, {}, {}, {}, {}, {}, {}, {}, {},
+                      ],
+                      [
+                        { text: ' ', colSpan: 11, fontSize: fontSizeEmptyCell, }, {}, {}, {}, {}, {}, {}, {}, {}, {}, {},
+                        { text: '', border },
+                        { text: ' ', colSpan: 11, fontSize: fontSizeEmptyCell, }, {}, {}, {}, {}, {}, {}, {}, {}, {}, {},
+                      ],
+
+                      [
+                        { text: '27. Wizanyň möhleti *', fontSize: fontSizeCell, colSpan: 5, border }, {}, {}, {}, {},
+                        { text: '', border },
+                        { text: ' ', colSpan: 5, fontSize: fontSizeCell, border }, {}, {}, {}, {},
+                        { text: '', border },
+                        { text: '28. Başlanýan wagty', fontSize: fontSizeCell, colSpan: 5, border }, {}, {}, {}, {},
+                        { text: '', border },
+                        { text: '29. Tamamlanýan wagty', colSpan: 5, fontSize: fontSizeCell, border }, {}, {}, {}, {},
+                      ], [
+                        { text: '', fontSize: 11, colSpan: 5 }, {}, {}, {}, {},
+                        { text: '', border },
+                        { text: 'Aý', fontSize: 11, colSpan: 5, bold }, {}, {}, {}, {},
+                        { text: '', border },
+                        { text: '', fontSize: 11, colSpan: 5 }, {}, {}, {}, {},
+                        { text: '', border },
+                        { text: ' ', fontSize: 11, colSpan: 5 }, {}, {}, {}, {},
+                      ],
+
+                      [{ text: '30. Soňky berlen wizasynyň derejesi, görnüşi, belgisi we möhleti', fontSize: fontSizeCell, colSpan: 23, border },
+                      {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}],
+                      [{ text: 'BS, IKI GEZEKLIK, A1580991, 22.11.2024 21.12.2024', bold, fontSize: fontSizeEmptyCell, colSpan: 23 }, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}],
+
+                      [
+                        { text: '31. Barjak serhet ýakalary', border, colSpan: 17, margin: [0, 1, 0, 1], fontSize: fontSizeCell, }, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {},
+                        { text: '', border },
+                        { text: '32. Gatnaşýan Döwlet çäresi', colSpan: 5, border, margin: [0, 1, 0, 1], fontSize: fontSizeCell, }, {}, {}, {}, {},
+                      ],
+                      [
+                        { text: ' ', colSpan: 17, fontSize: fontSizeEmptyCell, }, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {},
+                        { text: '', border },
+                        { text: ' ', colSpan: 5, fontSize: fontSizeEmptyCell, }, {}, {}, {}, {},
+                      ],
+
+
+                      [
+                        { text: '33. Boljak welaýaty *', fontSize: fontSizeCell, colSpan: 5, border }, {}, {}, {}, {},
+                        { text: '', border },
+                        { text: '34. Boljak etraby *', colSpan: 5, fontSize: fontSizeCell, border }, {}, {}, {}, {},
+                        { text: '', border },
+                        { text: '35. Boljak salgysy *', fontSize: fontSizeCell, colSpan: 11, border }, {}, {}, {}, {}, {}, {}, {}, {}, {}, {},
+                      ], [
+                        { text: '', fontSize: 11, colSpan: 5, }, {}, {}, {}, {},
+                        { text: '', border },
+                        { text: 'Aý', fontSize: 11, colSpan: 5, bold }, {}, {}, {}, {},
+                        { text: '', border },
+                        { text: '', fontSize: 11, colSpan: 11 }, {}, {}, {}, {}, {}, {}, {}, {}, {}, {},
+                      ],
+
+                    ]
+                  },
+                },
+                {}, {}, {}, {},
+              ],
+            ],
+          },
+        },
 
 
 
-        { text: '...', pageBreak: 'before' },
+
+        {
+          fontSize: 13,
+          layout: {
+            hLineWidth: (i, node) => 1.5,
+            vLineWidth: () => 1.5,
+            paddingLeft: () => 2,
+            paddingRight: () => 2,
+            paddingTop: () => 0,
+            paddingBottom: () => 0,
+          },
+          table: {
+            widths: [50, '*'], // пять равных колонок
+            body: [
+              [
+                {
+                  text: 'IV. Wizanyň käbir derejelerine degişli goşmaça maglumatlar:',
+                  bold, colSpan: 2, margin: [2, 2, 0, 2],
+                  fontSize: fontSizeHeadCell, fillColor: sectionHeadColor,
+                }, {},
+              ],
+              [
+                {
+                  text: 'IV. Wizanyň käbir derejelerine degişli goşmaça maglumatlar:', margin: [2, 2, 0, 2],
+                }, {},
+              ],
+
+              // [
+              //   {
+              //     colSpan: 5, border: [true, false, true, true], margin: [0, 0, 0, 2],
+              //     layout: {
+              //       hLineWidth: () => 0.1,
+              //       vLineWidth: () => 0.1,
+              //       paddingLeft: () => 2,
+              //       paddingRight: () => 0,
+              //       paddingTop: () => 1,
+              //       paddingBottom: () => 0.6
+              //     },
+              //     table: {
+              //       fontSize: fontSizeCell,
+              //       widths: ['*', 2, '*', 2, '*', 2, '*', 2, '*', 2, '*', 2, '*', 2, '*', 2, '*', 2, '*', 2, '*', 2, '*'],
+              //       body: [
+              //         [
+              //           {
+              //             text: '25. Wizanyň derejesi *', border, colSpan: 11,
+              //             margin: [0, 1, 0, 1], fontSize: fontSizeCell,
+              //           }, {}, {}, {}, {}, {}, {}, {}, {}, {}, {},
+              //           { text: '', border },
+              //           {
+              //             text: '26. Wizanyň görnüşi (gezekligi) *',
+              //             colSpan: 11, border,
+              //             margin: [0, 1, 0, 1], fontSize: fontSizeCell,
+              //           },
+              //           {}, {}, {}, {}, {}, {}, {}, {}, {}, {},
+              //         ],
+              //         [
+              //           { text: ' ', colSpan: 11, fontSize: fontSizeEmptyCell, }, {}, {}, {}, {}, {}, {}, {}, {}, {}, {},
+              //           { text: '', border },
+              //           { text: ' ', colSpan: 11, fontSize: fontSizeEmptyCell, }, {}, {}, {}, {}, {}, {}, {}, {}, {}, {},
+              //         ],
+
+              //         [
+              //           { text: '27. Wizanyň möhleti *', fontSize: fontSizeCell, colSpan: 5, border }, {}, {}, {}, {},
+              //           { text: '', border },
+              //           { text: ' ', colSpan: 5, fontSize: fontSizeCell, border }, {}, {}, {}, {},
+              //           { text: '', border },
+              //           { text: '28. Başlanýan wagty', fontSize: fontSizeCell, colSpan: 5, border }, {}, {}, {}, {},
+              //           { text: '', border },
+              //           { text: '29. Tamamlanýan wagty', colSpan: 5, fontSize: fontSizeCell, border }, {}, {}, {}, {},
+              //         ], [
+              //           { text: '', fontSize: 11, colSpan: 5 }, {}, {}, {}, {},
+              //           { text: '', border },
+              //           { text: 'Aý', fontSize: 11, colSpan: 5, bold }, {}, {}, {}, {},
+              //           { text: '', border },
+              //           { text: '', fontSize: 11, colSpan: 5 }, {}, {}, {}, {},
+              //           { text: '', border },
+              //           { text: ' ', fontSize: 11, colSpan: 5 }, {}, {}, {}, {},
+              //         ],
+
+              //         [{ text: '30. Soňky berlen wizasynyň derejesi, görnüşi, belgisi we möhleti', fontSize: fontSizeCell, colSpan: 23, border },
+              //         {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}],
+              //         [{ text: 'BS, IKI GEZEKLIK, A1580991, 22.11.2024 21.12.2024', bold, fontSize: fontSizeEmptyCell, colSpan: 23 }, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}],
+
+              //         [
+              //           { text: '31. Barjak serhet ýakalary', border, colSpan: 17, margin: [0, 1, 0, 1], fontSize: fontSizeCell, }, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {},
+              //           { text: '', border },
+              //           { text: '32. Gatnaşýan Döwlet çäresi', colSpan: 5, border, margin: [0, 1, 0, 1], fontSize: fontSizeCell, }, {}, {}, {}, {},
+              //         ],
+              //         [
+              //           { text: ' ', colSpan: 17, fontSize: fontSizeEmptyCell, }, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {},
+              //           { text: '', border },
+              //           { text: ' ', colSpan: 5, fontSize: fontSizeEmptyCell, }, {}, {}, {}, {},
+              //         ],
+
+
+              //         [
+              //           { text: '33. Boljak welaýaty *', fontSize: fontSizeCell, colSpan: 5, border }, {}, {}, {}, {},
+              //           { text: '', border },
+              //           { text: '34. Boljak etraby *', colSpan: 5, fontSize: fontSizeCell, border }, {}, {}, {}, {},
+              //           { text: '', border },
+              //           { text: '35. Boljak salgysy *', fontSize: fontSizeCell, colSpan: 11, border }, {}, {}, {}, {}, {}, {}, {}, {}, {}, {},
+              //         ], [
+              //           { text: '', fontSize: 11, colSpan: 5, }, {}, {}, {}, {},
+              //           { text: '', border },
+              //           { text: 'Aý', fontSize: 11, colSpan: 5, bold }, {}, {}, {}, {},
+              //           { text: '', border },
+              //           { text: '', fontSize: 11, colSpan: 11 }, {}, {}, {}, {}, {}, {}, {}, {}, {}, {},
+              //         ],
+
+              //       ]
+              //     },
+              //   },
+              //   {}, {}, {}, {},
+              // ],
+
+
+
+
+
+
+            ],
+          },
+        },
+
+
+
 
         {
           qr: JSON.stringify(qrData),

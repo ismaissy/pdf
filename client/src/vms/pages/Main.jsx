@@ -3,6 +3,9 @@ import { Dropdown } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 
 const pages = [
+
+    { name: 'Shahsy Kagyzy', link: '/preview-doc/shahsy-kagyzy' },
+
     { name: 'Blank Adres Uytketmek Shaher Ichinde', link: '/preview-doc/blank/adres-uytketmek-shaher-ichinde' },
     { name: 'Table Adres Uytketmek Shaher Ichinde', link: '/preview-doc/table/adres-uytketmek-shaher-ichinde' },
 
@@ -46,9 +49,6 @@ const pages = [
 
     { name: 'Blank Taslamanyn Kepilligi', link: '/preview-doc/blank/taslamanyn-kepilligi' },
     { name: 'Table Taslamanyn Kepilligi', link: '/preview-doc/table/taslamanyn-kepilligi' },
-
-    { name: 'Shahsy Kagyzy', link: '/preview-doc/shahsy-kagyzy' },
-
 ]
 
 const Main = () => {
