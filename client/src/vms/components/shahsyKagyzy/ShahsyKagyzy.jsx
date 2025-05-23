@@ -28,9 +28,6 @@ const layout = {
 };
 
 
-
-
-
 const ShahsyKagyzy = ({ ...props }) => {
   const [pdfUrl, setPdfUrl] = useState(null);
   const base64Image = useBase64Image(logoGapinsaat);
@@ -62,10 +59,25 @@ const ShahsyKagyzy = ({ ...props }) => {
 
   const generatePdf = () => {
 
+    const flag = false;
+    const checkbox = flag ? [
+      { type: 'rect', x: 0, y: 0, w: 8, h: 8, lineWidth: 1 },  // Внешний квадрат (рамка)
+      { type: 'rect', x: 2, y: 2, w: 4, h: 4, color: 'black', fillOpacity: 1, lineWidth: 0 }       // Внутренний чёрный квадрат с отступом 2px со всех сторон
+    ] : [
+      { type: 'rect', x: 0, y: 0, w: 8, h: 8, lineWidth: 1 }
+    ]; // Только внешний квадрат (рамка)
+
+
+    const flag2 = true; // или false
+    const checkbox2 = flag2 ? [
+      { type: 'rect', x: 0, y: 0, w: 8, h: 8, lineWidth: 1 }, { type: 'rect', x: 2, y: 2, w: 4, h: 4, color: 'black', fillOpacity: 1, lineWidth: 0 }
+    ] : [{ type: 'rect', x: 0, y: 0, w: 8, h: 8, lineWidth: 1 }];
+
+
     const documentDefinition = {
       pageSize,
       pageOrientation: "portrait",
-      pageMargins: [20, 20, 20, 40],
+      pageMargins: [20, 20, 20, 20],
       defaultStyle: { font },
       footer: (currentPage) => currentPage === 2 ? 'V015' : '',
       // background: (currentPage, pageSize) => {
@@ -148,10 +160,29 @@ const ShahsyKagyzy = ({ ...props }) => {
                 }, {}, {}
               ],
 
+              // [
+              //   {
+              //     text: "□ Çagyryjy tarap - fiziki şahs:", margin: [2, 0, 0, 1], colSpan: 5, fontSize: 10, border: [true, false, true, false],
+              //   }, {}, {}, {}, {},
+              // ],
               [
                 {
-                  text: "Çagyryjy tarap - fiziki şahs:", margin: [2, 0, 0, 1], colSpan: 5, fontSize: 10, border: [true, false, true, false],
-                }, {}, {}, {}, {},
+                  columns: [
+                    {
+                      canvas: checkbox,
+                      width: 15,
+                      margin: [0, 2, 5, 0]
+                    },
+                    {
+                      text: 'Çagyryjy tarap - fiziki şahs:',
+                      fontSize: 10,
+                      margin: [0, 0, 0, 1]
+                    }
+                  ],
+                  colSpan: 5,
+                  border: [true, false, true, false],
+                },
+                {}, {}, {}, {}
               ],
 
               [
@@ -236,10 +267,29 @@ const ShahsyKagyzy = ({ ...props }) => {
                 },
               ],
 
+              // [
+              //   {
+              //     text: "Çagyryjy tarap - ýuridik şahs (ýa-da hususy telekeçi):", colSpan: 5, fontSize: 10, margin: [2, 0, 0, 1], border: [true, false, true, false],
+              //   }, {}, {}, {}, {},
+              // ],
               [
                 {
-                  text: "Çagyryjy tarap - ýuridik şahs (ýa-da hususy telekeçi):", colSpan: 5, fontSize: 10, margin: [2, 0, 0, 1], border: [true, false, true, false],
-                }, {}, {}, {}, {},
+                  columns: [
+                    {
+                      canvas: checkbox2,
+                      width: 15,
+                      margin: [0, 2, 5, 0]
+                    },
+                    {
+                      text: "Çagyryjy tarap - ýuridik şahs (ýa-da hususy telekeçi):",
+                      fontSize: 10,
+                      margin: [0, 0, 0, 1]
+                    }
+                  ],
+                  colSpan: 5,
+                  border: [true, false, true, false],
+                },
+                {}, {}, {}, {}
               ],
               [
                 {
@@ -551,10 +601,10 @@ const ShahsyKagyzy = ({ ...props }) => {
                         {
                           layout, margin: [1, 2, 2, 1],
                           table: {
-                            widths: ['*',],
+                            widths: ['*'],
                             body: [
-                              [{ text: '36. Maýa goýum goýulýan pudak (IN)*', fontSize: fontSizeCell + 1, border }],
-                              [{ text: ' ', fontSize: fontSizeEmptyCell + 1 }]
+                              [{ text: '36. Maýa goýum goýulýan pudak (IN)*', fontSize: fontSizeCell, border }],
+                              [{ text: ' ', fontSize: fontSizeEmptyCell }]
                             ]
                           },
                         },
@@ -569,26 +619,25 @@ const ShahsyKagyzy = ({ ...props }) => {
                           table: {
                             widths: ['*'],
                             body: [
-                              [{ text: '37. Hereket çägi (WP)*', fontSize: fontSizeCell + 1, border }],
-                              [{ text: 'ASGABAT S., AHAL WEL. AKBUGDAY ETR.', bold, fontSize: fontSizeEmptyCell + 1 }]
+                              [{ text: '37. Hereket çägi (WP)*', fontSize: fontSizeCell, border }],
+                              [{ text: 'ASGABAT S., AHAL WEL. AKBUGDAY ETR.', bold, fontSize: fontSizeEmptyCell }]
                             ]
                           },
                         },
                       ],
                       [
                         {
-                          alignment, fillColor: sectionHeadColor, margin: [0, 16, 0, 0],
-                          text: [{ text: '(FM)' }, { text: '\nMaşgala', fontSize: 8 }]
+                          text: [{ text: '(FM)' }, { text: '\nMaşgala', fontSize: 8 }], alignment, fillColor: sectionHeadColor, margin: [0, 16, 0, 0],
                         },
                         {
                           layout, margin: [1, 2, 2, 1],
                           table: {
                             widths: ['*'],
                             body: [
-                              [{ text: '38. Çagyrýanyň wizasynyň derejesi, görnüşi, belgisi we möhleti (FM)', fontSize: fontSizeCell + 1, border }],
-                              [{ text: ' ', bold, fontSize: fontSizeEmptyCell + 1 }],
-                              [{ text: '39. Garyndaşlyk derejesi (FM)*', fontSize: fontSizeCell + 1, border }],
-                              [{ text: ' ', bold, fontSize: fontSizeEmptyCell + 1 }]
+                              [{ text: '38. Çagyrýanyň wizasynyň derejesi, görnüşi, belgisi we möhleti (FM)', fontSize: fontSizeCell, border }],
+                              [{ text: ' ', bold, fontSize: fontSizeEmptyCell }],
+                              [{ text: '39. Garyndaşlyk derejesi (FM)*', fontSize: fontSizeCell, border }],
+                              [{ text: ' ', bold, fontSize: fontSizeEmptyCell }]
                             ]
                           },
                         },
@@ -603,10 +652,10 @@ const ShahsyKagyzy = ({ ...props }) => {
                           table: {
                             widths: ['*'],
                             body: [
-                              [{ text: '40. Gelmeginiň maksady (PR1, PR2)*', fontSize: fontSizeCell + 1, border }],
-                              [{ text: ' ', bold, fontSize: fontSizeEmptyCell + 1 }],
-                              [{ text: '41. Garyndaşlyk derejesi (PR1, PR2) *', fontSize: fontSizeCell + 1, border }],
-                              [{ text: ' ', bold, fontSize: fontSizeEmptyCell + 1 }]
+                              [{ text: '40. Gelmeginiň maksady (PR1, PR2)*', fontSize: fontSizeCell, border }],
+                              [{ text: ' ', bold, fontSize: fontSizeEmptyCell }],
+                              [{ text: '41. Garyndaşlyk derejesi (PR1, PR2) *', fontSize: fontSizeCell, border }],
+                              [{ text: ' ', bold, fontSize: fontSizeEmptyCell }]
                             ]
                           },
                         },
@@ -621,8 +670,8 @@ const ShahsyKagyzy = ({ ...props }) => {
                           table: {
                             widths: ['*'],
                             body: [
-                              [{ text: '42. Sportyň görnüşi (SP1)', fontSize: fontSizeCell + 1, border }],
-                              [{ text: ' ', fontSize: fontSizeEmptyCell + 1 }]
+                              [{ text: '42. Sportyň görnüşi (SP1)', fontSize: fontSizeCell, border }],
+                              [{ text: ' ', fontSize: fontSizeEmptyCell }]
                             ]
                           },
                         },
@@ -638,14 +687,12 @@ const ShahsyKagyzy = ({ ...props }) => {
                             widths: ['*', 2, '*', 2, '*'],
                             body: [
                               [
-                                { text: '43. Giriş nokady (TR1, TR2)*', fontSize: fontSizeCell + 1, border }, { text: ' ', border },
-                                { text: '44. Çykyş nokady (TR1, TR2) *', fontSize: fontSizeCell + 1, border }, { text: ' ', border },
-                                { text: '45. Barýan ýurdy (TR1, TR2) *', fontSize: fontSizeCell + 1, border },
+                                { text: '43. Giriş nokady (TR1, TR2) *', marginTop: 3, fontSize: fontSizeCell, border }, { text: ' ', border },
+                                { text: '44. Çykyş nokady (TR1, TR2) *', marginTop: 3, fontSize: fontSizeCell, border }, { text: ' ', border },
+                                { text: '45. Barýan ýurdy (TR1, TR2) *', marginTop: 3, fontSize: fontSizeCell, border },
                               ],
                               [
-                                { text: ' ', fontSize: fontSizeEmptyCell + 1 }, { text: ' ', border },
-                                { text: ' ', fontSize: fontSizeEmptyCell + 1 }, { text: ' ', border },
-                                { text: ' ', fontSize: fontSizeEmptyCell + 1 }
+                                { text: '', fontSize: 3 }, { text: ' ', border }, { text: '', fontSize: 3 }, { text: ' ', border }, { text: '', fontSize: 3 }
                               ]
                             ]
                           },
@@ -662,10 +709,10 @@ const ShahsyKagyzy = ({ ...props }) => {
                             widths: ['*', '*'],
                             body: [
                               [
-                                { text: '46. Ýokary okuw jaýy ТКМ (ST) *', fontSize: fontSizeCell + 1, border },
-                                { text: '47. Okaýan hünäri we ýyly (ST) *', fontSize: fontSizeCell + 1, border },
+                                { text: '46. Ýokary okuw jaýy ТКМ (ST) *', fontSize: fontSizeCell, border },
+                                { text: '47. Okaýan hünäri we ýyly (ST) *', fontSize: fontSizeCell, border },
                               ],
-                              [{ text: ' ', fontSize: fontSizeEmptyCell + 1 }, { text: ' ', fontSize: fontSizeEmptyCell + 1 }]
+                              [{ text: ' ', fontSize: fontSizeEmptyCell }, { text: ' ', fontSize: fontSizeEmptyCell }]
                             ]
                           },
                         },
@@ -681,8 +728,8 @@ const ShahsyKagyzy = ({ ...props }) => {
                           table: {
                             widths: ['*',],
                             body: [
-                              [{ text: '48. Saglygy goraýyş edarasy (HL) *', fontSize: fontSizeCell + 1, border }],
-                              [{ text: ' ', fontSize: fontSizeEmptyCell + 1 }]
+                              [{ text: '48. Saglygy goraýyş edarasy (HL) *', fontSize: fontSizeCell, border }],
+                              [{ text: ' ', fontSize: fontSizeEmptyCell }]
                             ]
                           },
                         },
@@ -699,14 +746,14 @@ const ShahsyKagyzy = ({ ...props }) => {
                     body: [
                       [
                         {
-                          border,
+                          border, layout,
                           table: {
                             widths: ['*'],
                             body: [
-                              [{ text: '49. Kämillik ýaşyna ýetmedikler üçin: ata-enesiniň/kanuny wekiliniň F.A.A., raýatlygy we öý salgysy: *', fontSize: fontSizeCell + 1, border }],
-                              [{ text: ' ', bold, fontSize: fontSizeEmptyCell + 1 }],
-                              [{ text: '50. BELLIKLER:', fontSize: fontSizeCell + 1, border }],
-                              [{ text: ' ', bold, fontSize: fontSizeEmptyCell + 1 }]
+                              [{ text: '49. Kämillik ýaşyna ýetmedikler üçin: ata-enesiniň/kanuny wekiliniň F.A.A., raýatlygy we öý salgysy: *', fontSize: fontSizeCell, border }],
+                              [{ text: ' ', bold, fontSize: fontSizeEmptyCell }],
+                              [{ text: '50. BELLIKLER:', fontSize: fontSizeCell, border }],
+                              [{ text: ' ', bold, fontSize: fontSizeEmptyCell }]
                             ]
                           },
                         },
