@@ -16,7 +16,7 @@ export const fontSizeTableHeader = 12; // Belgi: 8/-620 Sene: 29.08.2024 Tablisi
 export const leadingIndent = 20;
 export const pageMarginsBlank = [40, 20, 50, 70];
 export const pageMarginsTable = [10, 20, 10, 10];
-export const tableBodyStyle = { alignment, valign };
+export const tableBodyStyle = { alignment, valign, fontSize: 9 };
 export const COMPANY_POLICY_RESPONSIBILITY = {
     leadingIndent, fontSize, alignment: 'justify',
     text: [

@@ -87,7 +87,7 @@ const BlankKomandirowochnye = ({ ...props }) => {
   };
 
   return (
-    <PreviewDocWrapper>
+    <PreviewDocWrapper title='Komandirowoçnye'>
       <>
         {
           pdfUrl && (

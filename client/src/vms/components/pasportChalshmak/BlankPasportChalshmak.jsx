@@ -83,7 +83,7 @@ const BlankPasportChalshmak = ({ ...props }) => {
   };
 
   return (
-    <PreviewDocWrapper>
+    <PreviewDocWrapper title='Pasport Çalşmak'>
       <>
         {
           pdfUrl && (

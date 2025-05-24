@@ -400,7 +400,7 @@ const Profile = ({ ...props }) => {
 
 
   return (
-    <PreviewDocWrapper>
+    <PreviewDocWrapper title='Profile'>
       <>
         {
           pdfUrl && (

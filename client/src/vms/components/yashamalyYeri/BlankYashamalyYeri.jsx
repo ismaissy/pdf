@@ -122,7 +122,7 @@ const BlankYashamalyYeri = ({ ...props }) => {
 
 
   return (
-    <PreviewDocWrapper>
+    <PreviewDocWrapper title='Ýaşamaly Ýeri'>
       <>
         {
           pdfUrl && (

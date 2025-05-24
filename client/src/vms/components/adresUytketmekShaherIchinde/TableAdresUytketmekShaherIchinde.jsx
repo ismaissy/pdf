@@ -102,7 +102,7 @@ const TableAdresUytketmekShaherIchinde = ({ ...props }) => {
   };
 
   return (
-    <PreviewDocWrapper>
+    <PreviewDocWrapper title='Adres Üýketmek Şaher Içinde'>
       <>
         {
           pdfUrl && (

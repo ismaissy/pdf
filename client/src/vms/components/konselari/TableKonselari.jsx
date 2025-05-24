@@ -119,7 +119,7 @@ const TableKonselari = ({ ...props }) => {
   };
 
   return (
-    <PreviewDocWrapper>
+    <PreviewDocWrapper title='Konselari'>
       <>
         {
           pdfUrl && (

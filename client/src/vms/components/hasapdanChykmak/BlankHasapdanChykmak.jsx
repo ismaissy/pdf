@@ -83,7 +83,7 @@ const BlankHasapdanChykmak = ({ ...props }) => {
   };
 
   return (
-    <PreviewDocWrapper>
+    <PreviewDocWrapper title='Hasapdan Çykmak'>
       <>
         {
           pdfUrl && (

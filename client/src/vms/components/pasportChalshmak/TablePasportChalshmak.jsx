@@ -122,7 +122,7 @@ const TablePasportChalshmak = ({ ...props }) => {
   };
 
   return (
-    <PreviewDocWrapper>
+    <PreviewDocWrapper title='Pasport Çalşmak'>
       <>
         {
           pdfUrl && (

@@ -30,6 +30,7 @@ import BlankYashamalyYeri from './vms/components/yashamalyYeri/BlankYashamalyYer
 import BlankTaslamanynKepilligi from './vms/components/taslamanynKepilligi/BlankTaslamanynKepilligi';
 import TableTaslamanynKepilligi from './vms/components/taslamanynKepilligi/TableTaslamanynKepilligi';
 import ShahsyKagyzy from './vms/components/shahsyKagyzy/ShahsyKagyzy';
+import DasharyYurtRayatynynSanawy from './vms/components/dasharyYurtRayatynynSanawy/DasharyYurtRayatynynSanawy';
 
 
 export default function App() {
@@ -83,6 +84,7 @@ export default function App() {
                 <Route path='/preview-doc/table/taslamanyn-kepilligi' element={<TableTaslamanynKepilligi />} />
 
                 <Route path='/preview-doc/shahsy-kagyzy' element={<ShahsyKagyzy data={data} />} />
+                <Route path='/preview-doc/table/dashary-yurt-rayatynyn-sanawy' element={<DasharyYurtRayatynynSanawy data={data} />} />
 
             </Routes>
         </BrowserRouter>

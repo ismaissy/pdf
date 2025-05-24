@@ -85,7 +85,7 @@ const BlankIshlemaneRugsotEdilenYerler = ({ ...props }) => {
   };
 
   return (
-    <PreviewDocWrapper>
+    <PreviewDocWrapper title='Işlemane Rugsot Edilen Ýerler'>
       <>
         {
           pdfUrl && (

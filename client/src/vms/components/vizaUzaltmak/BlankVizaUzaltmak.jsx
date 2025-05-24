@@ -83,7 +83,7 @@ const BlankVizaUzaltmak = ({ ...props }) => {
   };
 
   return (
-    <PreviewDocWrapper>
+    <PreviewDocWrapper title='Viza Uzaltmak'>
       <>
         {
 

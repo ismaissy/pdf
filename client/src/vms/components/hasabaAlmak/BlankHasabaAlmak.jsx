@@ -84,7 +84,7 @@ const BlankHasabaAlmak = ({ ...props }) => {
   };
 
   return (
-    <PreviewDocWrapper>
+    <PreviewDocWrapper title='Hasaba Almak'>
       {
         pdfUrl && (
           <iframe title="PDF Viewer" type="application/pdf" className="iframeDocument" src={pdfUrl} />

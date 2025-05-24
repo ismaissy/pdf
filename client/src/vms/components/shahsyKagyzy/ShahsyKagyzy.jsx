@@ -765,7 +765,7 @@ const ShahsyKagyzy = ({ ...props }) => {
               [
                 {
                   text: 'Galp maglumat berlen ýagdaýynda Türkmenistanyň kanunçylygyna laýyklykda jogapkärçilige çekiljekdigim duýduryldy.',
-                  colSpan: 2, margin: [4, 5, 0, 10], fontSize: fontSizeHeadCell,
+                  colSpan: 2, margin: [4, 5, 0, 10], fontSize: fontSizeCell,
                 }, {}
               ],
               [
@@ -788,7 +788,8 @@ const ShahsyKagyzy = ({ ...props }) => {
           qr: JSON.stringify(qrData),
           alignment,
           margin: [0, 30, 0, 0],
-          fit: 300,
+          // fit: 300,
+          fit: 200,
         },
       ],
     };
@@ -797,7 +798,7 @@ const ShahsyKagyzy = ({ ...props }) => {
   };
 
   return (
-    <PreviewDocWrapper>
+    <PreviewDocWrapper title='Şahsy Kagyzy'>
       <>
         {
           pdfUrl && (<iframe title="PDF Viewer" type="application/pdf" className="iframeDocument" src={pdfUrl} />)

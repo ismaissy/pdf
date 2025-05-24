@@ -103,7 +103,7 @@ const TableVizaUzaltmak = ({ ...props }) => {
   };
 
   return (
-    <PreviewDocWrapper>
+    <PreviewDocWrapper title='Hasaba Almak'>
       <>
         {
           pdfUrl && (

@@ -100,7 +100,7 @@ const TableWShShW = ({ ...props }) => {
   };
 
   return (
-    <PreviewDocWrapper>
+    <PreviewDocWrapper title='Welaýat Şäher - Şäher Welaýat'>
       <>
         {
           pdfUrl && (

@@ -108,7 +108,7 @@ const BlankKonselari = ({ ...props }) => {
   };
 
   return (
-    <PreviewDocWrapper>
+    <PreviewDocWrapper title='Konselari'>
       <>
         {
           pdfUrl && (

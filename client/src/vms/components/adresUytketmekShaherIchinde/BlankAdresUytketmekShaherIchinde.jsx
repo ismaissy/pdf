@@ -84,7 +84,7 @@ const BlankAdresUytketmekShaherIchinde = ({ ...props }) => {
   };
 
   return (
-    <PreviewDocWrapper>
+    <PreviewDocWrapper title='Adres Üýketmek Şaher Içinde'>
       <>
         {
           pdfUrl && (

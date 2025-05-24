@@ -82,7 +82,7 @@ const BlankWizaRugsotnamaYatyrmak = ({ ...props }) => {
   };
 
   return (
-    <PreviewDocWrapper>
+    <PreviewDocWrapper title='Wiza Rugsotnama Ýatyrmak'>
       <>
         {
           pdfUrl && (
